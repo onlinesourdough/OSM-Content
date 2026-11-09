@@ -1,0 +1,69 @@
+{
+  "migration_date": "2026-11-09",
+  "source": "Existing public Content template edition 2026-11-05.1; portable frozen packets",
+  "canonical_from_this_repository": "Future shared method and template development. Existing SOURCE.json describes the original import, not a second current authoring home.",
+  "templates": [
+    {
+      "name": "content-intake",
+      "edition": "2026-11-05.1",
+      "version": "0.10.0",
+      "prior_packet_sha256": "d8d2d232e1bdfbc88c9b193ca52ace94be2a5261d1328c1ec7f779b7c6a2600a",
+      "path": "templates/content-intake",
+      "files": {
+        "SKILL.md": "7349044ad3938051ab11cc787bee7536d3548b480acac6cf1a06c57d28f9f6e0",
+        "references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+        "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec"
+      }
+    },
+    {
+      "name": "content-learn",
+      "edition": "2026-11-05.1",
+      "version": "0.10.0",
+      "prior_packet_sha256": "acadb2702a5f98ff605a36144faa503a1c945e364db860780b6599638397505b",
+      "path": "templates/content-learn",
+      "files": {
+        "SKILL.md": "6e885b50bf4f813358ee1b81030401515df6f7f1425fc6ee673df8a6d62dbd86",
+        "references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+        "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec"
+      }
+    },
+    {
+      "name": "content-prepare",
+      "edition": "2026-11-05.1",
+      "version": "0.10.0",
+      "prior_packet_sha256": "7da0d101bedaf693dbdda2f6a4cd65bea2a736acbd5f2a691b61ff9e1577e393",
+      "path": "templates/content-prepare",
+      "files": {
+        "SKILL.md": "46d95919f5510258dcfdfe85b5598f276923b93b63718c6d1d3e3ce174459e11",
+        "references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+        "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec"
+      }
+    },
+    {
+      "name": "content-produce",
+      "edition": "2026-11-05.1",
+      "version": "0.10.0",
+      "prior_packet_sha256": "78bf1c9ca2c7ad690e78a968498b8357c7f2d2ab239313c7b8d4af1a8c1c8285",
+      "path": "templates/content-produce",
+      "files": {
+        "SKILL.md": "4352ef37f5ad0a734845be23a3a70919ebbaaec3bfe25eb93ea54986a4042ba5",
+        "references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+        "references/release-contract.md": "e062423bace5b393b8b835e20b1f21541d8116806009763c1ab40460b800da33",
+        "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec"
+      }
+    },
+    {
+      "name": "content-setup",
+      "edition": "2026-11-05.1",
+      "version": "0.10.0",
+      "prior_packet_sha256": "75412e2695fa23ca1abdcd1670881dcddc258cec5bfed3f2b3397382d1720515",
+      "path": "templates/content-setup",
+      "files": {
+        "SKILL.md": "e36d98747a5fc79b4cb8067b5c1c2b8c375a71e592e45266419504cdcb0a905d",
+        "references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+        "references/setup-contract.md": "c9660c2b187627798632e02f83025a4f7811d7571bb998c0cf70fabdae232914",
+        "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec"
+      }
+    }
+  ]
+}

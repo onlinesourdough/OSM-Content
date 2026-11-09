@@ -1,0 +1,14 @@
+{
+  "edition": "2026-11-05.1",
+  "template_package_version": "0.10.0",
+  "status": "template draft, not an OSM release or installed personal skill",
+  "owning_public_template": "https://app.notion.com/p/40d6d2e17f568122aa82f1dcf83500a7",
+  "source_ownership": "Reviewed authored template edition in public Notion; this packet is a frozen portable export, not an independently editable original",
+  "normalization": "Portable YAML frontmatter and relative references are retained; readable Notion uses native mentions/formatting. setup-contract is generated from the public setup page body for this edition.",
+  "files": {
+    "SKILL.md": "4352ef37f5ad0a734845be23a3a70919ebbaaec3bfe25eb93ea54986a4042ba5",
+    "references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+    "references/release-contract.md": "e062423bace5b393b8b835e20b1f21541d8116806009763c1ab40460b800da33",
+    "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec"
+  }
+}
