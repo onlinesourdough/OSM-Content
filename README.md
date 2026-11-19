@@ -1,5 +1,7 @@
 # OSM Content
 
+<img src="assets/icon.png" alt="OSM C" width="56" height="56">
+
 An optional content method for The Onlinesourdough Method: turn real work,
 ideas and sources into useful material, relevant editions and learning.
 
