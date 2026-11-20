@@ -1,5 +1,17 @@
 # Method releases
 
+## v0.12.0 · 20 November 2026
+
+Automatic synchronization of the eight bound public Content guide/template
+pages after validated main changes and releases. Reuses the pinned OSM public
+API transport and anonymous browser reader. Source versions, native children,
+catalogue, files and frozen templates are preserved. A changed human original
+or incomplete read holds the update. Lost write replies are reconciled without
+repeating the write, and an unchanged replay sends no API writes.
+
+Activation is recorded only after a real bounded write, whole-set readback and
+zero-write repeat. This infrastructure does not publish the owner's own content.
+
 ## v0.11.0 · 20 November 2026
 
 First tagged release of this separate method repository. The earlier import

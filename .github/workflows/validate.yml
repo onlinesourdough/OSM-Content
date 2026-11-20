@@ -17,5 +17,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: python3 scripts/check_release.py
+      - run: python3 -m unittest discover -s tests -v
       - name: Check committed whitespace
         run: git diff --check "$(git hash-object -t tree /dev/null)" HEAD

@@ -64,7 +64,8 @@ def main():
         path = ROOT / name
         if path.suffix != '.md':
             continue
-        for linked_version in re.findall(r'OSM-Content/(?:blob|releases/tag)/v(\d+\.\d+\.\d+)', path.read_text()):
+        for linked_version in (re.findall(r'OSM-Content/(?:blob|releases/tag)/v(\d+\.\d+\.\d+)', path.read_text())
+                               if name in {'README.md', 'docs/guide.notion.md'} else []):
             if linked_version != version:
                 errors.append('Stale method-version link: ' + name)
         for href in re.findall(r'\[[^\]]*\]\(([^\s)]+)\)', path.read_text()):

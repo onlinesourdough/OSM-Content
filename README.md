@@ -65,15 +65,18 @@ not require five agents or five new skills.
 
 ## Versions and upkeep
 
-The method release is **v0.11.0**. The five retained **v0.10.0 Draft templates**
+The method release is **v0.12.0**. The five retained **v0.10.0 Draft templates**
 are unchanged imports of the earlier public Notion template edition 2026-11-05.1,
 retained in [the initial import](https://github.com/onlinesourdough/OSM-Content/commit/b8dc567), with hashes in
 [provenance.json](provenance.json). Their template versions do not become
-v0.11.0 merely because the guide has changed. Adapt them with the current
+v0.12.0 merely because the guide has changed. Adapt them with the current
 configuration, short-post and reference guidance.
 
 This release distributes method source, not an installable Content plugin.
-It activates no account, editor, schedule or publisher. Content has its own
+Its public guide can sync automatically after accepted main changes and method
+releases through the configured public-only Notion connection. Human edits that
+conflict with the source hold the update for review. This starts no personal
+content production, subscriber send or social publishing. Content has its own
 release lifecycle outside the OSM plugin; the archived Agentic-Content-System
 remains historical.
 

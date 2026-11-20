@@ -1,0 +1,135 @@
+name: Sync public Content guide
+
+on:
+  workflow_run:
+    workflows: ['Validate method release']
+    types: [completed]
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Read-only preflight, bounded one-page proof, or whole-set write'
+        type: choice
+        options: [read-only, one-page, all]
+        default: read-only
+      page:
+        description: 'Exact bound public page id; required for one-page mode'
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: osm-content-public-guide
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (vars.OSM_CONTENT_DOCS_ENABLED == 'true' &&
+       ((github.event_name == 'release') ||
+        (github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.event == 'push' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.event.workflow_run.head_repository.full_name == github.repository)))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      CONTENT_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+    steps:
+      - name: Freeze the latest accepted source before using the Notion connection
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess
+          def api(path):
+              return json.loads(subprocess.check_output(['gh','api',path],text=True))
+          repo = os.environ['GITHUB_REPOSITORY']
+          sha = os.environ['CONTENT_SHA']
+          head = api(f'repos/{repo}/commits/main')['sha']
+          current = sha == head
+          if current:
+              runs = api(f'repos/{repo}/actions/workflows/validate.yml/runs?head_sha={sha}&event=push&branch=main&status=success')['workflow_runs']
+              if not any(r['head_sha']==sha and r['event']=='push' and r['head_branch']=='main' and r['conclusion']=='success' and r['head_repository']['full_name']==repo for r in runs):
+                  raise SystemExit('The exact main source has no successful Validate method release run')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              out.write(f'current={str(current).lower()}\n')
+          if not current:
+              with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
+                  out.write('Superseded source: no Notion read or write. The accepted current main run owns the update.\n')
+          PY
+      - uses: actions/checkout@v4
+        if: steps.source.outputs.current == 'true'
+        with:
+          ref: ${{ env.CONTENT_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+          path: content
+      - name: Use the reviewed existing OSM public transport and anonymous reader
+        if: steps.source.outputs.current == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: onlinesourdough/OSM-plugin
+          ref: caedb13fde5fc33315f97d4875e7a76e379b1737
+          fetch-depth: 1
+          persist-credentials: false
+          path: core-publisher
+      - uses: actions/setup-node@v4
+        if: steps.source.outputs.current == 'true'
+        with:
+          node-version: '22'
+      - name: Prepare the existing secret-free browser reader
+        if: steps.source.outputs.current == 'true'
+        run: |
+          npm ci --prefix core-publisher/docs-publisher --ignore-scripts --no-fund
+          cd core-publisher/docs-publisher
+          npx playwright install --only-shell chromium
+      - name: Reconcile the bound public Content pages
+        if: steps.source.outputs.current == 'true'
+        env:
+          OSM_PUBLIC_DOCS_TOKEN: ${{ secrets.OSM_PUBLIC_DOCS_TOKEN }}
+          MODE: ${{ inputs.mode }}
+          ONLY_PAGE: ${{ inputs.page }}
+        run: |
+          python3 - <<'PY'
+          import os, subprocess
+          mode = os.environ.get('MODE') or 'all'
+          args = ['python3','content/scripts/sync_notion.py','--source-root','content',
+                  '--source-ref',os.environ['CONTENT_SHA'],'--core-root','core-publisher',
+                  '--out','proof/content-sync.json']
+          if mode != 'read-only':
+              args += ['--write','--public-read']
+          if mode == 'one-page':
+              if not os.environ.get('ONLY_PAGE'):
+                  raise SystemExit('One-page mode needs an exact bound page id')
+              args += ['--only-page',os.environ['ONLY_PAGE'],'--max-writes','1']
+          elif os.environ.get('ONLY_PAGE'):
+              raise SystemExit('A page is allowed only in one-page mode')
+          raise SystemExit(subprocess.call(args))
+          PY
+      - name: Summarize actual API writes and anonymous readback
+        if: always() && steps.source.outputs.current == 'true'
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          p=Path('proof/content-sync.json')
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
+              if not p.exists():
+                  out.write('Content sync did not produce a proof. No successful synchronization is claimed.\n')
+              else:
+                  d=json.loads(p.read_text())
+                  out.write('```json\n'+json.dumps(d,indent=2)+'\n```\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.source.outputs.current == 'true'
+        with:
+          name: content-guide-sync-${{ github.run_attempt }}
+          path: proof/content-sync.json
+          if-no-files-found: ignore
