@@ -18,4 +18,4 @@ jobs:
           python-version: '3.12'
       - run: python3 scripts/check_release.py
       - name: Check committed whitespace
-        run: git show --format= --check HEAD
+        run: git diff --check "$(git hash-object -t tree /dev/null)" HEAD

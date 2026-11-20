@@ -35,7 +35,7 @@ def render_notion(path, tag):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--notion-snapshots', type=Path,
-                        help='JSON of exact mapped page ids to saved body strings')
+                        help='JSON: page id -> {page_id, body, read_at, reader}; compares supplied reads, not network access')
     args = parser.parse_args()
     manifest = json.loads((ROOT / 'release.json').read_text())
     errors = []

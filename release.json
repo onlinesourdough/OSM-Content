@@ -48,7 +48,7 @@
     }
   ],
   "source_sha256": {
-    ".github/workflows/validate.yml": "20b7a2290a69fd949590c525f812b7fd9daf5a18ed9b34457c20ee4c5d9d20e4",
+    ".github/workflows/validate.yml": "c4abe7214fc2903be32b233294daf225b9a4618e592f668f2edc8452ff3dc94d",
     ".gitignore": "bf7224daa29be47cef87a50b0351d18e729d129be606faa8e4718116d6e51d87",
     "AGENTS.md": "16a91634a5732b7b938b6e5d99e0f631e7419fe405e1cf772e1a1ea2aa500bb0",
     "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
@@ -65,7 +65,7 @@
     "docs/releases.md": "a1b42a19f18bedb160381340400e3640ad88755f179e255d8c8d100c4e45cba2",
     "docs/setup.md": "4b9a1fba72be2495510bb6f542b78396cba4351dc23b8506094a8062dcc6013f",
     "provenance.json": "ed20686ec204cd59861f4fe6fc7db7b7c788298cfcdc5497f7d2753aaa79d26f",
-    "scripts/check_release.py": "6d35c2a8e663fe5cb5fa4cc9d3b1c518838774f1b21443350e9be3211b23a93e",
+    "scripts/check_release.py": "d815b5821aef40a779d1f4c61f4646ff620fd810ce291cc2c2454542b20458b2",
     "templates/content-intake/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/content-intake/SKILL.md": "7349044ad3938051ab11cc787bee7536d3548b480acac6cf1a06c57d28f9f6e0",
     "templates/content-intake/SOURCE.json": "17e9174d2df99b8a4418686fbad9079e5c0e03444296889867a7c50fb607316c",
