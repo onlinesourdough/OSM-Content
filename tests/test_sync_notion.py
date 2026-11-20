@@ -114,6 +114,31 @@ class SyncTests(unittest.TestCase):
         edit=sent[0]['update_content']['content_updates'][0]
         self.assertTrue(edit['old_str'].startswith(s.SOURCE_NOTE))
         self.assertNotIn('<file',edit['new_str'])
+    def test_unchanged_approved_source_hyperlink_is_accepted(self):
+        p=next(iter(s.TEMPLATES));url='https://github.com/accepted'
+        self.base[p]['source']=f'[{url}]({url})'
+        self.api=API(self.base);self.api.rows[p]['source_links']=[{'text':url,'url':url}]
+        s.reconcile(self.api,self.source,self.base)
+    def test_media_signatures_are_excluded_from_matched_prose(self):
+        api=object.__new__(s.API);sent=[]
+        api.request=lambda method,path,payload:sent.append(payload) or {}
+        raw='Old prose\n\n<image source="https://signed/A" />\n\nOld tail'
+        desired='New prose\n\n<image source="notion-file-block://stable" />\n\nNew tail'
+        api.write_body(next(iter(s.GUIDES)),{'raw_body':raw},desired)
+        edits=sent[0]['update_content']['content_updates']
+        self.assertEqual(2,len(edits));self.assertNotIn('signed',str(edits));self.assertNotIn('<image',str(edits))
+    def test_partial_prose_update_can_resume_with_native_media_unchanged(self):
+        p=next(iter(s.GUIDES));media='\n\n<image source="stable" />\n\n'
+        self.base[p]['body']='Old prefix'+media+'Old suffix'
+        class WithMedia(Source):
+            def read(self,path,ref=None):
+                if path=='VERSION':return '0.12.0'
+                return 'New prefix'+media+'New suffix'
+        source=WithMedia();wanted=s.render(source,p,self.base)['body']
+        seen={**self.api.rows[p],'body':'New prefix'+media+'Old suffix'}
+        self.assertEqual(wanted,s.plan(source,self.base,p,seen)['body'])
+        seen['body']='Human prefix'+media+'Old suffix'
+        with self.assertRaises(s.Held):s.plan(source,self.base,p,seen)
     def test_newer_or_unrelated_live_revision_is_not_downgraded(self):
         p=next(iter(s.GUIDES));self.api.rows[p]['body'] += '\n['+'newer'+']('+s.REPO+'/blob/'+'c'*40+'/docs/setup.md)'
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True)

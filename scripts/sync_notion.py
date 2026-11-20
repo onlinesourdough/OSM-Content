@@ -51,6 +51,11 @@ def canonical(body):
     return '```'.join(pieces).strip()
 
 
+def chunks(body):
+    # Temporary image/file signatures are never part of a matched prose edit.
+    return re.split(r'(<(?:image|file|pdf)\b[^>]*>)', body)
+
+
 def protected(body):
     return Counter(re.findall(r'<(?:page|database|file|pdf|image)\b[^>]*>', canonical(body)))
 
@@ -133,12 +138,20 @@ def candidates(source, seen, baselines, page_id):
 def plan(source, baselines, page_id, seen):
     wanted = render(source, page_id, baselines)
     states = candidates(source, seen, baselines, page_id) + [wanted]
-    if not any(canonical(s['body']) == canonical(seen['body']) for s in states):
+    recognized = any(canonical(s['body']) == canonical(seen['body']) for s in states)
+    if not recognized and page_id in GUIDES:
+        observed = chunks(canonical(seen['body']))
+        earlier = [chunks(canonical(s['body'])) for s in states]
+        # A multi-selection update can partially apply. Accept only exact previously
+        # recognized prose segments and unchanged native media, never arbitrary edits.
+        recognized = all(any(len(parts)==len(observed) and canonical(parts[i])==canonical(part) for parts in earlier)
+                         for i,part in enumerate(observed))
+    if not recognized:
         raise Held('Live body differs from the handoff and reproducible accepted source')
     if page_id in TEMPLATES and seen['source'] not in {s['source'] for s in states}:
         raise Held('Template Source property has an unrecognized edit')
     if page_id in TEMPLATES:
-        allowed_links = set(re.findall(r'https://[^\s]+', baselines[page_id]['source']))
+        allowed_links = set(re.findall(r'https://[^\s\]\[()<>]+', baselines[page_id]['source']))
         if any(link['text'] != link['url'] or link['url'] not in allowed_links for link in seen.get('source_links', [])):
             raise Held('Template Source hyperlink destination differs from its visible source')
     if protected(seen['body']) != protected(wanted['body']):
@@ -230,21 +243,24 @@ class API:
                     raise Held('Template source note is missing or ambiguous')
                 return found[0]
             old, new = source_note(raw), source_note(body)
+            edits = [{'old_str': old, 'new_str': new}]
         else:
-            old, new = raw, body
-            # Preserve provider-native file references without passing their expiring URLs to logs.
-            for url in re.findall(r'https://[^\s<>"\']+', raw):
-                if 'X-Amz-' in url or '#notion_record=' in url:
-                    url = url[:-1] if url.endswith(')') else url
-                    stable = self.pub.stable_notion_media(url)
-                    new = new.replace(stable, url)
-            if 'notion-file-block://' in new:
-                raise Held('A native file reference could not be materialized from the observed page')
-        if not old.strip():
-            raise Held('An empty matched selection is not allowed')
+            before_parts, after_parts = chunks(raw), chunks(body)
+            if len(before_parts)!=len(after_parts):
+                raise Held('Native media partition changed')
+            edits=[]
+            for i in range(0,len(before_parts),2):
+                old,new=before_parts[i],after_parts[i]
+                if canonical(old)==canonical(new):
+                    continue
+                if not old.strip():
+                    raise Held('An empty matched selection is not allowed')
+                edits.append({'old_str':old,'new_str':new})
+        if not edits or any(not e['old_str'].strip() for e in edits):
+            raise Held('A nonempty matched update is required')
         result = self.request('PATCH', 'pages/' + page_id + '/markdown', {
             'type': 'update_content', 'markdown_version': 'v2', 'allow_async': False,
-            'update_content': {'content_updates': [{'old_str': old, 'new_str': new}], 'allow_deleting_content': False}})
+            'update_content': {'content_updates': edits, 'allow_deleting_content': False}})
         if result.get('warnings') or result.get('truncated') or result.get('unknown_block_ids'):
             raise Held('Notion changed or could not return the complete write')
 

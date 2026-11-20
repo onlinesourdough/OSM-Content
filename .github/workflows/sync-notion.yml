@@ -21,6 +21,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 concurrency:
   group: osm-content-public-guide
@@ -66,16 +67,14 @@ jobs:
               def version(ref):
                   d=api(f'repos/{repo}/contents/VERSION?ref='+urllib.parse.quote(ref,safe=''))
                   return base64.b64decode(d['content']).decode().strip()
-              if name=='release' and event['release']['id']!=release['id']:
+              if name=='release':
+                  current=event['release']['id']==release['id']
+                  sha=api(f'repos/{repo}/commits/'+urllib.parse.quote(tag,safe=''))['sha']
+                  comparison=api(f'repos/{repo}/compare/{sha}...{head}')
+                  if comparison['status'] not in ('ahead','identical') or 'v'+version(sha)!=tag:
+                      raise SystemExit('Published source is not an accepted main ancestor')
+              elif 'v'+version(head)!=tag:
                   current=False
-              if 'v'+version(head)!=tag:
-                  if name=='workflow_run':
-                      current=False
-                  else:
-                      sha=api(f'repos/{repo}/commits/'+urllib.parse.quote(tag,safe=''))['sha']
-                      comparison=api(f'repos/{repo}/compare/{sha}...{head}')
-                      if comparison['status'] not in ('ahead','identical') or 'v'+version(sha)!=tag:
-                          raise SystemExit('Published source is not an accepted main ancestor')
           if current:
               runs = api(f'repos/{repo}/actions/workflows/validate.yml/runs?head_sha={sha}&event=push&branch=main&status=success')['workflow_runs']
               if not any(r['head_sha']==sha and r['event']=='push' and r['head_branch']=='main' and r['conclusion']=='success' and r['head_repository']['full_name']==repo for r in runs):

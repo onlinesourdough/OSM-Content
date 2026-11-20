@@ -98,9 +98,11 @@ def main():
         if item.get('template') and item['template'] not in {t['name'] for t in provenance['templates']}:
             errors.append('Unknown template target: ' + item['template'])
     compared_pages = []
+    snapshot_source = None
     if args.notion_snapshots:
         from sync_notion import Source, render, canonical
         source = Source(ROOT, args.source_ref)
+        snapshot_source = {'commit': source.ref, 'method_version': source.read('VERSION').strip()}
         baselines = json.loads((ROOT / 'sync/baselines.json').read_text())
         snapshots = json.loads(args.notion_snapshots.read_text())
         for item in targets:
@@ -127,6 +129,7 @@ def main():
                       'historical_import_checked': anchor_checked,
                       'mapped_notion_pages': len(targets),
                       'provided_readbacks_compared': compared_pages,
+                      'snapshot_source': snapshot_source,
                       'template_page_readbacks_not_compared': [x['page_id'] for x in targets if x.get('template')],
                       'anonymous_public_checked': False}))
     return 0
