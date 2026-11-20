@@ -4,7 +4,9 @@
 
 Read the existing goals/vision, audience, offers, positioning, voice, channels and working preferences. Link their actual owning records and revisions. Resolve a missing business decision there rather than creating a competing Content strategy. A creator can pursue suitable enquiries, sales, education, a community role, audience growth or another goal; do not silently optimize every business for followers.
 
-For each production select the goal it serves and preserve that selection/revision. Concrete observations stay with the Content record or edition, with date/window and uncertainty. The vision changes when the owner changes direction.
+Select the goal per edition, not only per production. A single idea can build an audience on one channel and support customer dialogue on another. Record the reader, language, useful ending and relevant evidence for each. Reach, profile interest, video discovery and customer enquiries are different signals; none is a universal success measure. Monetization ideas remain provisional until the owner chooses them. Concrete observations stay with the Content record or edition, with date/window and uncertainty.
+
+For an ordinary post, use the [short-post workflow](post-workflow.md). Do not restart Setup. A link, brand mention, question or sales invitation is optional and follows the purpose of that edition.
 
 ## Make only the choices that change the work
 
