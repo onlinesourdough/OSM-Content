@@ -45,12 +45,14 @@ def canonical(body):
     """Qualified soft-linebreak representation, preserving blocks and fenced code."""
     pieces = body.replace('\r\n', '\n').replace('\r', '\n').split('```')
     for i in range(0, len(pieces), 2):
+        # Only the five soft breaks in the already-qualified configuration
+        # paragraph are representation-equivalent. Other authored breaks stay exact.
+        legacy = "Use the [reference-library workflow](REF) when a creator example<br />should inform the owner's style. Keep the original and observations on its Source,<br />accepted choices in configuration, and reusable techniques in the existing style<br />or treatment guide. Update a personal skill only when its working steps change.<br />Each production selects the references it needs; a saved source is not automatic<br />adoption. Channel languages are owner choices, not shared defaults."
         lines=[]
         for line in pieces[i].split('\n'):
-            parts=line.split('<br />')
-            structural=any(not part.strip() or re.match(r'^\s*(?:#{1,6}(?:\s|$)|[-*+](?:\s|$)|\d+[.)](?:\s|$)|[>|]|<|\[[^\]]+\]:)', part) or re.fullmatch(r'\s*[-=*_]{2,}\s*',part) for part in parts)
-            lines.append(line if structural else '\n'.join(parts))
-        pieces[i] = '\n'.join(lines)
+            fingerprint=re.sub(r'\[reference-library workflow\]\([^\s)]+\)', '[reference-library workflow](REF)',line)
+            lines.append(line.replace('<br />','\n') if fingerprint==legacy else line)
+        pieces[i]='\n'.join(lines)
         pieces[i] = re.sub(r'\n{3,}', '\n\n', '\n'.join(line.rstrip() for line in pieces[i].split('\n')))
     return '```'.join(pieces).strip()
 
@@ -128,7 +130,8 @@ def render(source, page_id, baselines, ref=None):
 def candidates(source, seen, baselines, page_id):
     """Recognize the explicit handoff or a reproducible earlier ancestor; never trust a marker alone."""
     if page_id in GUIDES:
-        strict = set(re.findall(r'\[Source revision [0-9a-f]{7}\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/' + re.escape(GUIDES[page_id]) + r'\)', seen['body']))
+        marker=re.search(r'\[Source revision ([0-9a-f]{7})\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/' + re.escape(GUIDES[page_id]) + r'\)\s*\Z',seen['body'])
+        strict={marker[2]} if marker and marker[1]==marker[2][:7] and (marker.start()==0 or seen['body'][marker.start()-2:marker.start()]=='\n\n') else set()
         refs = strict | set(re.findall(re.escape(REPO) + r'/blob/([0-9a-f]{40})/', seen['body']))
     else:
         refs = set(re.findall(r'\[Template source\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/templates/' + re.escape(TEMPLATES[page_id]) + r'/SKILL\.md\)', seen['body']))

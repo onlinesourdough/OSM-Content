@@ -8,6 +8,37 @@ Select the goal per edition, not only per production. A single idea can build an
 
 For an ordinary post, use the [short-post workflow](post-workflow.md). Do not restart Setup. A link, brand mention, question or sales invitation is optional and follows the purpose of that edition.
 
+## Start from the existing business context
+
+Keep the intended contribution of content clear: what the owner wants to build, who it should help and what would make it worthwhile. Reuse the business foundation instead of inventing a separate strategy store for the module.
+
+| Context | Owning record to find or adapt |
+| --- | --- |
+| Direction and goals | Existing vision, priorities and goals; a compact Content vision can describe how content contributes to them |
+| Audience and perspective | Existing audience, positioning, offers and the owner's point of view |
+| Voice and visual expression | Existing writing/style guide, accepted examples and rejected treatments |
+| Working choices | One personal Content configuration linking those records, selected channels, tools, media routes, methods and delivery authority |
+
+These are responsibilities, not compulsory filenames or four new pages. Reuse suitable Knowledge records and link their actual owners. Split a record only when it has a distinct maintenance responsibility. Sources, drafts, editions and feedback remain in Content, not in a second vision document.
+
+## Give each channel a useful role
+
+Choose a small set that fits the owner and the audience. The examples below are starting points, not rules about how everybody must use a platform.
+
+| Channel | Possible role | Useful content |
+| --- | --- | --- |
+| YouTube | Explain and demonstrate work in depth, with material people can return to | Tutorials, practical examples, walkthroughs and selected shorter videos |
+| Newsletter / email list | Build a continuing relationship with subscribers through direct, deliberately selected editions | Written reflections, useful lessons, curated examples and replies |
+| LinkedIn | Share professional expertise and start relevant conversations in the chosen market | Written breakdowns, work examples, lessons and appropriate invitations |
+| X / Twitter | Share concise observations, join conversations and build a recognizable personal perspective | Short ideas, work in progress, useful replies and links to deeper work when relevant |
+| Instagram | An optional visual or personal expression when it serves a chosen purpose | Visual examples, behind-the-scenes material or a selected personal angle |
+
+For each active channel, record its purpose, reader, language, useful formats, ending and evidence of progress. A local-language customer channel and an English personal-brand channel can have different jobs. Choose the actual market; a creator's use of LinkedIn is not a universal country-specific rule.
+
+Newsletter is a channel in its own right, not merely a place to send recycled posts. A useful idea may appear in several places, but each edition should give its reader something complete. Neither identical cross-posting nor zero overlap is required. No need to be everywhere, publish at someone else's frequency or append a sales CTA to every edition. Revisit the choices from actual response and sustainable effort.
+
+Platform context: [YouTube on multiple formats](https://blog.youtube/creator-and-artist-stories/youtube-creators-full-time-business-tools/) and [LinkedIn on sharing professional expertise](https://www.linkedin.com/business/marketing/blog/content-marketing/creating-a-thought-leadership-marketing-plan). These support the available approaches, not a guaranteed outcome or an algorithm prescription. Checked 20 November 2026.
+
 ## Make only the choices that change the work
 
 | Area | Record the actual choice |

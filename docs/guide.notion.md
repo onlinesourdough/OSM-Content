@@ -22,7 +22,7 @@ Content setup & database
 Personal configuration
 </page>
 
-Reuse a suitable Content collection. Source keeps references and attribution; Content keeps an idea or production; Edition keeps an independently edited version and its actual delivery. Your private configuration selects goals, audiences, voice, channels, tools and personal skills. Keep media in its selected storage with an access and backup route.
+Reuse a suitable Content collection. Source keeps references and attribution; Content keeps an idea or production; Edition keeps an independently edited version and its actual delivery. Your private configuration selects goals, audiences, voice, channels, tools and personal skills. Keep media in its selected storage with an access and backup route. Reuse the existing direction/goals, audience and perspective, and voice/style records. Choose a useful role for each active channel, including newsletter/email as its own channel; the Personal configuration page gives examples without requiring every platform.
 
 ## Give this to your agent
 

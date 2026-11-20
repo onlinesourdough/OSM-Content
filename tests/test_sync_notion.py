@@ -174,13 +174,27 @@ class SyncTests(unittest.TestCase):
         source=Authored();wanted=s.render(source,p,self.base)
         seen={**self.api.rows[p],**wanted}
         self.assertEqual(wanted,s.plan(source,self.base,p,seen))
+    def test_only_the_qualified_legacy_paragraph_normalizes_soft_breaks(self):
+        import json
+        baseline=json.loads((s.ENGINE/'sync/baselines.json').read_text())['40f6d2e17f5681d68525d83503a457d5']['body']
+        self.assertEqual(s.canonical(baseline),s.canonical(baseline.replace('<br />','\n')))
+        for text in ['First<br />_ _ _','First<br />~~~']:
+            self.assertNotEqual(s.canonical(text),s.canonical(text.replace('<br />','\n')))
+    def test_inline_marker_shaped_citation_is_not_the_generated_footer(self):
+        p=next(iter(s.GUIDES))
+        class Citation(Source):
+            def read(self,path,ref=None):
+                if path=='VERSION':return '0.12.0'
+                return 'An authored [Source revision aaaaaaa]('+s.REPO+'/blob/'+'c'*40+'/'+s.GUIDES[p]+') citation.'
+        source=Citation();wanted=s.render(source,p,self.base)
+        self.assertEqual(wanted,s.plan(source,self.base,p,{**self.api.rows[p],**wanted}))
     def test_newer_or_unrelated_live_revision_is_not_downgraded(self):
         p=next(iter(s.GUIDES));self.api.rows[p]['body'] += '\n['+'newer'+']('+s.REPO+'/blob/'+'c'*40+'/docs/setup.md)'
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True)
         self.assertEqual([], self.api.calls)
     def test_structural_change_is_not_whitespace_equivalent(self):
         self.assertNotEqual(s.canonical('## Title\n\nA paragraph'),s.canonical('## Title A paragraph'))
-        self.assertEqual(s.canonical('one<br />two'),s.canonical('one\ntwo'))
+        self.assertNotEqual(s.canonical('one<br />two'),s.canonical('one\ntwo'))
         self.assertNotEqual(s.canonical('```\none<br />two\n```'),s.canonical('```\none\ntwo\n```'))
     def test_unbound_private_page_is_refused_before_transport(self):
         api=object.__new__(s.API)

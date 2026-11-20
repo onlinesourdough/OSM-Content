@@ -49,7 +49,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
-          import base64, json, os, subprocess, urllib.parse
+          import base64, json, os, re, subprocess, urllib.parse
           from pathlib import Path
           def api(path):
               return json.loads(subprocess.check_output(['gh','api',path],text=True))
@@ -86,8 +86,8 @@ jobs:
               if name=='release' and sha!=head and 'v'+version(head)==tag and validated(head):
                   catchup=head
           resume=False
-          if current and catchup and int(os.environ['GITHUB_RUN_ATTEMPT'])>1:
-              previous='content-guide-sync-'+str(int(os.environ['GITHUB_RUN_ATTEMPT'])-1)
+          if current and name=='release' and int(os.environ['GITHUB_RUN_ATTEMPT'])>1:
+              previous='content-tag-pass-'+str(int(os.environ['GITHUB_RUN_ATTEMPT'])-1)
               artifacts=api(f"repos/{repo}/actions/runs/{os.environ['GITHUB_RUN_ID']}/artifacts?per_page=100")['artifacts']
               found=[a for a in artifacts if a['name']==previous and not a['expired']]
               if len(found)==1:
@@ -96,10 +96,21 @@ jobs:
                   if proof.is_file():
                       d=json.loads(proof.read_text())
                       expected={'40d6d2e17f5681219a81e13317a19339','40f6d2e17f56819ea683f45a30072086','40f6d2e17f5681d68525d83503a457d5','40d6d2e17f5681578925cdc0774c6db5','40d6d2e17f5681c99020d85e3bc1ff4b','40d6d2e17f568141a2c9efa2d04c9268','40d6d2e17f568122aa82f1dcf83500a7','40d6d2e17f5681c784c4d545814fd7a5'}
-                      resume=(d.get('ok') is True and d.get('complete') is True and d.get('scope')=='whole-set' and d.get('source_commit')==sha
+                      receipt_ok=(d.get('ok') is True and d.get('complete') is True and d.get('scope')=='whole-set' and d.get('source_commit')==sha
                               and len(d.get('api',[]))==8 and {r['page_id'] for r in d['api']}==expected
                               and all(r['state'] in ('written','unchanged') for r in d['api'])
                               and len(d.get('public',[]))==8 and {r['page_id'] for r in d['public']}==expected)
+                      prior=Path('proof/publication-plan.json')
+                      if receipt_ok and not catchup and prior.is_file():
+                          plan=json.loads(prior.read_text());candidate=plan.get('catchup_source','')
+                          if plan.get('tag_source')==sha and re.fullmatch('[0-9a-f]{40}',candidate):
+                              cmp=api(f'repos/{repo}/compare/{candidate}...{head}')
+                              if cmp['status'] in ('ahead','identical') and 'v'+version(candidate)==tag and validated(candidate):
+                                  catchup=candidate
+                      resume=receipt_ok and bool(catchup)
+          if current and catchup:
+              Path('proof').mkdir(exist_ok=True)
+              Path('proof/publication-plan.json').write_text(json.dumps({'tag_source':sha,'catchup_source':catchup,'reused_tag_receipt':resume}))
           with open(os.environ['GITHUB_OUTPUT'],'a') as out:
               out.write(f'current={str(current).lower()}\nsha={sha}\ncatchup={catchup}\nresume={str(resume).lower()}\n')
           if not current:
@@ -156,6 +167,15 @@ jobs:
               raise SystemExit('A page is allowed only in one-page mode')
           raise SystemExit(subprocess.call(args))
           PY
+      - name: Retain the completed exact-tag receipt before catch-up can write
+        if: steps.source.outputs.current == 'true' && steps.source.outputs.catchup != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-tag-pass-${{ github.run_attempt }}
+          path: |
+            proof/content-sync.json
+            proof/publication-plan.json
+          if-no-files-found: error
       - name: Read the accepted same-version main catch-up source
         if: steps.source.outputs.current == 'true' && steps.source.outputs.catchup != ''
         uses: actions/checkout@v4

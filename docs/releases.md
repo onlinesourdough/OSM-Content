@@ -9,6 +9,10 @@ catalogue, files and frozen templates are preserved. A changed human original
 or incomplete read holds the update. Lost write replies are reconciled without
 repeating the write, and an unchanged replay sends no API writes.
 
+Channel-role examples include newsletter/email as a first-class channel and reuse
+existing direction, goals, perspective and style records for personal setup.
+The selected editorial-paper icon replaces the OSMC lettering.
+
 References now retain a concrete reason per link and a relevant timestamp, so
 saved examples remain useful rather than becoming an unannotated clip collection.
 
