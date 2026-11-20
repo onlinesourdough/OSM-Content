@@ -13,7 +13,7 @@ For each production select the goal it serves and preserve that selection/revisi
 | Starting material | Written work, recordings, spoken notes, existing content, analog notes or a combination |
 | Creative process | What the human wants to do; what AI may help with; outline versus full script; human editor or existing workflow |
 | Formats | A small useful set such as reflection/article, guide, how-to, showcase or direct short note |
-| Channels | Audience, useful format, contribution to the goal and sustainable effort for each active destination |
+| Channels | Audience, language, useful format, contribution to the goal and sustainable effort for each active destination |
 | Editorial original | Where each kind of text/production is actually edited; Notion can index an existing external original |
 | Media/projects | Owner-selected storage, access, revision and backup responsibility; chosen editor and qualification status |
 | Delivery | Actual account/destination, draft/review path, applicable standing or task authority and where outcomes are recorded |
@@ -22,6 +22,15 @@ For each production select the goal it serves and preserve that selection/revisi
 Notion for editorial text and Kit for newsletter delivery are a starter recipe; suitable existing tools can stay. HyperFrames is a candidate requiring a real import/edit/save-reopen/export qualification before use is claimed. None of these choices installs a tool or connects an account.
 
 A newsletter may be an original or a synthesis of several productions. Video, email, an article and a social post can each be long or short. Long-to-short reuse is useful when each edition has a self-contained point; do not force every idea into a long production or every production onto every channel.
+
+## Keep creative references useful
+
+Use the [reference-library workflow](reference-library.md) when a creator example
+should inform the owner's style. Keep the original and observations on its Source,
+accepted choices in configuration, and reusable techniques in the existing style
+or treatment guide. Update a personal skill only when its working steps change.
+Each production selects the references it needs; a saved source is not automatic
+adoption. Channel languages are owner choices, not shared defaults.
 
 ## Decide participation per responsibility
 

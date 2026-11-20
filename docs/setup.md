@@ -74,7 +74,7 @@ Start with a few views of the same records: Inbox; Ideas (Type Content); In prod
 
 Use only the sections a record needs:
 
-- Source: original location/attribution, why saved, useful excerpt or supported annotation, source date/coverage and uncertainty.
+- Source: original location/attribution, why saved, useful excerpt or supported annotation, source date/coverage and uncertainty. For creative references, record the specific technique and relevant time range; follow the [reference-library workflow](reference-library.md) when it informs reusable guidance.
 - Content: angle, chosen goal and its Knowledge reference/revision, audience, evidence, brief/script, actual material links, and next useful action. A goal revision is its owning record link plus Revised/version, or an explicit selected statement/date when no semantic revision exists; preserve that selection rather than inventing a date.
 - Edition: parent/source links, editable body or media-project reference, destination, reviewed version, delivery evidence and dated feedback.
 

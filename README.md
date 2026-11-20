@@ -72,6 +72,11 @@ workflow can stay.
 
 ## What belongs where
 
+For a creator example worth saving, use the [reference-library workflow](docs/reference-library.md):
+capture what the owner likes, inspect the example, update relevant reusable guidance
+when requested, and retrieve it for the next production. References can cover
+visuals, framing, text, transitions, sound and music. They are not voice approval.
+
 - Knowledge owns goals, audience, offers, voice and working preferences.
 - Content owns sources, ideas/productions, independently edited editions and response.
 - Personal Skills carry the tailored workflow and reference the actual configuration.
