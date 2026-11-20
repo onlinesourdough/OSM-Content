@@ -71,7 +71,7 @@
     "provenance.json": "ed20686ec204cd59861f4fe6fc7db7b7c788298cfcdc5497f7d2753aaa79d26f",
     "scripts/check_release.py": "b34814e9a395514a3ca8cb1a712e4d47cf49f8563d8319019011c87bb830e949",
     "scripts/sync_notion.py": "a4555fde597e9f46cf9ed829f1feed2857912bfe3c50ef88fa8ab96cd049ebd2",
-    "sync/baselines.json": "8bf029df80843e06a6f93733ea2b29698f7506b6ad222fb263a37df391c381c8",
+    "sync/baselines.json": "db7a0e0fe21c263294eafccc88d7a8ab56e64d05bcf3031dcc561d7b2b3dd992",
     "templates/content-intake/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/content-intake/SKILL.md": "7349044ad3938051ab11cc787bee7536d3548b480acac6cf1a06c57d28f9f6e0",
     "templates/content-intake/SOURCE.json": "17e9174d2df99b8a4418686fbad9079e5c0e03444296889867a7c50fb607316c",
