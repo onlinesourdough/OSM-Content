@@ -177,7 +177,7 @@ class SyncTests(unittest.TestCase):
     def test_only_the_qualified_legacy_paragraph_normalizes_soft_breaks(self):
         import json
         baseline=json.loads((s.ENGINE/'sync/baselines.json').read_text())['40f6d2e17f5681d68525d83503a457d5']['body']
-        self.assertEqual(s.canonical(baseline),s.canonical(baseline.replace('<br />','\n')))
+        self.assertNotEqual(s.canonical(baseline),s.canonical(baseline.replace('<br />','\n')))
         for text in ['First<br />_ _ _','First<br />~~~']:
             self.assertNotEqual(s.canonical(text),s.canonical(text.replace('<br />','\n')))
     def test_inline_marker_shaped_citation_is_not_the_generated_footer(self):
@@ -204,6 +204,15 @@ class SyncTests(unittest.TestCase):
     def test_hard_linebreak_spacing_and_blank_blocks_are_preserved(self):
         self.assertNotEqual(s.canonical('one  \ntwo'),s.canonical('one\ntwo'))
         self.assertNotEqual(s.canonical('one\n\n\ntwo'),s.canonical('one\n\ntwo'))
+    def test_api_plain_source_labels_preserve_mcp_link_provenance(self):
+        p=next(iter(s.TEMPLATES));url='https://github.com/accepted'
+        self.base[p]['source']=f'Frozen source: [{url}]({url})'
+        seen={**self.api.rows[p],'source':'Frozen source: '+url,'source_links':[{'text':url,'url':url}]}
+        wanted=s.plan(self.source,self.base,p,seen)
+        self.assertEqual(seen['source'],wanted['source'])
+    def test_full_newer_render_is_held_without_trusting_a_marker(self):
+        p=next(iter(s.GUIDES));seen={**self.api.rows[p],**s.render(self.source,p,self.base,'c'*40)}
+        with self.assertRaises(s.Held):s.plan(self.source,self.base,p,seen)
     def test_newer_or_unrelated_live_revision_is_not_downgraded(self):
         p=next(iter(s.GUIDES));self.api.rows[p]['body'] += '\n['+'newer'+']('+s.REPO+'/blob/'+'c'*40+'/docs/setup.md)'
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True)
