@@ -1,5 +1,18 @@
 # Method releases
 
+## v0.12.1 · 20 November 2026
+
+The anonymous public reader now checks the text actually shown for numbered
+lists and fenced code instead of expecting CSS list numbers or the code
+language selector. Literal numbered text inside code remains checked. The
+complete API body, native references and five bound catalogue entries retain
+their separate checks. The setup guide renders `vision.md` as a filename.
+
+This patch does not change the optional-method boundary, install a Content
+plugin or introduce the proposed default Content foundation. That separate
+core contract change is tracked in [Content #7](https://github.com/onlinesourdough/OSM-Content/issues/7).
+The five frozen v0.10.0 template packets remain unchanged.
+
 ## v0.12.0 · 20 November 2026
 
 Automatic synchronization of the eight bound public Content guide/template

@@ -213,6 +213,15 @@ class SyncTests(unittest.TestCase):
     def test_full_newer_render_is_held_without_trusting_a_marker(self):
         p=next(iter(s.GUIDES));seen={**self.api.rows[p],**s.render(self.source,p,self.base,'c'*40)}
         with self.assertRaises(s.Held):s.plan(self.source,self.base,p,seen)
+    def test_public_markers_follow_visible_lists_and_code_text(self):
+        lines=s.visible_lines('1. First step\n2. Next step\n\n```txt\n1. Literal code\n```')
+        self.assertEqual(['firststep','nextstep','1literalcode'],lines)
+    def test_public_markers_keep_prose_with_inline_backtick_span(self):
+        self.assertEqual(['foosetsthemode'],s.visible_lines('```foo``` sets the mode'))
+    def test_public_markers_handle_tilde_and_longer_fences(self):
+        self.assertEqual(['1literal','2other','next'],s.visible_lines('~~~txt\n1. Literal\n~~~\n````txt\n```\n2. Other\n````\n1) Next'))
+    def test_unclosed_code_fence_does_not_strip_literal_numbers(self):
+        self.assertEqual(['3literal'],s.visible_lines('```txt\n3. Literal'))
     def test_newer_or_unrelated_live_revision_is_not_downgraded(self):
         p=next(iter(s.GUIDES));self.api.rows[p]['body'] += '\n['+'newer'+']('+s.REPO+'/blob/'+'c'*40+'/docs/setup.md)'
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True)
