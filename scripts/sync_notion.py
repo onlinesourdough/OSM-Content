@@ -356,6 +356,23 @@ def visible_lines(body):
 
 
 def public_check(core_root, source, baselines, *, runner=None, page_ids=None):
+    # Notion's anonymous projection can lag a confirmed API write. Retry only
+    # these secret-free reads; never repeat reconciliation or an API mutation.
+    deadline=time.monotonic()+285
+    for attempt in range(3):
+        remaining=deadline-time.monotonic()
+        if remaining<1:
+            raise Held('Anonymous Content readback exceeded its bounded read window')
+        try:
+            rows=_public_check_once(core_root,source,baselines,runner=runner,page_ids=page_ids,timeout=int(remaining))
+            for row in rows:row['read_attempts']=attempt+1
+            return rows
+        except Held:
+            if attempt==2 or deadline-time.monotonic()<=15:raise
+            time.sleep(15)
+
+
+def _public_check_once(core_root, source, baselines, *, runner=None, page_ids=None, timeout=285):
     sys.path.insert(0, str(Path(core_root) / 'docs-publisher'))
     from browser_reader import run_browser
     runner = runner or run_browser
@@ -369,7 +386,7 @@ def public_check(core_root, source, baselines, *, runner=None, page_ids=None):
     payload = {'allowedUrls': [r['url'] for r in requests], 'requests': requests}
     env = {k: v for k, v in os.environ.items() if k in {'PATH', 'HOME', 'TMPDIR', 'CI', 'PLAYWRIGHT_BROWSERS_PATH', 'XDG_CACHE_HOME'}}
     result = runner(['node', str(Path(core_root) / 'docs-publisher/public-browser-read.mjs')],
-                    input=json.dumps(payload), text=True, capture_output=True, timeout=285, env=env)
+                    input=json.dumps(payload), text=True, capture_output=True, timeout=timeout, env=env)
     if len(result.stdout.encode()) > 16_100_000:
         raise Held('Oversized anonymous browser result')
     data = json.loads(result.stdout)

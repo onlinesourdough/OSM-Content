@@ -10,7 +10,7 @@ Content is a separate method kit for OSM. It uses the business foundation in you
 4. Review and deliver under your chosen publication authority.
 5. Keep the result and one useful lesson.
 
-For a single post, follow the [short-post workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.1/docs/post-workflow.md). A short idea can stand alone. Different channels can have different goals; a post may end with its point. A brand mention, link or invitation belongs where it helps the reader.
+For a single post, follow the [short-post workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.2/docs/post-workflow.md). A short idea can stand alone. Different channels can have different goals; a post may end with its point. A brand mention, link or invitation belongs where it helps the reader.
 
 ## Set it up once
 
@@ -39,7 +39,7 @@ For initial setup, read the setup and configuration pages above. For ordinary wr
 
 Save the example with at least one concrete line per link about what you liked, plus a timestamp when relevant. Describe the specific technique and inspect what actually happens. Strengthen your own angle and add your own contribution. When a choice becomes reusable, update the relevant style guide or personal method and use it in the next production. Keep attribution and rejected examples clear.
 
-[Reference workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.1/docs/reference-library.md)
+[Reference workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.2/docs/reference-library.md)
 
 ## Adapt the methods you need
 
@@ -53,18 +53,22 @@ Setup, Intake, Prepare, Produce / Distribute and Learn are responsibilities. Exi
 
 Knowledge owns business context; Content owns sources, productions, editions and feedback. Adapted personal skills and actual preferences remain in the owner's private home. A saved skill is not proof of native installation or use. Choose and qualify tools for the actual task.
 
+## Content foundation
+
+<image source="notion-file-block://41e6d2e1-7f56-815f-915e-ec04fff66efc/332ff2b9-793a-4e63-8634-ef981646bdd8?space_id=eee27a39-7e8a-48e6-9bd4-f3bc51a333fe&name=content-foundation-mobile.png" />
+
 <toggle>
-Material-flow diagrams
+Wide diagram and editable source
 
-<image source="notion-file-block://00b75561-a948-4aa2-97c6-65d27c25e9bb/b400c046-3a4b-40ca-abef-0544a95002f4?space_id=eee27a39-7e8a-48e6-9bd4-f3bc51a333fe&name=content-material-flow.png" />
+<image source="notion-file-block://41e6d2e1-7f56-8107-8085-f696f531b770/10578d38-4c02-48f9-9e27-e1e088da69a3?space_id=eee27a39-7e8a-48e6-9bd4-f3bc51a333fe&name=content-foundation-wide.png" />
 
-<image source="notion-file-block://9e26ad2b-0493-4a9c-be2d-ffa964122e8d/dc2e09c1-6252-4c3a-9a99-6ecc529afcca?space_id=eee27a39-7e8a-48e6-9bd4-f3bc51a333fe&name=content-material-flow-mobile.png" />
+[Editable diagram source](https://github.com/onlinesourdough/OSM-Content/blob/f1e9a02b68744abb7b5e744e48683a11e902ca89/assets/diagrams/content-foundation.html)
 </toggle>
 
 ## Source and versions
 
-[OSM Content v0.12.1](https://github.com/onlinesourdough/OSM-Content/releases/tag/v0.12.1) is the shared method release. The retained v0.10.0 Draft templates are unchanged frozen packets from edition 2026-11-05.1; their files and history remain in the catalogue. This kit is outside the OSM plugin and starts no publishing schedule.
+[OSM Content v0.12.2](https://github.com/onlinesourdough/OSM-Content/releases/tag/v0.12.2) is the shared method release. The retained v0.10.0 Draft templates are unchanged frozen packets from edition 2026-11-05.1; their files and history remain in the catalogue. This kit is outside the OSM plugin and starts no publishing schedule.
 
-The repository owns shared changes; this guide is its readable companion. Accepted main changes and method releases can update it through the configured public-only documentation workflow. A conflicting manual edit is held for review. This synchronizes the shared guide, not personal drafts or social posts. [Documentation upkeep](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.1/docs/maintenance.md) records the page mapping and checks. Private writing, media and configuration stay private.
+The repository owns shared changes; this guide is its readable companion. Accepted main changes and method releases can update it through the configured public-only documentation workflow. A conflicting manual edit is held for review. This synchronizes the shared guide, not personal drafts or social posts. [Documentation upkeep](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.2/docs/maintenance.md) records the page mapping and checks. Private writing, media and configuration stay private.
 
 <database url="https://app.notion.com/p/40f6d2e17f5681368bd9ed1593f45404" data-source-url="collection://6ff724a0-558c-4845-a0e1-a2e7fab86642" inline="true"></database>

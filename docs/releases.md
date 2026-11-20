@@ -1,5 +1,22 @@
 # Method releases
 
+## v0.12.2 · 20 November 2026
+
+Bound anonymous readback retries to three fresh reads within the original
+285-second window, allowing Notion’s public projection to catch up after a
+confirmed API write. Reconciliation runs once; no write is retried. A persistent
+public mismatch still holds activation.
+
+The Content guide now has a visible mobile diagram, a folded wide version and
+editable HTML source. Existing Knowledge roles, optional personal methods and
+Source/Content/Edition records are distinct. A brief is a plan, not actual
+material; references and decisions arise from real work. Only the root diagram
+section received a deliberate authored handoff; native children, catalogue and
+the seven other page baselines are preserved.
+
+The default-foundation proposal remains separate in Content #7 / core #131.
+Frozen template packets and their source/version provenance are unchanged.
+
 ## v0.12.1 · 20 November 2026
 
 The anonymous public reader now checks the text actually shown for numbered

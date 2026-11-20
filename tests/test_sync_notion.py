@@ -2,6 +2,7 @@ import copy
 import importlib.util
 from pathlib import Path
 import unittest
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('sync', Path(__file__).resolve().parents[1] / 'scripts/sync_notion.py')
 s = importlib.util.module_from_spec(spec)
@@ -222,6 +223,27 @@ class SyncTests(unittest.TestCase):
         self.assertEqual(['1literal','2other','next'],s.visible_lines('~~~txt\n1. Literal\n~~~\n````txt\n```\n2. Other\n````\n1) Next'))
     def test_unclosed_code_fence_does_not_strip_literal_numbers(self):
         self.assertEqual(['3literal'],s.visible_lines('```txt\n3. Literal'))
+    def test_anonymous_projection_lag_retries_reads_only(self):
+        with patch.object(s,'_public_check_once',side_effect=[s.Held('lag'),[{'page_id':'bound'}]]) as read, patch.object(s.time,'sleep') as sleep:
+            rows=s.public_check(Path('/unused'),self.source,self.base)
+        self.assertEqual(2,read.call_count);sleep.assert_called_once_with(15)
+        self.assertEqual([{'page_id':'bound','read_attempts':2}],rows)
+    def test_persistent_anonymous_mismatch_holds_after_three_reads(self):
+        with patch.object(s,'_public_check_once',side_effect=s.Held('mismatch')) as read, patch.object(s.time,'sleep') as sleep:
+            with self.assertRaises(s.Held):s.public_check(Path('/unused'),self.source,self.base)
+        self.assertEqual(3,read.call_count);self.assertEqual(2,sleep.call_count)
+    def test_anonymous_read_deadline_exhaustion_does_not_retry(self):
+        with patch.object(s.time,'monotonic',side_effect=[0,285]), patch.object(s,'_public_check_once') as read, patch.object(s.time,'sleep') as sleep:
+            with self.assertRaises(s.Held):s.public_check(Path('/unused'),self.source,self.base)
+        read.assert_not_called();sleep.assert_not_called()
+    def test_anonymous_read_retry_uses_the_remaining_total_deadline(self):
+        with patch.object(s.time,'monotonic',side_effect=[0,1,10,26]), patch.object(s,'_public_check_once',side_effect=[s.Held('lag'),[]]) as read, patch.object(s.time,'sleep'):
+            s.public_check(Path('/unused'),self.source,self.base)
+        self.assertEqual([284,259],[call.kwargs['timeout'] for call in read.call_args_list])
+    def test_non_verification_error_is_not_retried(self):
+        with patch.object(s,'_public_check_once',side_effect=ValueError('invalid result')) as read, patch.object(s.time,'sleep') as sleep:
+            with self.assertRaises(ValueError):s.public_check(Path('/unused'),self.source,self.base)
+        self.assertEqual(1,read.call_count);sleep.assert_not_called()
     def test_newer_or_unrelated_live_revision_is_not_downgraded(self):
         p=next(iter(s.GUIDES));self.api.rows[p]['body'] += '\n['+'newer'+']('+s.REPO+'/blob/'+'c'*40+'/docs/setup.md)'
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True)
