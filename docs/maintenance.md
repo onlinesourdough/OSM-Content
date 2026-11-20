@@ -84,3 +84,17 @@ adoption, an editor, native installation or automatic sync. A tag can identify
 valid source while its Notion/public verification is still pending. The release
 record states those results separately. Keep private owner routes, customer
 examples, drafts, media and credentials out of both the public source and proof.
+
+## Diagram handoff · 20 November 2026
+
+The owner-requested Content diagram revision replaces only the root's old
+image section. Editable source and PNGs are pinned to asset commit
+`f1e9a02b68744abb7b5e744e48683a11e902ca89`. The authored root readback equals
+the previously API-qualified `3f50282` rendering except for that selected
+section. Its stable body hash is
+`3642954ee9b6987b2607ffb3edfc45f7d7cac98cf3beff50f8e3097735dde905`.
+
+This is a deliberate root-baseline handoff, not relaxed conflict or native-media
+checks. The other seven baseline entries and frozen packet bytes remain unchanged.
+The next live preflight must independently match the complete API body and
+new native media identities before any projection is called qualified.
