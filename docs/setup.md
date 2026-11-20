@@ -2,7 +2,7 @@
 
 ## Before you create anything
 
-Read the owner's exact Data & Context entry and selected operating policy. Find their existing Knowledge, Memory and personal Skills routes. Locate the current goals, audience, offers, voice and working preferences. These remain business context in Knowledge; this extension does not create a second strategy or Goals database.
+Read the owner's exact AI operating model home (or existing Data & Context entry) and selected operating policy. Find their existing Knowledge, Memory and personal Skills routes. Locate the current goals, audience, offers, voice and working preferences. These remain business context in Knowledge; this extension does not create a second strategy or Goals database.
 
 Inspect the existing content workflow, database schema, integrations and media locations. A ready OSM setup does not imply a Content database exists. A similar title does not identify the canonical database. Record whether you will reuse, adapt or create, and resolve only missing choices that affect this work.
 

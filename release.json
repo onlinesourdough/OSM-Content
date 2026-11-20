@@ -1,0 +1,92 @@
+{
+  "format": "osm-content-method-release/1",
+  "method_version": "0.11.0",
+  "template_version": "0.10.0",
+  "source_authority": "onlinesourdough/OSM-Content",
+  "notion_public_root": "40d6d2e17f5681219a81e13317a19339",
+  "projection": "manual-authorized; no automatic publisher",
+  "notion_targets": [
+    {
+      "page_id": "40d6d2e17f5681219a81e13317a19339",
+      "source": "docs/guide.notion.md",
+      "mode": "read-before-write; preserve native children, catalogue and media"
+    },
+    {
+      "page_id": "40f6d2e17f56819ea683f45a30072086",
+      "source": "docs/setup.md",
+      "mode": "read-before-write; resolved tagged links"
+    },
+    {
+      "page_id": "40f6d2e17f5681d68525d83503a457d5",
+      "source": "docs/configuration.md",
+      "mode": "read-before-write; resolved tagged links"
+    },
+    {
+      "page_id": "40d6d2e17f5681578925cdc0774c6db5",
+      "template": "content-setup",
+      "mode": "source note only; retain v0.10.0 instructions, files and history"
+    },
+    {
+      "page_id": "40d6d2e17f5681c99020d85e3bc1ff4b",
+      "template": "content-intake",
+      "mode": "source note only; retain v0.10.0 instructions, files and history"
+    },
+    {
+      "page_id": "40d6d2e17f568141a2c9efa2d04c9268",
+      "template": "content-prepare",
+      "mode": "source note only; retain v0.10.0 instructions, files and history"
+    },
+    {
+      "page_id": "40d6d2e17f568122aa82f1dcf83500a7",
+      "template": "content-produce",
+      "mode": "source note only; retain v0.10.0 instructions, files and history"
+    },
+    {
+      "page_id": "40d6d2e17f5681c784c4d545814fd7a5",
+      "template": "content-learn",
+      "mode": "source note only; retain v0.10.0 instructions, files and history"
+    }
+  ],
+  "source_sha256": {
+    ".github/workflows/validate.yml": "8c1b116c5757c63dbda5e320782c7f91381429f54382caec6c1c082583f79eee",
+    ".gitignore": "bf7224daa29be47cef87a50b0351d18e729d129be606faa8e4718116d6e51d87",
+    "AGENTS.md": "16a91634a5732b7b938b6e5d99e0f631e7419fe405e1cf772e1a1ea2aa500bb0",
+    "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
+    "README.md": "500e25e752ed89b52dc390be33205a7739c8eede21f98eed8a2af2f6d8e43352",
+    "VERSION": "795d6bc79574d2aec03ad9cfec404bb95083c9dd210e6521e0d4199772d28d44",
+    "assets/Geist-OFL.txt": "942560b236adfa83745b2c64e5fc09ebaf91cb331751b1157eb92187e5d6e930",
+    "assets/icon.png": "b80933ee2fd94c742924857394d86a104b9a52bb2ebba6d1152a8e4d06e96410",
+    "assets/osm-content.svg": "2af7279c18eb60a34fb1f38b23e096595ca64b39f8efde8a430991636e1b85f4",
+    "docs/configuration.md": "1d30af61e2be0d044ac05d5a8a991518bbb10479164b09cb912a99d2f4b40e86",
+    "docs/guide.notion.md": "921998e7a0fa9423807777b21bdd355032375b8015cf1dd37a55ec5bb8c28fe2",
+    "docs/maintenance.md": "e115aa09297755d24972f68fbb69ca65cf300faa9e969eda62fad185b9c806ec",
+    "docs/post-workflow.md": "21995dd38fd01b595e6e43a8914cd504d10c40342bd985610f65be2fc1dfe155",
+    "docs/reference-library.md": "0f8147527de06778575c8d0139de9c26c6b3fa6c4b07799d0cfd5c588f8801ad",
+    "docs/releases.md": "12085453fb7517c662b4d2d598a8a37a166d21395a887eeafd024dca627e8abb",
+    "docs/setup.md": "4b9a1fba72be2495510bb6f542b78396cba4351dc23b8506094a8062dcc6013f",
+    "provenance.json": "ed20686ec204cd59861f4fe6fc7db7b7c788298cfcdc5497f7d2753aaa79d26f",
+    "scripts/check_release.py": "32b09dfed16435c1fb363dbd4da072971ff039d1d7e0ca4ffeb75880431b8622",
+    "templates/content-intake/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
+    "templates/content-intake/SKILL.md": "7349044ad3938051ab11cc787bee7536d3548b480acac6cf1a06c57d28f9f6e0",
+    "templates/content-intake/SOURCE.json": "17e9174d2df99b8a4418686fbad9079e5c0e03444296889867a7c50fb607316c",
+    "templates/content-intake/references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+    "templates/content-learn/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
+    "templates/content-learn/SKILL.md": "6e885b50bf4f813358ee1b81030401515df6f7f1425fc6ee673df8a6d62dbd86",
+    "templates/content-learn/SOURCE.json": "945e6678d2e531152276411e0e906b458f611809206026578b75fcb9c12e29f9",
+    "templates/content-learn/references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+    "templates/content-prepare/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
+    "templates/content-prepare/SKILL.md": "46d95919f5510258dcfdfe85b5598f276923b93b63718c6d1d3e3ce174459e11",
+    "templates/content-prepare/SOURCE.json": "8411b993123fd1780f25590ff1395d927ae6d56f3ed440643c793e0bf6d0120d",
+    "templates/content-prepare/references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+    "templates/content-produce/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
+    "templates/content-produce/SKILL.md": "4352ef37f5ad0a734845be23a3a70919ebbaaec3bfe25eb93ea54986a4042ba5",
+    "templates/content-produce/SOURCE.json": "8ec30807d9faf907a12104f673d68393ab182f22203114fbdc4bdc5ca3f2b49e",
+    "templates/content-produce/references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+    "templates/content-produce/references/release-contract.md": "e062423bace5b393b8b835e20b1f21541d8116806009763c1ab40460b800da33",
+    "templates/content-setup/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
+    "templates/content-setup/SKILL.md": "e36d98747a5fc79b4cb8067b5c1c2b8c375a71e592e45266419504cdcb0a905d",
+    "templates/content-setup/SOURCE.json": "d8fdf5d1a294e63c619e7505987eb29b6b284afc7e0c48944d79c949bfcaada8",
+    "templates/content-setup/references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
+    "templates/content-setup/references/setup-contract.md": "c9660c2b187627798632e02f83025a4f7811d7571bb998c0cf70fabdae232914"
+  }
+}
