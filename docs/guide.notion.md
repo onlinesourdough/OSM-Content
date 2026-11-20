@@ -10,7 +10,7 @@ Content is a separate method kit for OSM. It uses the business foundation in you
 4. Review and deliver under your chosen publication authority.
 5. Keep the result and one useful lesson.
 
-For a single post, follow the [short-post workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.0/docs/post-workflow.md). A short idea can stand alone. Different channels can have different goals; a post may end with its point. A brand mention, link or invitation belongs where it helps the reader.
+For a single post, follow the [short-post workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.1/docs/post-workflow.md). A short idea can stand alone. Different channels can have different goals; a post may end with its point. A brand mention, link or invitation belongs where it helps the reader.
 
 ## Set it up once
 
@@ -39,7 +39,7 @@ For initial setup, read the setup and configuration pages above. For ordinary wr
 
 Save the example with at least one concrete line per link about what you liked, plus a timestamp when relevant. Describe the specific technique and inspect what actually happens. Strengthen your own angle and add your own contribution. When a choice becomes reusable, update the relevant style guide or personal method and use it in the next production. Keep attribution and rejected examples clear.
 
-[Reference workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.0/docs/reference-library.md)
+[Reference workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.1/docs/reference-library.md)
 
 ## Adapt the methods you need
 
@@ -63,8 +63,8 @@ Material-flow diagrams
 
 ## Source and versions
 
-[OSM Content v0.12.0](https://github.com/onlinesourdough/OSM-Content/releases/tag/v0.12.0) is the shared method release. The retained v0.10.0 Draft templates are unchanged frozen packets from edition 2026-11-05.1; their files and history remain in the catalogue. This kit is outside the OSM plugin and starts no publishing schedule.
+[OSM Content v0.12.1](https://github.com/onlinesourdough/OSM-Content/releases/tag/v0.12.1) is the shared method release. The retained v0.10.0 Draft templates are unchanged frozen packets from edition 2026-11-05.1; their files and history remain in the catalogue. This kit is outside the OSM plugin and starts no publishing schedule.
 
-The repository owns shared changes; this guide is its readable companion. Accepted main changes and method releases can update it through the configured public-only documentation workflow. A conflicting manual edit is held for review. This synchronizes the shared guide, not personal drafts or social posts. [Documentation upkeep](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.0/docs/maintenance.md) records the page mapping and checks. Private writing, media and configuration stay private.
+The repository owns shared changes; this guide is its readable companion. Accepted main changes and method releases can update it through the configured public-only documentation workflow. A conflicting manual edit is held for review. This synchronizes the shared guide, not personal drafts or social posts. [Documentation upkeep](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.1/docs/maintenance.md) records the page mapping and checks. Private writing, media and configuration stay private.
 
 <database url="https://app.notion.com/p/40f6d2e17f5681368bd9ed1593f45404" data-source-url="collection://6ff724a0-558c-4845-a0e1-a2e7fab86642" inline="true"></database>

@@ -334,6 +334,19 @@ def reconcile(api, source, baselines, *, write=False, only=None, max_writes=8, r
 
 def visible_lines(body):
     # Collapsed diagram bodies are not visible. Their exact native references are checked by the API path.
+    # List numbering and fence language selectors are UI decorations, not body text.
+    visible=[]
+    fence=None
+    for line in body.splitlines():
+        match=re.match(r'^\s*(`{3,}|~{3,})(.*)$',line)
+        if match and fence is None and (match[1][0]!='`' or '`' not in match[2]):
+            fence=(match[1][0],len(match[1]));continue
+        if match and fence and match[1][0]==fence[0] and len(match[1])>=fence[1] and not match[2].strip():
+            fence=None;continue
+        if fence is None:
+            line=re.sub(r'^\s*\d+[.)]\s+','',line)
+        visible.append(line)
+    body='\n'.join(visible)
     body = re.sub(r'<toggle>\s*([^\n]+)[\s\S]*?</toggle>', r'\1', body)
     body = re.sub(r'<(?:file|pdf)\s+source="[^"]*name=([^"&]+)[^"]*"\s*/>', lambda m: urllib.parse.unquote(m[1]), body)
     body = re.sub(r'<[^>]+>', '', body)
