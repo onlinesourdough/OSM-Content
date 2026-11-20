@@ -48,24 +48,24 @@
     }
   ],
   "source_sha256": {
-    ".github/workflows/validate.yml": "8c1b116c5757c63dbda5e320782c7f91381429f54382caec6c1c082583f79eee",
+    ".github/workflows/validate.yml": "20b7a2290a69fd949590c525f812b7fd9daf5a18ed9b34457c20ee4c5d9d20e4",
     ".gitignore": "bf7224daa29be47cef87a50b0351d18e729d129be606faa8e4718116d6e51d87",
     "AGENTS.md": "16a91634a5732b7b938b6e5d99e0f631e7419fe405e1cf772e1a1ea2aa500bb0",
     "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
-    "README.md": "500e25e752ed89b52dc390be33205a7739c8eede21f98eed8a2af2f6d8e43352",
+    "README.md": "e41305889e61181f1ad18d919722f1b819a9337ff8aa1431a3a078844cff87c7",
     "VERSION": "795d6bc79574d2aec03ad9cfec404bb95083c9dd210e6521e0d4199772d28d44",
     "assets/Geist-OFL.txt": "942560b236adfa83745b2c64e5fc09ebaf91cb331751b1157eb92187e5d6e930",
     "assets/icon.png": "b80933ee2fd94c742924857394d86a104b9a52bb2ebba6d1152a8e4d06e96410",
     "assets/osm-content.svg": "2af7279c18eb60a34fb1f38b23e096595ca64b39f8efde8a430991636e1b85f4",
     "docs/configuration.md": "1d30af61e2be0d044ac05d5a8a991518bbb10479164b09cb912a99d2f4b40e86",
     "docs/guide.notion.md": "921998e7a0fa9423807777b21bdd355032375b8015cf1dd37a55ec5bb8c28fe2",
-    "docs/maintenance.md": "e115aa09297755d24972f68fbb69ca65cf300faa9e969eda62fad185b9c806ec",
-    "docs/post-workflow.md": "21995dd38fd01b595e6e43a8914cd504d10c40342bd985610f65be2fc1dfe155",
+    "docs/maintenance.md": "9e77ff1e0a14c083ef176751e577e1b67b5bf822553ba1d2699d0a40d0d2b84b",
+    "docs/post-workflow.md": "672f8c0ecedda37e8db495c910d87a34412e451f08992298f5fc60de2b42d559",
     "docs/reference-library.md": "0f8147527de06778575c8d0139de9c26c6b3fa6c4b07799d0cfd5c588f8801ad",
-    "docs/releases.md": "12085453fb7517c662b4d2d598a8a37a166d21395a887eeafd024dca627e8abb",
+    "docs/releases.md": "a1b42a19f18bedb160381340400e3640ad88755f179e255d8c8d100c4e45cba2",
     "docs/setup.md": "4b9a1fba72be2495510bb6f542b78396cba4351dc23b8506094a8062dcc6013f",
     "provenance.json": "ed20686ec204cd59861f4fe6fc7db7b7c788298cfcdc5497f7d2753aaa79d26f",
-    "scripts/check_release.py": "32b09dfed16435c1fb363dbd4da072971ff039d1d7e0ca4ffeb75880431b8622",
+    "scripts/check_release.py": "6d35c2a8e663fe5cb5fa4cc9d3b1c518838774f1b21443350e9be3211b23a93e",
     "templates/content-intake/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/content-intake/SKILL.md": "7349044ad3938051ab11cc787bee7536d3548b480acac6cf1a06c57d28f9f6e0",
     "templates/content-intake/SOURCE.json": "17e9174d2df99b8a4418686fbad9079e5c0e03444296889867a7c50fb607316c",
@@ -88,5 +88,6 @@
     "templates/content-setup/SOURCE.json": "d8fdf5d1a294e63c619e7505987eb29b6b284afc7e0c48944d79c949bfcaada8",
     "templates/content-setup/references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
     "templates/content-setup/references/setup-contract.md": "c9660c2b187627798632e02f83025a4f7811d7571bb998c0cf70fabdae232914"
-  }
+  },
+  "template_import_commit": "b8dc567cca091a2af5942e0a7826a24844b0bc76"
 }

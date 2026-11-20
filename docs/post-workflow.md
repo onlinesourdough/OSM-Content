@@ -2,7 +2,9 @@
 
 Use this for a selected short idea or reference. Reuse the existing Content
 records and owner configuration; a single post does not need new setup,
-long-form production or another database.
+long-form production or another database. If no collection is configured yet,
+draft the piece in the current workspace and resolve its saved destination
+through the [setup guide](setup.md) before creating records.
 
 ## Choose what this edition is for
 
@@ -22,7 +24,7 @@ platform's name or impose the adopting owner's choices on everyone else.
 
 Start with the actual point. Keep the author's useful wording and reasoning.
 Use a relevant source to strengthen the explanation, then add the author's
-own contribution. Do not turn another creator's experience into their anecdote.
+own contribution. Do not present another creator's experience as the author's own.
 
 Choose the ending from the purpose of this edition:
 

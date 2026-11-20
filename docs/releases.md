@@ -10,7 +10,8 @@ and reference-workflow change remain in Git history.
 - Creative reference → own contribution → review → learning, using the
   existing Source, Content and Edition records.
 - An explicit source-to-Notion map and release checks for relative links,
-  source inventory, frozen template bytes and preservation of native content.
+  source inventory and frozen template bytes. Saved Notion and anonymous public
+  checks are recorded separately from offline validation.
 
 The five v0.10.0 Draft templates and their original packet hashes are unchanged.
 There is no new runtime, installed plugin, automatic Notion publisher or content

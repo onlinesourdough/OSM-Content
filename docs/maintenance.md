@@ -36,6 +36,10 @@ tracks that separate integration work.
 4. Read back the saved pages and compare with the mapped source. Record the
    exact tag/commit, page ids, what was checked and any unresolved differences.
    A successful API call alone is not a current projection.
+   The checker's --notion-snapshots input compares the three supplied guide
+   readbacks, retaining structure and code. It does not fetch Notion or verify
+   the five template pages or anonymous access. Check template source notes,
+   unchanged instructions, native files/history and packet hashes separately.
 5. Verify the changed anonymous pages and linked source/downloads. Keep an
    inaccessible or incomplete public read explicit; do not call it verified.
 6. Record the actual result on the release. An unchanged replay should require
