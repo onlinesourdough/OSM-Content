@@ -58,12 +58,7 @@ A newsletter may be an original or a synthesis of several productions. Video, em
 
 ## Keep creative references useful
 
-Use the [reference-library workflow](reference-library.md) when a creator example
-should inform the owner's style. Keep the original and observations on its Source,
-accepted choices in configuration, and reusable techniques in the existing style
-or treatment guide. Update a personal skill only when its working steps change.
-Each production selects the references it needs; a saved source is not automatic
-adoption. Channel languages are owner choices, not shared defaults.
+Use the [reference-library workflow](reference-library.md) when a creator example should inform the owner's style. Keep the original and observations on its Source, accepted choices in configuration, and reusable techniques in the existing style or treatment guide. Update a personal skill only when its working steps change. Each production selects the references it needs; a saved source is not automatic adoption. Channel languages are owner choices, not shared defaults.
 
 ## Decide participation per responsibility
 

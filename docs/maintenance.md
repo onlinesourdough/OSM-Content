@@ -36,10 +36,9 @@ OSM_CONTENT_DOCS_ENABLED enables automatic whole-set writes after live qualifica
 The public connection has no private owner-home access. The browser child receives
 only the reviewed environment allowlist and a fresh anonymous context.
 
-The writer recognizes the explicit v0.11.0 handoff or a complete reproducible
-ancestor of the accepted source. A revision marker alone is insufficient. It
+The writer recognizes the explicit v0.11.0 handoff or exact content rendered from an ancestor of the accepted source. Pinned links only suggest candidates; a marker is never authority by itself. It
 preflights the whole set, rechecks each page before writing and holds unknown
-edits or a newer source. Only the five already-qualified legacy configuration soft breaks are normalized, outside fenced/HTML blocks; other spacing and hard breaks remain exact. Native child/catalogue/media/file references and all
+edits or a newer source. Mapped prose is authored as one physical line per paragraph. Only transport line endings and outer newline padding are normalized; Markdown content, hard breaks and block spacing remain exact. The original handoff retains its earlier soft breaks. Source provenance accepts the MCP rich-text link serialization and its API labels, with destinations checked separately; the Source property is never rewritten. Native child/catalogue/media/file references and all
 non-managed properties are preserved. A failed or lost write is read back before
 anything else; the same invocation never retries it. Each Markdown update matches observed prose outside native media; expiring file signatures never enter match strings. A changed selection is not replaced. Exact accepted prose segments and commit-pinned links identify a partially applied update for recovery. Unknown segments hold for review. The native reference sequence, not only its membership, must remain unchanged. Partial progress across pages can resume from its actual state. The report preserves progress on a failure.
 

@@ -41,45 +41,14 @@ def sha(value):
     return hashlib.sha256(value.encode()).hexdigest()
 
 
-def contextual_lines(body):
-    """Yield lines and whether they are outside fenced/HTML blocks at top level."""
-    fence=None
-    comment=False
-    stack=[]
-    void={'image','img','file','pdf','br','hr','input','meta','link','empty-block'}
-    for line in body.split('\n'):
-        top=fence is None and not comment and not stack and not line.startswith((' ', '\t'))
-        match=re.match(r'^ {0,3}(`{3,}|~{3,})(.*)$',line)
-        if fence:
-            if match and match[1][0]==fence[0] and len(match[1])>=fence[1] and not match[2].strip():
-                fence=None
-            yield line,False
-            continue
-        if match and not comment:
-            fence=(match[1][0],len(match[1]))
-            yield line,False
-            continue
-        for token in re.findall(r'<!--|-->|</?[A-Za-z][^>]*>',line):
-            if token=='<!--':comment=True
-            elif token=='-->':comment=False
-            elif not comment:
-                tag=re.match(r'</?([\w-]+)',token)[1].lower()
-                if token.startswith('</'):
-                    if stack and stack[-1]==tag:stack.pop()
-                elif tag not in void and not token.endswith('/>'):
-                    stack.append(tag)
-        yield line,top
-
-
 def canonical(body):
-    """Only the qualified legacy prose soft breaks differ from the exact source."""
-    body=body.replace('\r\n','\n').replace('\r','\n').strip('\n')
-    legacy = "Use the [reference-library workflow](REF) when a creator example<br />should inform the owner's style. Keep the original and observations on its Source,<br />accepted choices in configuration, and reusable techniques in the existing style<br />or treatment guide. Update a personal skill only when its working steps change.<br />Each production selects the references it needs; a saved source is not automatic<br />adoption. Channel languages are owner choices, not shared defaults."
-    lines=[]
-    for line,top in contextual_lines(body):
-        fingerprint=re.sub(r'\[reference-library workflow\]\([^\s)]+\)', '[reference-library workflow](REF)',line)
-        lines.append(line.replace('<br />','\n') if top and fingerprint==legacy else line)
-    return '\n'.join(lines)
+    """Normalize transport line endings and outer padding, never Markdown content."""
+    return body.replace('\r\n','\n').replace('\r','\n').strip('\n')
+
+
+def source_text(value):
+    """The MCP handoff serializes rich-text links; the API returns their labels."""
+    return re.sub(r'\[([^\]]+)\]\([^\s)]+\)',r'\1',value) if value is not None else None
 
 
 def chunks(body):
@@ -153,26 +122,13 @@ def render(source, page_id, baselines, ref=None):
 
 
 def candidates(source, seen, baselines, page_id):
-    """Recognize the explicit handoff or a reproducible earlier ancestor; never trust a marker alone."""
-    if page_id in GUIDES:
-        marker=re.search(r'\[Source revision ([0-9a-f]{7})\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/' + re.escape(GUIDES[page_id]) + r'\)\s*\Z',seen['body'])
-        footer_top=dict((n,top) for n,(_,top) in enumerate(contextual_lines(seen['body'])))
-        strict={marker[2]} if marker and marker[1]==marker[2][:7] and (marker.start()==0 or seen['body'][marker.start()-2:marker.start()]=='\n\n') and footer_top[seen['body'][:marker.start()].count('\n')] else set()
-        refs = strict | set(re.findall(re.escape(REPO) + r'/blob/([0-9a-f]{40})/', seen['body']))
-    else:
-        refs = set(re.findall(r'\[Template source\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/templates/' + re.escape(TEMPLATES[page_id]) + r'/SKILL\.md\)', seen['body']))
-        strict = refs
-    states = [baselines[page_id]]
+    """A pinned URL is only a hint; exact ancestor-rendered content is authority."""
+    refs=set(re.findall(re.escape(REPO)+r'/blob/([0-9a-f]{40})/',seen['body']))
+    states=[baselines[page_id]]
     for ref in refs:
-        if not source.ancestor(ref):
-            if ref in strict:
-                raise Held('Live page names a newer or unrelated source; refusing downgrade')
-            continue
-        try:
-            states.append(render(source, page_id, baselines, ref))
-        except Held:
-            if ref in strict:
-                raise
+        if not source.ancestor(ref):continue
+        try:states.append(render(source,page_id,baselines,ref))
+        except Held:continue
     return states
 
 
@@ -189,7 +145,8 @@ def plan(source, baselines, page_id, seen):
                          for i,part in enumerate(observed))
     if not recognized:
         raise Held('Live body differs from the handoff and reproducible accepted source')
-    if page_id in TEMPLATES and seen['source'] not in {s['source'] for s in states}:
+    accepted_sources={v for state in states for v in (state['source'],source_text(state['source']))}
+    if page_id in TEMPLATES and seen['source'] not in accepted_sources:
         raise Held('Template Source property has an unrecognized edit')
     if page_id in TEMPLATES:
         allowed_links = set(re.findall(r'https://[^\s\]\[()<>]+', baselines[page_id]['source']))
@@ -197,6 +154,7 @@ def plan(source, baselines, page_id, seen):
             raise Held('Template Source hyperlink destination differs from its visible source')
     if protected(seen['body']) != protected(wanted['body']):
         raise Held('Native child, catalogue, media or file references would change')
+    wanted['source']=seen['source']  # Source is observed provenance, never a managed write target.
     return wanted
 
 
@@ -313,11 +271,12 @@ def observation(seen):
     return {k: seen[k] for k in ['body', 'source', 'intrinsic', 'edited']}
 
 
-def reconcile(api, source, baselines, *, write=False, only=None, max_writes=8, record=None):
+def reconcile(api, source, baselines, *, write=False, only=None, max_writes=8, record=None, observe=None):
     plans = []
     # Whole-set preflight precedes every write; a conflict holds the whole attempt.
     for page_id in GUIDES | TEMPLATES:
         seen = api.read(page_id)
+        if observe:observe(page_id,seen)
         if page_id in TEMPLATES:
             api.verify_packet(page_id, seen, baselines[page_id]['packet_sha256'])
         wanted = plan(source, baselines, page_id, seen)
@@ -423,6 +382,8 @@ def public_check(core_root, source, baselines, *, runner=None, page_ids=None):
                 raise Held('Public text does not contain the complete expected lines in order')
             at = found + len(marker)
         seen.add(url)
+        if not isinstance(item.get('observedAt'),str) or not re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z',item['observedAt']):
+            raise Held('Public observation timestamp is missing')
         rows.append({'page_id': page_id, 'verified_at': item.get('observedAt'), 'expected_lines': len(expected['markers'])})
     return rows
 
@@ -438,7 +399,7 @@ def main():
     parser.add_argument('--public-read', action='store_true')
     parser.add_argument('--out', type=Path, required=True)
     args = parser.parse_args()
-    report = {'ok': False, 'api': [], 'public': [], 'confirmed_pages_written': 0, 'write_requests_sent': 0,
+    report = {'ok': False, 'api': [], 'preflight': {}, 'public': [], 'confirmed_pages_written': 0, 'write_requests_sent': 0,
               'anonymous_downloads': 'not_checked; API-derived signed downloads are hash-checked separately'}
     api = None
     def checkpoint(rows):
@@ -446,6 +407,9 @@ def main():
         report['write_requests_sent'] = api.write_requests
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(json.dumps(report, indent=2) + '\n')
+    def observe(page_id,seen):
+        report['preflight'][page_id]={'body_sha256':sha(seen['body']),'source':seen['source'],'source_links':seen.get('source_links',[])}
+        checkpoint(report['api'])
     try:
         core_ref = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=args.core_root, text=True).strip()
         if core_ref != CORE_COMMIT:
@@ -469,7 +433,7 @@ def main():
         report['source_commit'] = source.ref
         api = API(pub)
         report['api'] = reconcile(api, source, baselines, write=args.write,
-                                  only=args.only_page, max_writes=args.max_writes, record=checkpoint)
+                                  only=args.only_page, max_writes=args.max_writes, record=checkpoint, observe=observe)
         if args.public_read:
             report['public'] = public_check(args.core_root, source, baselines,
                                             page_ids=[args.only_page] if args.only_page else None)

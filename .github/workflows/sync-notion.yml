@@ -54,7 +54,7 @@ jobs:
           def api(path):
               return json.loads(subprocess.check_output(['gh','api',path],text=True))
           repo = os.environ['GITHUB_REPOSITORY']
-          event=json.load(open(os.environ['GITHUB_EVENT_PATH']))
+          event=json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text())
           head = api(f'repos/{repo}/commits/main')['sha']
           name=os.environ['GITHUB_EVENT_NAME']
           readonly=name=='workflow_dispatch' and event.get('inputs',{}).get('mode')=='read-only'
@@ -104,15 +104,19 @@ jobs:
                       subprocess.check_call(['gh','run','download',os.environ['GITHUB_RUN_ID'],'--repo',repo,'--name',item['name'],'--dir',tmp])
                       proof=Path(tmp)/'content-sync.json'
                       if not proof.is_file():continue
-                      d=json.loads(proof.read_text())
+                      try:d=json.loads(proof.read_text())
+                      except (OSError,json.JSONDecodeError):continue
                       expected={'40d6d2e17f5681219a81e13317a19339','40f6d2e17f56819ea683f45a30072086','40f6d2e17f5681d68525d83503a457d5','40d6d2e17f5681578925cdc0774c6db5','40d6d2e17f5681c99020d85e3bc1ff4b','40d6d2e17f568141a2c9efa2d04c9268','40d6d2e17f568122aa82f1dcf83500a7','40d6d2e17f5681c784c4d545814fd7a5'}
                       receipt_ok=(d.get('ok') is True and d.get('complete') is True and d.get('scope')=='whole-set' and d.get('source_commit')==sha
                               and len(d.get('api',[]))==8 and {r['page_id'] for r in d['api']}==expected
                               and all(r['state'] in ('written','unchanged') for r in d['api'])
-                              and len(d.get('public',[]))==8 and {r['page_id'] for r in d['public']}==expected)
+                              and len(d.get('public',[]))==8 and {r['page_id'] for r in d['public']}==expected
+                              and all(isinstance(r.get('verified_at'),str) and re.fullmatch(r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z',r['verified_at']) and type(r.get('expected_lines')) is int and r['expected_lines']>0 for r in d['public']))
                       prior=Path(tmp)/'publication-plan.json'
                       if receipt_ok and not catchup and prior.is_file():
-                          plan=json.loads(prior.read_text());candidate=plan.get('catchup_source','')
+                          try:plan=json.loads(prior.read_text())
+                          except (OSError,json.JSONDecodeError):continue
+                          candidate=plan.get('catchup_source','')
                           if plan.get('tag_source')==sha and re.fullmatch('[0-9a-f]{40}',candidate):
                               cmp=api(f'repos/{repo}/compare/{candidate}...{head}')
                               if cmp['status'] in ('ahead','identical') and 'v'+version(candidate)==tag and validated(candidate):

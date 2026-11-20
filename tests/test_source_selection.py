@@ -50,8 +50,9 @@ class SourceSelectionTests(unittest.TestCase):
                 good=dict(artifacts)[name];dest=Path(args[args.index('--dir')+1])
                 rows=[{'page_id':p,'state':'written'} for p in IDS]
                 if not good:rows[-1]=rows[0]
-                receipt={'ok':True,'complete':True,'scope':'whole-set','source_commit':A,'api':rows,'public':[{'page_id':p} for p in IDS]}
-                (dest/'content-sync.json').write_text(json.dumps(receipt))
+                receipt={'ok':True,'complete':True,'scope':'whole-set','source_commit':A,'api':rows,'public':[{'page_id':p,'verified_at':'2026-11-20T20:00:00.000Z','expected_lines':3} for p in IDS]}
+                if good=='missing-observation':receipt['public']=[{'page_id':p} for p in IDS]
+                (dest/'content-sync.json').write_text('{' if good=='truncated' else json.dumps(receipt))
                 (dest/'publication-plan.json').write_text(json.dumps({'tag_source':A,'catchup_source':B}))
             try:
                 with patch.dict(os.environ,env),patch('subprocess.check_output',side_effect=api),patch('subprocess.check_call',side_effect=download):
@@ -69,6 +70,14 @@ class SourceSelectionTests(unittest.TestCase):
         result,downloads=self.resolve(artifacts=[('content-tag-pass-2',False),('content-tag-pass-1',True)],paginated=True)
         self.assertEqual('true',result['resume']);self.assertEqual(B,result['catchup'])
         self.assertEqual(['content-tag-pass-2','content-tag-pass-1'],downloads)
+
+    def test_truncated_newer_artifact_does_not_hide_valid_older_receipt(self):
+        result,_=self.resolve(artifacts=[('content-tag-pass-2','truncated'),('content-tag-pass-1',True)])
+        self.assertEqual('true',result['resume']);self.assertEqual(B,result['catchup'])
+
+    def test_public_ids_without_observation_evidence_do_not_authorize_resume(self):
+        result,_=self.resolve(artifacts=[('content-tag-pass-1','missing-observation')])
+        self.assertEqual('false',result['resume'])
 
     def test_duplicate_api_identity_does_not_authorize_resume(self):
         result,_=self.resolve(artifacts=[('content-tag-pass-1',False)])
