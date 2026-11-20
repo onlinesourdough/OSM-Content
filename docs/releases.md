@@ -9,6 +9,9 @@ catalogue, files and frozen templates are preserved. A changed human original
 or incomplete read holds the update. Lost write replies are reconciled without
 repeating the write, and an unchanged replay sends no API writes.
 
+References now retain a concrete reason per link and a relevant timestamp, so
+saved examples remain useful rather than becoming an unannotated clip collection.
+
 Activation is recorded only after a real bounded write, whole-set readback and
 zero-write repeat. This infrastructure does not publish the owner's own content.
 

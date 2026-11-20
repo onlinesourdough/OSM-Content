@@ -37,7 +37,7 @@ For initial setup, read the setup and configuration pages above. For ordinary wr
 
 ## Learn from references
 
-Save the example, describe the specific technique and inspect what actually happens. Strengthen your own angle and add your own contribution. When a choice becomes reusable, update the relevant style guide or personal method and use it in the next production. Keep attribution and rejected examples clear.
+Save the example with at least one concrete line per link about what you liked, plus a timestamp when relevant. Describe the specific technique and inspect what actually happens. Strengthen your own angle and add your own contribution. When a choice becomes reusable, update the relevant style guide or personal method and use it in the next production. Keep attribution and rejected examples clear.
 
 [Reference workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.12.0/docs/reference-library.md)
 

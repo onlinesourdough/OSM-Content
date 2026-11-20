@@ -48,7 +48,7 @@
     }
   ],
   "source_sha256": {
-    ".github/workflows/sync-notion.yml": "a93245ce3728ce27bb993b476264714f18d0d85ef04aed0ec1a122c759db3425",
+    ".github/workflows/sync-notion.yml": "1217cc522e25898ebb5daf724563552863569e2cedf00dbc718a66c2e22efec4",
     ".github/workflows/validate.yml": "db69afe772b1f68fffc377a4ea9fcb56d393a2983fe20d540b043407953d6d36",
     ".gitignore": "bf7224daa29be47cef87a50b0351d18e729d129be606faa8e4718116d6e51d87",
     "AGENTS.md": "16a91634a5732b7b938b6e5d99e0f631e7419fe405e1cf772e1a1ea2aa500bb0",
@@ -59,15 +59,15 @@
     "assets/icon.png": "b80933ee2fd94c742924857394d86a104b9a52bb2ebba6d1152a8e4d06e96410",
     "assets/osm-content.svg": "2af7279c18eb60a34fb1f38b23e096595ca64b39f8efde8a430991636e1b85f4",
     "docs/configuration.md": "1d30af61e2be0d044ac05d5a8a991518bbb10479164b09cb912a99d2f4b40e86",
-    "docs/guide.notion.md": "a2cd7dc00e6f4fce9f59be30477a47dca7597d97b6b3bc33c9d10a9960ad64fa",
-    "docs/maintenance.md": "7e5f5b2845b18025f9e6716472a613e99f65979f93198337d8a5f4277ca7a9be",
+    "docs/guide.notion.md": "db6676c4730aa1761a3d330b006767211c5f775b2b49339ecbdb24f0b70f7fd5",
+    "docs/maintenance.md": "9bb95f90601416269259546b977b2690dc7fe5ed6d85829e5f3b5cf369be7c15",
     "docs/post-workflow.md": "672f8c0ecedda37e8db495c910d87a34412e451f08992298f5fc60de2b42d559",
-    "docs/reference-library.md": "0f8147527de06778575c8d0139de9c26c6b3fa6c4b07799d0cfd5c588f8801ad",
-    "docs/releases.md": "841a4b1110dd9e51e457ee056e74010ab730ccfb655b7121cc5a78d38315521e",
+    "docs/reference-library.md": "73967f0eced156c534671d5a5d45ad5d843726a3f2fae5a14fe1ac134b0ddd62",
+    "docs/releases.md": "be6f564f19b1bae6d66218700eb349c237bee21fd226190068f7e502942f3c1b",
     "docs/setup.md": "4b9a1fba72be2495510bb6f542b78396cba4351dc23b8506094a8062dcc6013f",
     "provenance.json": "ed20686ec204cd59861f4fe6fc7db7b7c788298cfcdc5497f7d2753aaa79d26f",
     "scripts/check_release.py": "b34814e9a395514a3ca8cb1a712e4d47cf49f8563d8319019011c87bb830e949",
-    "scripts/sync_notion.py": "52b99748ff2f7908e3606b9943505ce2f6197ea916d93534a7274c3f00721c9b",
+    "scripts/sync_notion.py": "95bb53ed059d134490fe6958bacf3c2652ba358f5d24767f1fbc43e535c13765",
     "sync/baselines.json": "edfaf0852b3a2e8d5b03f648e81f4839cee26daeee87e12cbd97c9bb9f83c726",
     "templates/content-intake/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/content-intake/SKILL.md": "7349044ad3938051ab11cc787bee7536d3548b480acac6cf1a06c57d28f9f6e0",
@@ -91,7 +91,7 @@
     "templates/content-setup/SOURCE.json": "d8fdf5d1a294e63c619e7505987eb29b6b284afc7e0c48944d79c949bfcaada8",
     "templates/content-setup/references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
     "templates/content-setup/references/setup-contract.md": "c9660c2b187627798632e02f83025a4f7811d7571bb998c0cf70fabdae232914",
-    "tests/test_sync_notion.py": "74e2ae2c48f441b72092477e4010720d0e4c0c9dc447a7ca4a5600bad3cf6117"
+    "tests/test_sync_notion.py": "cad16c8472234297b517b34e885fdc933e23af7f3a3e4a1cc6603b10ed01e162"
   },
   "template_import_commit": "b8dc567cca091a2af5942e0a7826a24844b0bc76"
 }

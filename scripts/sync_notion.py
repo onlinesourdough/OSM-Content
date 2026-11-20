@@ -48,7 +48,7 @@ def canonical(body):
         lines=[]
         for line in pieces[i].split('\n'):
             parts=line.split('<br />')
-            structural=any(re.match(r'^\s*(?:#{1,6}\s|[-*+]\s|\d+[.)]\s|[>|]|<)', part) for part in parts)
+            structural=any(not part.strip() or re.match(r'^\s*(?:#{1,6}(?:\s|$)|[-*+](?:\s|$)|\d+[.)](?:\s|$)|[>|]|<|\[[^\]]+\]:)', part) or re.fullmatch(r'\s*[-=*_]{2,}\s*',part) for part in parts)
             lines.append(line if structural else '\n'.join(parts))
         pieces[i] = '\n'.join(lines)
         pieces[i] = re.sub(r'\n{3,}', '\n\n', '\n'.join(line.rstrip() for line in pieces[i].split('\n')))
@@ -128,14 +128,22 @@ def render(source, page_id, baselines, ref=None):
 def candidates(source, seen, baselines, page_id):
     """Recognize the explicit handoff or a reproducible earlier ancestor; never trust a marker alone."""
     if page_id in GUIDES:
-        refs = set(re.findall(re.escape(REPO) + r'/blob/([0-9a-f]{40})/', seen['body']))
+        strict = set(re.findall(r'\[Source revision [0-9a-f]{7}\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/' + re.escape(GUIDES[page_id]) + r'\)', seen['body']))
+        refs = strict | set(re.findall(re.escape(REPO) + r'/blob/([0-9a-f]{40})/', seen['body']))
     else:
         refs = set(re.findall(r'\[Template source\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/templates/' + re.escape(TEMPLATES[page_id]) + r'/SKILL\.md\)', seen['body']))
+        strict = refs
     states = [baselines[page_id]]
     for ref in refs:
         if not source.ancestor(ref):
-            raise Held('Live page names a newer or unrelated source; refusing downgrade')
-        states.append(render(source, page_id, baselines, ref))
+            if ref in strict:
+                raise Held('Live page names a newer or unrelated source; refusing downgrade')
+            continue
+        try:
+            states.append(render(source, page_id, baselines, ref))
+        except Held:
+            if ref in strict:
+                raise
     return states
 
 

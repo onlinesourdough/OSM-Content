@@ -156,12 +156,24 @@ class SyncTests(unittest.TestCase):
         self.assertEqual(wanted,s.plan(source,self.base,p,seen)['body'])
     def test_native_media_order_change_holds_before_any_write(self):
         p=next(iter(s.GUIDES));a='<image source="first" />';b='<image source="second" />'
-        self.base[p]['body']='Prose\n'+a+'\n'+b
+        self.base[p]['body']='Prose\n'+b+'\n'+a
         class Images(Source):
             def read(self,path,ref=None):
                 return '0.12.0' if path=='VERSION' else 'Prose\n'+a+'\n'+b
         seen={**self.api.rows[p],'body':'Prose\n'+b+'\n'+a}
-        with self.assertRaises(s.Held):s.plan(Images(),self.base,p,seen)
+        with self.assertRaisesRegex(s.Held,'Native child'):s.plan(Images(),self.base,p,seen)
+    def test_inline_breaks_cannot_create_block_boundaries(self):
+        for actual,expected in [('First<br /><br />-','First\n\n-'),('First<br />---','First\n---'),('First<br />1.','First\n1.')]:
+            self.assertNotEqual(s.canonical(actual),s.canonical(expected))
+    def test_authored_nonancestor_link_is_not_a_revision_marker(self):
+        p=next(iter(s.GUIDES))
+        class Authored(Source):
+            def read(self,path,ref=None):
+                if path=='VERSION':return '0.12.0'
+                return '[Authored reference]('+s.REPO+'/blob/'+'c'*40+'/docs/example.md)'
+        source=Authored();wanted=s.render(source,p,self.base)
+        seen={**self.api.rows[p],**wanted}
+        self.assertEqual(wanted,s.plan(source,self.base,p,seen))
     def test_newer_or_unrelated_live_revision_is_not_downgraded(self):
         p=next(iter(s.GUIDES));self.api.rows[p]['body'] += '\n['+'newer'+']('+s.REPO+'/blob/'+'c'*40+'/docs/setup.md)'
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True)

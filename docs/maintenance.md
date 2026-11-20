@@ -29,7 +29,7 @@ The [Sync public Content guide](https://github.com/onlinesourdough/OSM-Content/a
 workflow follows a successful exact-main Validate method release run, a published
 method release, or an explicit main-branch invocation. A superseded source is
 skipped before using the Notion connection. Pull requests and forks never receive
-that connection. GitHub serializes this publisher through one concurrency group with queue: max, retaining pending runs. Writes wait for a published stable release matching the source version. A release event first uses its validated tag commit, then catches up a validated same-version main revision that was waiting for publication. A manual write waits when main has an unpublished version.
+that connection. GitHub serializes this publisher through one concurrency group with queue: max, retaining pending runs. Writes wait for a published stable release matching the source version. A release event first uses its validated tag commit, then catches up a validated same-version main revision that was waiting for publication. A manual write waits when main has an unpublished version. If catch-up fails, a rerun uses the same run’s previous-attempt artifact to verify that the exact-tag whole-set pass already completed, then resumes catch-up without downgrading pages. Missing or incomplete receipts do not bypass the tag pass.
 
 OSM_PUBLIC_DOCS_TOKEN selects the existing public-only documentation connection.
 OSM_CONTENT_DOCS_ENABLED enables automatic whole-set writes after live qualification.

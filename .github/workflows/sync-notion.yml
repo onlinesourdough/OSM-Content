@@ -50,6 +50,7 @@ jobs:
         run: |
           python3 - <<'PY'
           import base64, json, os, subprocess, urllib.parse
+          from pathlib import Path
           def api(path):
               return json.loads(subprocess.check_output(['gh','api',path],text=True))
           repo = os.environ['GITHUB_REPOSITORY']
@@ -84,8 +85,23 @@ jobs:
                   raise SystemExit('The exact source has no successful main Validate method release run')
               if name=='release' and sha!=head and 'v'+version(head)==tag and validated(head):
                   catchup=head
+          resume=False
+          if current and catchup and int(os.environ['GITHUB_RUN_ATTEMPT'])>1:
+              previous='content-guide-sync-'+str(int(os.environ['GITHUB_RUN_ATTEMPT'])-1)
+              artifacts=api(f"repos/{repo}/actions/runs/{os.environ['GITHUB_RUN_ID']}/artifacts?per_page=100")['artifacts']
+              found=[a for a in artifacts if a['name']==previous and not a['expired']]
+              if len(found)==1:
+                  subprocess.check_call(['gh','run','download',os.environ['GITHUB_RUN_ID'],'--repo',repo,'--name',previous,'--dir','proof'])
+                  proof=Path('proof/content-sync.json')
+                  if proof.is_file():
+                      d=json.loads(proof.read_text())
+                      expected={'40d6d2e17f5681219a81e13317a19339','40f6d2e17f56819ea683f45a30072086','40f6d2e17f5681d68525d83503a457d5','40d6d2e17f5681578925cdc0774c6db5','40d6d2e17f5681c99020d85e3bc1ff4b','40d6d2e17f568141a2c9efa2d04c9268','40d6d2e17f568122aa82f1dcf83500a7','40d6d2e17f5681c784c4d545814fd7a5'}
+                      resume=(d.get('ok') is True and d.get('complete') is True and d.get('scope')=='whole-set' and d.get('source_commit')==sha
+                              and len(d.get('api',[]))==8 and {r['page_id'] for r in d['api']}==expected
+                              and all(r['state'] in ('written','unchanged') for r in d['api'])
+                              and len(d.get('public',[]))==8 and {r['page_id'] for r in d['public']}==expected)
           with open(os.environ['GITHUB_OUTPUT'],'a') as out:
-              out.write(f'current={str(current).lower()}\nsha={sha}\ncatchup={catchup}\n')
+              out.write(f'current={str(current).lower()}\nsha={sha}\ncatchup={catchup}\nresume={str(resume).lower()}\n')
           if not current:
               with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
                   out.write('Source superseded or waiting for publication: no Notion read or write.\n')
@@ -117,7 +133,7 @@ jobs:
           cd core-publisher/docs-publisher
           npx playwright install --only-shell chromium
       - name: Reconcile the bound public Content pages
-        if: steps.source.outputs.current == 'true'
+        if: steps.source.outputs.current == 'true' && steps.source.outputs.resume != 'true'
         env:
           OSM_PUBLIC_DOCS_TOKEN: ${{ secrets.OSM_PUBLIC_DOCS_TOKEN }}
           CONTENT_SHA: ${{ steps.source.outputs.sha }}
