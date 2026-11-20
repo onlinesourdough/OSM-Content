@@ -1,0 +1,233 @@
+name: Sync public Content guide
+
+on:
+  workflow_run:
+    workflows: ['Validate method release']
+    types: [completed]
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Read-only preflight, bounded one-page proof, or whole-set write'
+        type: choice
+        options: [read-only, one-page, all]
+        default: read-only
+      page:
+        description: 'Exact bound public page id; required for one-page mode'
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: osm-content-public-guide
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  sync:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (vars.OSM_CONTENT_DOCS_ENABLED == 'true' &&
+       ((github.event_name == 'release') ||
+        (github.event.workflow_run.conclusion == 'success' &&
+         github.event.workflow_run.event == 'push' &&
+         github.event.workflow_run.head_branch == 'main' &&
+         github.event.workflow_run.head_repository.full_name == github.repository)))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      CONTENT_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
+    steps:
+      - name: Freeze the latest accepted source before using the Notion connection
+        id: source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import base64, json, os, re, subprocess, tempfile, urllib.parse
+          from pathlib import Path
+          def api(path):
+              return json.loads(subprocess.check_output(['gh','api',path],text=True))
+          repo = os.environ['GITHUB_REPOSITORY']
+          event=json.load(open(os.environ['GITHUB_EVENT_PATH']))
+          head = api(f'repos/{repo}/commits/main')['sha']
+          name=os.environ['GITHUB_EVENT_NAME']
+          readonly=name=='workflow_dispatch' and event.get('inputs',{}).get('mode')=='read-only'
+          current=not(name=='workflow_run' and event['workflow_run']['head_sha']!=head)
+          sha=head
+          if current and not readonly:
+              release=api(f'repos/{repo}/releases/latest')
+              if release['draft'] or release['prerelease']:
+                  raise SystemExit('A stable published release is required')
+              tag=release['tag_name']
+              def version(ref):
+                  d=api(f'repos/{repo}/contents/VERSION?ref='+urllib.parse.quote(ref,safe=''))
+                  return base64.b64decode(d['content']).decode().strip()
+              if name=='release':
+                  current=event['release']['id']==release['id']
+                  sha=api(f'repos/{repo}/commits/'+urllib.parse.quote(tag,safe=''))['sha']
+                  comparison=api(f'repos/{repo}/compare/{sha}...{head}')
+                  if comparison['status'] not in ('ahead','identical') or 'v'+version(sha)!=tag:
+                      raise SystemExit('Published source is not an accepted main ancestor')
+              elif 'v'+version(head)!=tag:
+                  current=False
+          def validated(ref):
+              runs = api(f'repos/{repo}/actions/workflows/validate.yml/runs?head_sha={ref}&event=push&branch=main&status=success')['workflow_runs']
+              return any(r['head_sha']==ref and r['event']=='push' and r['head_branch']=='main' and r['conclusion']=='success' and r['head_repository']['full_name']==repo for r in runs)
+          catchup=''
+          if current:
+              if not validated(sha):
+                  raise SystemExit('The exact source has no successful main Validate method release run')
+              if name=='release' and sha!=head and 'v'+version(head)==tag and validated(head):
+                  catchup=head
+          resume=False
+          if current and name=='release' and int(os.environ['GITHUB_RUN_ATTEMPT'])>1:
+              artifacts=[]
+              page=1
+              while True:
+                  batch=api(f"repos/{repo}/actions/runs/{os.environ['GITHUB_RUN_ID']}/artifacts?per_page=100&page={page}")['artifacts']
+                  artifacts.extend(batch)
+                  if len(batch)<100:break
+                  page+=1
+              found=[]
+              for item in artifacts:
+                  match=re.fullmatch(r'content-tag-pass-(\d+)',item['name'])
+                  if match and int(match[1])<int(os.environ['GITHUB_RUN_ATTEMPT']) and not item['expired']:
+                      found.append((int(match[1]),item))
+              for _,item in sorted(found,key=lambda pair:pair[0],reverse=True):
+                  with tempfile.TemporaryDirectory(prefix='content-tag-receipt-') as tmp:
+                      subprocess.check_call(['gh','run','download',os.environ['GITHUB_RUN_ID'],'--repo',repo,'--name',item['name'],'--dir',tmp])
+                      proof=Path(tmp)/'content-sync.json'
+                      if not proof.is_file():continue
+                      d=json.loads(proof.read_text())
+                      expected={'40d6d2e17f5681219a81e13317a19339','40f6d2e17f56819ea683f45a30072086','40f6d2e17f5681d68525d83503a457d5','40d6d2e17f5681578925cdc0774c6db5','40d6d2e17f5681c99020d85e3bc1ff4b','40d6d2e17f568141a2c9efa2d04c9268','40d6d2e17f568122aa82f1dcf83500a7','40d6d2e17f5681c784c4d545814fd7a5'}
+                      receipt_ok=(d.get('ok') is True and d.get('complete') is True and d.get('scope')=='whole-set' and d.get('source_commit')==sha
+                              and len(d.get('api',[]))==8 and {r['page_id'] for r in d['api']}==expected
+                              and all(r['state'] in ('written','unchanged') for r in d['api'])
+                              and len(d.get('public',[]))==8 and {r['page_id'] for r in d['public']}==expected)
+                      prior=Path(tmp)/'publication-plan.json'
+                      if receipt_ok and not catchup and prior.is_file():
+                          plan=json.loads(prior.read_text());candidate=plan.get('catchup_source','')
+                          if plan.get('tag_source')==sha and re.fullmatch('[0-9a-f]{40}',candidate):
+                              cmp=api(f'repos/{repo}/compare/{candidate}...{head}')
+                              if cmp['status'] in ('ahead','identical') and 'v'+version(candidate)==tag and validated(candidate):
+                                  catchup=candidate
+                      resume=receipt_ok and bool(catchup)
+                      if resume:
+                          Path('proof').mkdir(exist_ok=True)
+                          Path('proof/content-sync.json').write_text(json.dumps(d))
+                          break
+          if current and catchup:
+              Path('proof').mkdir(exist_ok=True)
+              Path('proof/publication-plan.json').write_text(json.dumps({'tag_source':sha,'catchup_source':catchup,'reused_tag_receipt':resume}))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as out:
+              out.write(f'current={str(current).lower()}\nsha={sha}\ncatchup={catchup}\nresume={str(resume).lower()}\n')
+          if not current:
+              with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
+                  out.write('Source superseded or waiting for publication: no Notion read or write.\n')
+          PY
+      - uses: actions/checkout@v4
+        if: steps.source.outputs.current == 'true'
+        with:
+          ref: ${{ steps.source.outputs.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+          path: content
+      - name: Use the reviewed existing OSM public transport and anonymous reader
+        if: steps.source.outputs.current == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: onlinesourdough/OSM-plugin
+          ref: caedb13fde5fc33315f97d4875e7a76e379b1737
+          fetch-depth: 1
+          persist-credentials: false
+          path: core-publisher
+      - uses: actions/setup-node@v4
+        if: steps.source.outputs.current == 'true'
+        with:
+          node-version: '22'
+      - name: Prepare the existing secret-free browser reader
+        if: steps.source.outputs.current == 'true'
+        run: |
+          npm ci --prefix core-publisher/docs-publisher --ignore-scripts --no-fund
+          cd core-publisher/docs-publisher
+          npx playwright install --only-shell chromium
+      - name: Reconcile the bound public Content pages
+        if: steps.source.outputs.current == 'true' && steps.source.outputs.resume != 'true'
+        env:
+          OSM_PUBLIC_DOCS_TOKEN: ${{ secrets.OSM_PUBLIC_DOCS_TOKEN }}
+          CONTENT_SHA: ${{ steps.source.outputs.sha }}
+          MODE: ${{ inputs.mode }}
+          ONLY_PAGE: ${{ inputs.page }}
+        run: |
+          python3 - <<'PY'
+          import os, subprocess
+          mode = os.environ.get('MODE') or 'all'
+          args = ['python3','content/scripts/sync_notion.py','--source-root','content',
+                  '--source-ref',os.environ['CONTENT_SHA'],'--core-root','core-publisher',
+                  '--out','proof/content-sync.json']
+          if mode != 'read-only':
+              args += ['--write','--public-read']
+          if mode == 'one-page':
+              if not os.environ.get('ONLY_PAGE'):
+                  raise SystemExit('One-page mode needs an exact bound page id')
+              args += ['--only-page',os.environ['ONLY_PAGE'],'--max-writes','1']
+          elif os.environ.get('ONLY_PAGE'):
+              raise SystemExit('A page is allowed only in one-page mode')
+          raise SystemExit(subprocess.call(args))
+          PY
+      - name: Retain the completed exact-tag receipt before catch-up can write
+        if: steps.source.outputs.current == 'true' && steps.source.outputs.catchup != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-tag-pass-${{ github.run_attempt }}
+          path: |
+            proof/content-sync.json
+            proof/publication-plan.json
+          if-no-files-found: error
+      - name: Read the accepted same-version main catch-up source
+        if: steps.source.outputs.current == 'true' && steps.source.outputs.catchup != ''
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.source.outputs.catchup }}
+          fetch-depth: 0
+          persist-credentials: false
+          path: content-catchup
+      - name: Catch up validated main after publishing its exact release
+        if: steps.source.outputs.current == 'true' && steps.source.outputs.catchup != ''
+        env:
+          OSM_PUBLIC_DOCS_TOKEN: ${{ secrets.OSM_PUBLIC_DOCS_TOKEN }}
+          CATCHUP_SHA: ${{ steps.source.outputs.catchup }}
+        run: |
+          python3 - <<'PY'
+          import os, subprocess
+          raise SystemExit(subprocess.call(['python3','content/scripts/sync_notion.py',
+              '--source-root','content-catchup','--source-ref',os.environ['CATCHUP_SHA'],
+              '--core-root','core-publisher','--write','--public-read','--out','proof/content-catchup.json']))
+          PY
+      - name: Summarize actual API writes and anonymous readback
+        if: always() && steps.source.outputs.current == 'true'
+        run: |
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          proofs=list(Path('proof').glob('*.json'))
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
+              if not proofs:
+                  out.write('Content sync did not produce a proof. No successful synchronization is claimed.\n')
+              else:
+                  for p in proofs:
+                      d=json.loads(p.read_text())
+                      out.write(p.name+'\n```json\n'+json.dumps(d,indent=2)+'\n```\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.source.outputs.current == 'true'
+        with:
+          name: content-guide-sync-${{ github.run_attempt }}
+          path: proof/*.json
+          if-no-files-found: ignore

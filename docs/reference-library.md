@@ -12,6 +12,12 @@ owner's reason for saving it separately from the agent's interpretation. A brief
 note such as "the camera moves into the corner while the window stays readable"
 is more useful than "nice editing".
 
+Keep at least one concrete line per link explaining what was worth saving: the
+cuts, music, text reveal, composition or another specific choice. For a long
+video, add the relevant timestamp or range. If the reason is not yet known,
+mark it as unconfirmed rather than inventing a preference. Preserve this note
+with the link so the library remains useful months later.
+
 Inspect the actual example. For video or audio, keep the relevant time range and
 what was observed: framing, pacing, typography, transitions, drawn graphics,
 sound cues or music. State what could not be inspected. A thumbnail does not

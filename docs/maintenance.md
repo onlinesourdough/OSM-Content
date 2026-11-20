@@ -19,9 +19,44 @@ The source-to-page mapping is in [release.json](../release.json):
 The existing OSM core publisher owns its seven released native skills. It does
 not write these Content guide or template pages. Reuse its distinction between
 accepted source, prepared projection, saved readback and anonymous public
-verification. This repository adds no second daily writer or automatic Notion
-publisher. [Issue #2](https://github.com/onlinesourdough/OSM-Content/issues/2)
-tracks that separate integration work.
+verification. The Content workflow reuses the pinned OSM public transport and
+anonymous reader, with a public-only Notion credential and exactly eight bound
+Content pages. It adds no daily private-context writer or owner-content publisher.
+
+## Automatic synchronization
+
+The [Sync public Content guide](https://github.com/onlinesourdough/OSM-Content/actions/workflows/sync-notion.yml)
+workflow follows a successful exact-main Validate method release run, a published
+method release, or an explicit main-branch invocation. A superseded source is
+skipped before using the Notion connection. Pull requests and forks never receive
+that connection. GitHub serializes this publisher through one concurrency group with queue: max, retaining pending runs. Writes wait for a published stable release matching the source version. A release event first uses its validated tag commit, then catches up a validated same-version main revision that was waiting for publication. A manual write waits when main has an unpublished version. If catch-up fails, a rerun uses the same run’s latest valid earlier-attempt tag-pass artifact to verify that the exact-tag whole-set pass already completed, then resumes catch-up without downgrading pages. The tag receipt is uploaded before catch-up can write. Its verified catch-up plan can resume the last accepted published version even if main now has an unpublished version. Missing or incomplete receipts do not bypass the tag pass.
+
+OSM_PUBLIC_DOCS_TOKEN selects the existing public-only documentation connection.
+OSM_CONTENT_DOCS_ENABLED enables automatic whole-set writes after live qualification.
+The public connection has no private owner-home access. The browser child receives
+only the reviewed environment allowlist and a fresh anonymous context.
+
+The writer recognizes the explicit v0.11.0 handoff or a complete reproducible
+ancestor of the accepted source. A revision marker alone is insufficient. It
+preflights the whole set, rechecks each page before writing and holds unknown
+edits or a newer source. Only the five already-qualified legacy configuration soft breaks are normalized, outside fenced/HTML blocks; other spacing and hard breaks remain exact. Native child/catalogue/media/file references and all
+non-managed properties are preserved. A failed or lost write is read back before
+anything else; the same invocation never retries it. Each Markdown update matches observed prose outside native media; expiring file signatures never enter match strings. A changed selection is not replaced. Exact accepted prose segments and commit-pinned links identify a partially applied update for recovery. Unknown segments hold for review. The native reference sequence, not only its membership, must remain unchanged. Partial progress across pages can resume from its actual state. The report preserves progress on a failure.
+
+Three guide bodies follow their mapped Git source. The five frozen template
+instructions and packets keep their original v0.10.0 identity; only their source
+note advances. The Source property retains the historical handoff and is read-only to the publisher. API-derived signed downloads are hash-checked; anonymous browser download access is not checked by this workflow. A future template
+instruction/version change needs a reviewed new handoff instead of silently
+rewriting the frozen packet. No private configuration or personal skill is touched.
+
+Use workflow_dispatch read-only for preflight, one-page for a bounded proof, or
+all for authorized whole-set synchronization. The actual report and anonymous
+readback are retained as run artifacts. A successful whole-set repeat must record
+zero write requests. A bounded proof does not establish whole-set activation.
+
+Run python3 -m unittest discover -s tests -v for the conflict, replay, partial
+write, lost-answer and destination-boundary cases. Fixtures are not live proof.
+The latest real qualification belongs on the release and in the Actions history.
 
 ## Deliver an update
 
