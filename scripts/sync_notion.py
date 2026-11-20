@@ -41,20 +41,45 @@ def sha(value):
     return hashlib.sha256(value.encode()).hexdigest()
 
 
+def contextual_lines(body):
+    """Yield lines and whether they are outside fenced/HTML blocks at top level."""
+    fence=None
+    comment=False
+    stack=[]
+    void={'image','img','file','pdf','br','hr','input','meta','link','empty-block'}
+    for line in body.split('\n'):
+        top=fence is None and not comment and not stack and not line.startswith((' ', '\t'))
+        match=re.match(r'^ {0,3}(`{3,}|~{3,})(.*)$',line)
+        if fence:
+            if match and match[1][0]==fence[0] and len(match[1])>=fence[1] and not match[2].strip():
+                fence=None
+            yield line,False
+            continue
+        if match and not comment:
+            fence=(match[1][0],len(match[1]))
+            yield line,False
+            continue
+        for token in re.findall(r'<!--|-->|</?[A-Za-z][^>]*>',line):
+            if token=='<!--':comment=True
+            elif token=='-->':comment=False
+            elif not comment:
+                tag=re.match(r'</?([\w-]+)',token)[1].lower()
+                if token.startswith('</'):
+                    if stack and stack[-1]==tag:stack.pop()
+                elif tag not in void and not token.endswith('/>'):
+                    stack.append(tag)
+        yield line,top
+
+
 def canonical(body):
-    """Qualified soft-linebreak representation, preserving blocks and fenced code."""
-    pieces = body.replace('\r\n', '\n').replace('\r', '\n').split('```')
-    for i in range(0, len(pieces), 2):
-        # Only the five soft breaks in the already-qualified configuration
-        # paragraph are representation-equivalent. Other authored breaks stay exact.
-        legacy = "Use the [reference-library workflow](REF) when a creator example<br />should inform the owner's style. Keep the original and observations on its Source,<br />accepted choices in configuration, and reusable techniques in the existing style<br />or treatment guide. Update a personal skill only when its working steps change.<br />Each production selects the references it needs; a saved source is not automatic<br />adoption. Channel languages are owner choices, not shared defaults."
-        lines=[]
-        for line in pieces[i].split('\n'):
-            fingerprint=re.sub(r'\[reference-library workflow\]\([^\s)]+\)', '[reference-library workflow](REF)',line)
-            lines.append(line.replace('<br />','\n') if fingerprint==legacy else line)
-        pieces[i]='\n'.join(lines)
-        pieces[i] = re.sub(r'\n{3,}', '\n\n', '\n'.join(line.rstrip() for line in pieces[i].split('\n')))
-    return '```'.join(pieces).strip()
+    """Only the qualified legacy prose soft breaks differ from the exact source."""
+    body=body.replace('\r\n','\n').replace('\r','\n').strip('\n')
+    legacy = "Use the [reference-library workflow](REF) when a creator example<br />should inform the owner's style. Keep the original and observations on its Source,<br />accepted choices in configuration, and reusable techniques in the existing style<br />or treatment guide. Update a personal skill only when its working steps change.<br />Each production selects the references it needs; a saved source is not automatic<br />adoption. Channel languages are owner choices, not shared defaults."
+    lines=[]
+    for line,top in contextual_lines(body):
+        fingerprint=re.sub(r'\[reference-library workflow\]\([^\s)]+\)', '[reference-library workflow](REF)',line)
+        lines.append(line.replace('<br />','\n') if top and fingerprint==legacy else line)
+    return '\n'.join(lines)
 
 
 def chunks(body):
@@ -131,7 +156,8 @@ def candidates(source, seen, baselines, page_id):
     """Recognize the explicit handoff or a reproducible earlier ancestor; never trust a marker alone."""
     if page_id in GUIDES:
         marker=re.search(r'\[Source revision ([0-9a-f]{7})\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/' + re.escape(GUIDES[page_id]) + r'\)\s*\Z',seen['body'])
-        strict={marker[2]} if marker and marker[1]==marker[2][:7] and (marker.start()==0 or seen['body'][marker.start()-2:marker.start()]=='\n\n') else set()
+        footer_top=dict((n,top) for n,(_,top) in enumerate(contextual_lines(seen['body'])))
+        strict={marker[2]} if marker and marker[1]==marker[2][:7] and (marker.start()==0 or seen['body'][marker.start()-2:marker.start()]=='\n\n') and footer_top[seen['body'][:marker.start()].count('\n')] else set()
         refs = strict | set(re.findall(re.escape(REPO) + r'/blob/([0-9a-f]{40})/', seen['body']))
     else:
         refs = set(re.findall(r'\[Template source\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/templates/' + re.escape(TEMPLATES[page_id]) + r'/SKILL\.md\)', seen['body']))

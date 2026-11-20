@@ -48,7 +48,7 @@
     }
   ],
   "source_sha256": {
-    ".github/workflows/sync-notion.yml": "9acd3c53bc07e6cdd308d8c0fe37b54bfb62753268fa124debf2a2e95159c815",
+    ".github/workflows/sync-notion.yml": "59b3fde77961f197d95108e7c726392d9792e42416f6706a8300c42bef125095",
     ".github/workflows/validate.yml": "db69afe772b1f68fffc377a4ea9fcb56d393a2983fe20d540b043407953d6d36",
     ".gitignore": "bf7224daa29be47cef87a50b0351d18e729d129be606faa8e4718116d6e51d87",
     "AGENTS.md": "16a91634a5732b7b938b6e5d99e0f631e7419fe405e1cf772e1a1ea2aa500bb0",
@@ -60,14 +60,14 @@
     "assets/icon.png": "e51a61fcd443ce440a5360b883e27b0d400d88db23810b95d48f39ef3e2b5d34",
     "docs/configuration.md": "3098d7bebf3b80e1f993bf71602a5ffd30f95c463248a0a10deac7ef4741700a",
     "docs/guide.notion.md": "2b8159d1a81fdf6948d94a828134c2ff53b82c66e78475c1f231ad68ec518970",
-    "docs/maintenance.md": "1bfd17becbf8020fdb211495d0cadbed53a9d1e24dfb998bcd5436db793d594c",
+    "docs/maintenance.md": "5a3be743856485042a3ab891ee0ee259590a726a6e950c822c0c0a9cb99d6af0",
     "docs/post-workflow.md": "672f8c0ecedda37e8db495c910d87a34412e451f08992298f5fc60de2b42d559",
     "docs/reference-library.md": "73967f0eced156c534671d5a5d45ad5d843726a3f2fae5a14fe1ac134b0ddd62",
     "docs/releases.md": "bc3dabeb6dec41988c012a03d28a93594cfeda448a28ca259284219ba948c2fe",
     "docs/setup.md": "72eaf5e2adf755b38c2dacaaea592f51b8c7466216cab906221147fcfdaf0ebb",
     "provenance.json": "ed20686ec204cd59861f4fe6fc7db7b7c788298cfcdc5497f7d2753aaa79d26f",
     "scripts/check_release.py": "b34814e9a395514a3ca8cb1a712e4d47cf49f8563d8319019011c87bb830e949",
-    "scripts/sync_notion.py": "7bad229459dc6097efeb6426426e78add5510a6ce2665fad71d07013d6eddbdd",
+    "scripts/sync_notion.py": "41eaec10ba3eb07c54eac7ec5952a69eb838f411918b387ae01c8b8ca1ec943b",
     "sync/baselines.json": "edfaf0852b3a2e8d5b03f648e81f4839cee26daeee87e12cbd97c9bb9f83c726",
     "templates/content-intake/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/content-intake/SKILL.md": "7349044ad3938051ab11cc787bee7536d3548b480acac6cf1a06c57d28f9f6e0",
@@ -91,7 +91,7 @@
     "templates/content-setup/SOURCE.json": "d8fdf5d1a294e63c619e7505987eb29b6b284afc7e0c48944d79c949bfcaada8",
     "templates/content-setup/references/adaptation.md": "ca3fffacae06649ccf96963fff3e5f6180b6352f772221c15466bf4bab68cd92",
     "templates/content-setup/references/setup-contract.md": "c9660c2b187627798632e02f83025a4f7811d7571bb998c0cf70fabdae232914",
-    "tests/test_sync_notion.py": "6913db490ca9f233a9e5da1fead92036899f5d14a79e9b954464a46e07e1af15"
+    "tests/test_sync_notion.py": "980c0ca6d6355c80b2a9552bb14ca14b627f6122cfd901af6adbaef56dd89373"
   },
   "template_import_commit": "b8dc567cca091a2af5942e0a7826a24844b0bc76"
 }

@@ -188,6 +188,22 @@ class SyncTests(unittest.TestCase):
                 return 'An authored [Source revision aaaaaaa]('+s.REPO+'/blob/'+'c'*40+'/'+s.GUIDES[p]+') citation.'
         source=Citation();wanted=s.render(source,p,self.base)
         self.assertEqual(wanted,s.plan(source,self.base,p,{**self.api.rows[p],**wanted}))
+    def test_legacy_exception_never_changes_tilde_fenced_literals(self):
+        import json
+        body=json.loads((s.ENGINE/'sync/baselines.json').read_text())['40f6d2e17f5681d68525d83503a457d5']['body']
+        legacy=next(l for l in body.splitlines() if '<br />' in l)
+        self.assertNotEqual(s.canonical('~~~\n'+legacy+'\n~~~'),s.canonical('~~~\n'+legacy.replace('<br />','\n')+'\n~~~'))
+    def test_generated_marker_inside_unclosed_blocks_is_not_strict(self):
+        p=next(iter(s.GUIDES));marker='[Source revision ccccccc]('+s.REPO+'/blob/'+'c'*40+'/'+s.GUIDES[p]+')'
+        for prefix in ['~~~\n','<!--\n','<toggle>\n']:
+            class Literal(Source):
+                def read(self,path,ref=None):
+                    return '0.12.0' if path=='VERSION' else prefix+'Example\n\n'+marker
+            source=Literal();wanted=s.render(source,p,self.base)
+            self.assertEqual(wanted,s.plan(source,self.base,p,{**self.api.rows[p],**wanted}))
+    def test_hard_linebreak_spacing_and_blank_blocks_are_preserved(self):
+        self.assertNotEqual(s.canonical('one  \ntwo'),s.canonical('one\ntwo'))
+        self.assertNotEqual(s.canonical('one\n\n\ntwo'),s.canonical('one\n\ntwo'))
     def test_newer_or_unrelated_live_revision_is_not_downgraded(self):
         p=next(iter(s.GUIDES));self.api.rows[p]['body'] += '\n['+'newer'+']('+s.REPO+'/blob/'+'c'*40+'/docs/setup.md)'
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True)

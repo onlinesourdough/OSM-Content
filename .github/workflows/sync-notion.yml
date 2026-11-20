@@ -49,7 +49,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
-          import base64, json, os, re, subprocess, urllib.parse
+          import base64, json, os, re, subprocess, tempfile, urllib.parse
           from pathlib import Path
           def api(path):
               return json.loads(subprocess.check_output(['gh','api',path],text=True))
@@ -87,20 +87,30 @@ jobs:
                   catchup=head
           resume=False
           if current and name=='release' and int(os.environ['GITHUB_RUN_ATTEMPT'])>1:
-              previous='content-tag-pass-'+str(int(os.environ['GITHUB_RUN_ATTEMPT'])-1)
-              artifacts=api(f"repos/{repo}/actions/runs/{os.environ['GITHUB_RUN_ID']}/artifacts?per_page=100")['artifacts']
-              found=[a for a in artifacts if a['name']==previous and not a['expired']]
-              if len(found)==1:
-                  subprocess.check_call(['gh','run','download',os.environ['GITHUB_RUN_ID'],'--repo',repo,'--name',previous,'--dir','proof'])
-                  proof=Path('proof/content-sync.json')
-                  if proof.is_file():
+              artifacts=[]
+              page=1
+              while True:
+                  batch=api(f"repos/{repo}/actions/runs/{os.environ['GITHUB_RUN_ID']}/artifacts?per_page=100&page={page}")['artifacts']
+                  artifacts.extend(batch)
+                  if len(batch)<100:break
+                  page+=1
+              found=[]
+              for item in artifacts:
+                  match=re.fullmatch(r'content-tag-pass-(\d+)',item['name'])
+                  if match and int(match[1])<int(os.environ['GITHUB_RUN_ATTEMPT']) and not item['expired']:
+                      found.append((int(match[1]),item))
+              for _,item in sorted(found,key=lambda pair:pair[0],reverse=True):
+                  with tempfile.TemporaryDirectory(prefix='content-tag-receipt-') as tmp:
+                      subprocess.check_call(['gh','run','download',os.environ['GITHUB_RUN_ID'],'--repo',repo,'--name',item['name'],'--dir',tmp])
+                      proof=Path(tmp)/'content-sync.json'
+                      if not proof.is_file():continue
                       d=json.loads(proof.read_text())
                       expected={'40d6d2e17f5681219a81e13317a19339','40f6d2e17f56819ea683f45a30072086','40f6d2e17f5681d68525d83503a457d5','40d6d2e17f5681578925cdc0774c6db5','40d6d2e17f5681c99020d85e3bc1ff4b','40d6d2e17f568141a2c9efa2d04c9268','40d6d2e17f568122aa82f1dcf83500a7','40d6d2e17f5681c784c4d545814fd7a5'}
                       receipt_ok=(d.get('ok') is True and d.get('complete') is True and d.get('scope')=='whole-set' and d.get('source_commit')==sha
                               and len(d.get('api',[]))==8 and {r['page_id'] for r in d['api']}==expected
                               and all(r['state'] in ('written','unchanged') for r in d['api'])
                               and len(d.get('public',[]))==8 and {r['page_id'] for r in d['public']}==expected)
-                      prior=Path('proof/publication-plan.json')
+                      prior=Path(tmp)/'publication-plan.json'
                       if receipt_ok and not catchup and prior.is_file():
                           plan=json.loads(prior.read_text());candidate=plan.get('catchup_source','')
                           if plan.get('tag_source')==sha and re.fullmatch('[0-9a-f]{40}',candidate):
@@ -108,6 +118,10 @@ jobs:
                               if cmp['status'] in ('ahead','identical') and 'v'+version(candidate)==tag and validated(candidate):
                                   catchup=candidate
                       resume=receipt_ok and bool(catchup)
+                      if resume:
+                          Path('proof').mkdir(exist_ok=True)
+                          Path('proof/content-sync.json').write_text(json.dumps(d))
+                          break
           if current and catchup:
               Path('proof').mkdir(exist_ok=True)
               Path('proof/publication-plan.json').write_text(json.dumps({'tag_source':sha,'catchup_source':catchup,'reused_tag_receipt':resume}))
