@@ -77,12 +77,6 @@ class Source:
             stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
 
 
-def source_property(name, ref, version):
-    return (f'Frozen v0.10.0 Draft template, imported edition 2026-11-05.1. '
-            f'Source: {REPO}/blob/{ref}/templates/{name}/SKILL.md . '
-            f'Shared method: {version}. Original ZIP hashes and history retained; not a native personal installation.')
-
-
 def note(name, ref, version):
     return (SOURCE_NOTE + ' Its files, hashes and earlier history are retained. '
             f'[Template source]({REPO}/blob/{ref}/templates/{name}/SKILL.md) lives in the separate OSM Content repository. '
@@ -119,7 +113,7 @@ def render(source, page_id, baselines, ref=None):
     if not old or baseline['body'].count(old) != 1:
         raise Held('Template handoff does not contain exactly one source note')
     body = baseline['body'].replace(old, note(name, ref, version))
-    return {'body': canonical(body), 'source': source_property(name, ref, version)}
+    return {'body': canonical(body), 'source': baseline['source']}
 
 
 def candidates(source, seen, baselines, page_id):
@@ -128,7 +122,6 @@ def candidates(source, seen, baselines, page_id):
         refs = set(re.findall(r'\[Source revision [0-9a-f]{7}\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/' + re.escape(GUIDES[page_id]) + r'\)', seen['body']))
     else:
         refs = set(re.findall(r'\[Template source\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/templates/' + re.escape(TEMPLATES[page_id]) + r'/SKILL\.md\)', seen['body']))
-        refs.update(re.findall(r'Source: ' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/templates/' + re.escape(TEMPLATES[page_id]) + r'/SKILL\.md', seen['source'] or ''))
     states = [baselines[page_id]]
     for ref in refs:
         if not source.ancestor(ref):
@@ -144,6 +137,10 @@ def plan(source, baselines, page_id, seen):
         raise Held('Live body differs from the handoff and reproducible accepted source')
     if page_id in TEMPLATES and seen['source'] not in {s['source'] for s in states}:
         raise Held('Template Source property has an unrecognized edit')
+    if page_id in TEMPLATES:
+        allowed_links = set(re.findall(r'https://[^\s]+', baselines[page_id]['source']))
+        if any(link['text'] != link['url'] or link['url'] not in allowed_links for link in seen.get('source_links', [])):
+            raise Held('Template Source hyperlink destination differs from its visible source')
     if protected(seen['body']) != protected(wanted['body']):
         raise Held('Native child, catalogue, media or file references would change')
     return wanted
@@ -177,10 +174,14 @@ class API:
             raise Held('Incomplete or unsupported Notion Markdown read')
         props = page.get('properties', {})
         source = None
+        source_links = []
         if page_id in TEMPLATES:
             if props.get('Source', {}).get('type') != 'rich_text':
                 raise Held('Template Source property is not the bound text field')
             source = ''.join(t.get('plain_text', t.get('text', {}).get('content', '')) for t in props['Source']['rich_text'])
+            for t in props['Source']['rich_text']:
+                for url in {t.get('href'), (t.get('text', {}).get('link') or {}).get('url')} - {None}:
+                    source_links.append({'text': t.get('plain_text', t.get('text', {}).get('content', '')), 'url': url})
         # All non-managed properties must remain unchanged. File URLs expire; compare their immutable path/name.
         def stable(value):
             if isinstance(value, dict):
@@ -192,10 +193,10 @@ class API:
                 return url.scheme + '://' + url.netloc + url.path
             return value
         intrinsic = stable({k: v for k, v in props.items()
-                            if not (page_id in TEMPLATES and k == 'Source')
-                            and v.get('type') not in {'last_edited_time', 'last_edited_by'}})
+                            if v.get('type') not in {'last_edited_time', 'last_edited_by'}})
         return {'body': canonical(self.pub.stable_notion_media(body['markdown'])), 'source': source,
-                'intrinsic': intrinsic, 'edited': page.get('last_edited_time'), 'files': props.get('Files', {}).get('files', [])}
+                'source_links': source_links, 'intrinsic': intrinsic, 'edited': page.get('last_edited_time'),
+                'files': props.get('Files', {}).get('files', []), 'raw_body': body['markdown']}
 
     def verify_packet(self, page_id, seen, expected):
         name = TEMPLATES[page_id] + '-v0.10.0-template.zip'
@@ -220,18 +221,32 @@ class API:
         except Exception:
             raise Held('Frozen template download could not be verified') from None
 
-    def write_body(self, page_id, body):
+    def write_body(self, page_id, before, body):
+        raw = before['raw_body']
+        if page_id in TEMPLATES:
+            def source_note(value):
+                found = [p for p in value.split('\n\n') if p.startswith(SOURCE_NOTE)]
+                if len(found) != 1:
+                    raise Held('Template source note is missing or ambiguous')
+                return found[0]
+            old, new = source_note(raw), source_note(body)
+        else:
+            old, new = raw, body
+            # Preserve provider-native file references without passing their expiring URLs to logs.
+            for url in re.findall(r'https://[^\s<>"\']+', raw):
+                if 'X-Amz-' in url or '#notion_record=' in url:
+                    url = url[:-1] if url.endswith(')') else url
+                    stable = self.pub.stable_notion_media(url)
+                    new = new.replace(stable, url)
+            if 'notion-file-block://' in new:
+                raise Held('A native file reference could not be materialized from the observed page')
+        if not old.strip():
+            raise Held('An empty matched selection is not allowed')
         result = self.request('PATCH', 'pages/' + page_id + '/markdown', {
-            'type': 'replace_content', 'markdown_version': 'v2', 'allow_async': False,
-            'replace_content': {'new_str': body, 'allow_deleting_content': False}})
+            'type': 'update_content', 'markdown_version': 'v2', 'allow_async': False,
+            'update_content': {'content_updates': [{'old_str': old, 'new_str': new}], 'allow_deleting_content': False}})
         if result.get('warnings') or result.get('truncated') or result.get('unknown_block_ids'):
             raise Held('Notion changed or could not return the complete write')
-
-    def write_source(self, page_id, value):
-        if page_id not in TEMPLATES:
-            raise Held('Source property belongs only to the five template pages')
-        self.request('PATCH', 'pages/' + page_id, {'properties': {'Source': {'rich_text': [{'text': {'content': value}}]}}})
-
 
 def equal(seen, wanted):
     return canonical(seen['body']) == canonical(wanted['body']) and seen['source'] == wanted['source']
@@ -269,14 +284,12 @@ def reconcile(api, source, baselines, *, write=False, only=None, max_writes=8, r
             current = api.read(page_id)
             if observation(current) != observation(before):
                 raise Held('Page changed after preflight; rerun from the new observation')
-            for component in ['body', 'source']:
+            for component in ['body']:
                 if (canonical(current['body']) == canonical(wanted['body']) if component == 'body' else current['source'] == wanted['source']):
                     continue
                 try:
                     if component == 'body':
-                        api.write_body(page_id, wanted['body'])
-                    else:
-                        api.write_source(page_id, wanted['source'])
+                        api.write_body(page_id, current, wanted['body'])
                 except Exception:
                     # No write retry. Read once to distinguish an applied write from unknown/not-applied.
                     after = api.read(page_id)
@@ -286,7 +299,9 @@ def reconcile(api, source, baselines, *, write=False, only=None, max_writes=8, r
                     current = after
                 else:
                     current = api.read(page_id)
-                if current['intrinsic'] != before['intrinsic'] or protected(current['body']) != protected(before['body']):
+                if (current['intrinsic'] != before['intrinsic'] or current['source'] != before['source']
+                        or current.get('source_links', []) != before.get('source_links', [])
+                        or protected(current['body']) != protected(before['body'])):
                     raise Held('Native references or non-managed properties changed')
                 if component == 'body' and canonical(current['body']) != canonical(wanted['body']):
                     raise Held('Saved body differs from desired source')
@@ -366,7 +381,8 @@ def main():
     parser.add_argument('--public-read', action='store_true')
     parser.add_argument('--out', type=Path, required=True)
     args = parser.parse_args()
-    report = {'ok': False, 'api': [], 'public': [], 'confirmed_pages_written': 0, 'write_requests_sent': 0}
+    report = {'ok': False, 'api': [], 'public': [], 'confirmed_pages_written': 0, 'write_requests_sent': 0,
+              'anonymous_downloads': 'not_checked; API-derived signed downloads are hash-checked separately'}
     api = None
     def checkpoint(rows):
         report['api'] = list(rows)
@@ -401,9 +417,10 @@ def main():
             report['public'] = public_check(args.core_root, source, baselines,
                                             page_ids=[args.only_page] if args.only_page else None)
         report['complete'] = all(r['state'] in {'written', 'unchanged'} for r in report['api'])
-        report['scope'] = 'bounded-one-page' if args.only_page else 'whole-set'
+        report['scope'] = 'read-only-preflight' if not args.write else 'bounded-one-page' if args.only_page else 'whole-set'
         chosen = [r for r in report['api'] if not args.only_page or r['page_id'] == args.only_page]
-        report['ok'] = all(r['state'] in {'written', 'unchanged'} for r in chosen) and (not args.public_read or len(report['public']) == len(chosen))
+        accepted = {'written', 'unchanged'} if args.write else {'prepared', 'unchanged'}
+        report['ok'] = all(r['state'] in accepted for r in chosen) and (not args.public_read or len(report['public']) == len(chosen))
     except Exception as error:
         # Never print transport payloads, tokens, signed URLs or raw third-party exceptions.
         report['reason'] = str(error) if isinstance(error, Held) else 'Public documentation operation failed; no automatic write retry'

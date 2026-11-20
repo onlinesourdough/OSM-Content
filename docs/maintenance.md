@@ -29,7 +29,7 @@ The [Sync public Content guide](https://github.com/onlinesourdough/OSM-Content/a
 workflow follows a successful exact-main Validate method release run, a published
 method release, or an explicit main-branch invocation. A superseded source is
 skipped before using the Notion connection. Pull requests and forks never receive
-that connection. GitHub serializes this publisher through one concurrency group.
+that connection. GitHub serializes this publisher through one concurrency group with queue: max, retaining pending runs. Writes wait for a published stable release matching the source version. A release event can publish its accepted main ancestor when main has already advanced.
 
 OSM_PUBLIC_DOCS_TOKEN selects the existing public-only documentation connection.
 OSM_CONTENT_DOCS_ENABLED enables automatic whole-set writes after live qualification.
@@ -41,12 +41,11 @@ ancestor of the accepted source. A revision marker alone is insufficient. It
 preflights the whole set, rechecks each page before writing and holds unknown
 edits or a newer source. Native child/catalogue/media/file references and all
 non-managed properties are preserved. A failed or lost write is read back before
-anything else; the same invocation never retries it. Partial body/property updates
-can resume from their actual state. The report preserves progress on a failure.
+anything else; the same invocation never retries it. Each Markdown update matches the observed text; a changed selection is not replaced. Partial progress across pages can resume from its actual state. The report preserves progress on a failure.
 
 Three guide bodies follow their mapped Git source. The five frozen template
 instructions and packets keep their original v0.10.0 identity; only their source
-note and Source property advance. Downloads are hash-checked. A future template
+note advances. The Source property retains the historical handoff and is read-only to the publisher. API-derived signed downloads are hash-checked; anonymous browser download access is not checked by this workflow. A future template
 instruction/version change needs a reviewed new handoff instead of silently
 rewriting the frozen packet. No private configuration or personal skill is touched.
 

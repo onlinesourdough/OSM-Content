@@ -25,7 +25,6 @@ class API:
         self.calls = []
         self.lost_answer = False
         self.reject = False
-        self.property_failure = False
         self.mutate = None
         self.reads = {}
         self.write_requests = 0
@@ -36,7 +35,7 @@ class API:
         return copy.deepcopy(self.rows[page])
     def verify_packet(self, *args):
         pass
-    def write_body(self, page, body):
+    def write_body(self, page, before, body):
         self.calls.append(('body', page));self.write_requests += 1
         if self.reject:
             raise OSError('rejected')
@@ -44,11 +43,6 @@ class API:
         self.rows[page]['edited'] = 'new'
         if self.lost_answer:
             raise OSError('answer lost after applied')
-    def write_source(self, page, value):
-        self.calls.append(('source', page));self.write_requests += 1
-        if self.property_failure:
-            raise OSError('source property not applied')
-        self.rows[page]['source'] = value
 
 
 def baselines():
@@ -89,12 +83,37 @@ class SyncTests(unittest.TestCase):
         self.api.reject = True;checkpoint=[]
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True, record=lambda rows:checkpoint.extend(copy.deepcopy(rows)))
         self.assertEqual(1, len(self.api.calls));self.assertEqual('pending', checkpoint[-1]['state'])
-    def test_partial_body_property_write_can_resume(self):
-        selected = next(iter(s.TEMPLATES));self.api.property_failure = True
-        with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True, only=selected)
-        self.api.property_failure = False;self.api.calls.clear()
-        s.reconcile(self.api, self.source, self.base, write=True, only=selected)
-        self.assertEqual([('source', selected)], self.api.calls)
+    def test_read_only_preflight_prepares_without_writes(self):
+        result=s.reconcile(self.api,self.source,self.base)
+        self.assertTrue(all(r['state']=='prepared' for r in result))
+        self.assertEqual([],self.api.calls)
+    def test_hyperlink_destination_cannot_change_behind_plain_text(self):
+        p=next(iter(s.TEMPLATES))
+        self.api.rows[p]['source_links']=[{'text':'https://github.com/accepted','url':'https://example.com/changed'}]
+        with self.assertRaises(s.Held):s.reconcile(self.api,self.source,self.base,write=True)
+        self.assertEqual([],self.api.calls)
+    def test_source_property_changed_during_body_write_is_preserved(self):
+        p=next(iter(s.TEMPLATES)); original=self.api.write_body
+        def concurrent(page,before,body):
+            original(page,before,body)
+            self.api.rows[page]['source']='Concurrent human source edit'
+        self.api.write_body=concurrent
+        with self.assertRaises(s.Held):s.reconcile(self.api,self.source,self.base,write=True,only=p)
+        self.assertEqual('Concurrent human source edit',self.api.rows[p]['source'])
+        self.assertEqual([('body',p)],self.api.calls)
+    def test_api_uses_observed_match_instead_of_unconditional_replace(self):
+        api=object.__new__(s.API);sent=[]
+        api.request=lambda method,path,payload: sent.append(payload) or {}
+        api.write_body(next(iter(s.GUIDES)),{'raw_body':'Human observed body'},'Desired body')
+        self.assertEqual('update_content',sent[0]['type'])
+        self.assertEqual([{'old_str':'Human observed body','new_str':'Desired body'}],sent[0]['update_content']['content_updates'])
+    def test_template_patch_selects_only_the_source_note(self):
+        p=next(iter(s.TEMPLATES));api=object.__new__(s.API);sent=[]
+        api.request=lambda method,path,payload: sent.append(payload) or {}
+        api.write_body(p,{'raw_body':self.base[p]['body']},s.render(self.source,p,self.base)['body'])
+        edit=sent[0]['update_content']['content_updates'][0]
+        self.assertTrue(edit['old_str'].startswith(s.SOURCE_NOTE))
+        self.assertNotIn('<file',edit['new_str'])
     def test_newer_or_unrelated_live_revision_is_not_downgraded(self):
         p=next(iter(s.GUIDES));self.api.rows[p]['body'] += '\n['+'newer'+']('+s.REPO+'/blob/'+'c'*40+'/docs/setup.md)'
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True)

@@ -18,24 +18,13 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def render_notion(path, tag):
-    """Resolve local Markdown links against the frozen source, retaining native tags."""
-    body = path.read_text()
-    def rewrite(match):
-        label, href = match.groups()
-        if urlsplit(href).scheme or href.startswith('#'):
-            return match.group(0)
-        relative, separator, fragment = href.partition('#')
-        target = (path.parent / unquote(relative)).resolve().relative_to(ROOT)
-        suffix = '#' + fragment if separator else ''
-        return f'[{label}](https://github.com/onlinesourdough/OSM-Content/blob/{tag}/{target}{suffix})'
-    return re.sub(r'\[([^\]]+)\]\(([^\s)]+)\)', rewrite, body).strip()
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--notion-snapshots', type=Path,
                         help='JSON: page id -> {page_id, body, read_at, reader}; compares supplied reads, not network access')
+    parser.add_argument('--source-ref', default='HEAD', help='Exact Git revision represented by supplied snapshots')
     args = parser.parse_args()
     manifest = json.loads((ROOT / 'release.json').read_text())
     errors = []
@@ -110,18 +99,20 @@ def main():
             errors.append('Unknown template target: ' + item['template'])
     compared_pages = []
     if args.notion_snapshots:
+        from sync_notion import Source, render, canonical
+        source = Source(ROOT, args.source_ref)
+        baselines = json.loads((ROOT / 'sync/baselines.json').read_text())
         snapshots = json.loads(args.notion_snapshots.read_text())
         for item in targets:
             if not item.get('source'):
                 continue
             readback = snapshots.get(item['page_id'])
             saved = readback.get('body') if isinstance(readback, dict) else None
-            expected = render_notion(ROOT / item['source'], 'v' + version)
+            expected = render(source, item['page_id'], baselines)['body']
             if saved is None or readback.get('page_id') != item['page_id'] or not readback.get('read_at') or not readback.get('reader'):
                 errors.append('Missing supplied readback or identity/provenance: ' + item['page_id'])
                 continue
             # Preserve paragraphs, lists, headings and tables; trim trailing space only.
-            canonical = lambda s: re.sub(r'\n{3,}', '\n\n', '\n'.join(l.rstrip() for l in s.strip().splitlines()))
             if canonical(saved) != canonical(expected):
                 errors.append('Saved projection differs: ' + item['page_id'])
             fences = lambda s: re.findall(r'```[^\n]*\n(.*?)```', s, re.S)
