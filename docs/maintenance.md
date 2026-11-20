@@ -29,7 +29,7 @@ The [Sync public Content guide](https://github.com/onlinesourdough/OSM-Content/a
 workflow follows a successful exact-main Validate method release run, a published
 method release, or an explicit main-branch invocation. A superseded source is
 skipped before using the Notion connection. Pull requests and forks never receive
-that connection. GitHub serializes this publisher through one concurrency group with queue: max, retaining pending runs. Writes wait for a published stable release matching the source version. A release event always uses its validated tag commit. A manual write waits when main has an unpublished version.
+that connection. GitHub serializes this publisher through one concurrency group with queue: max, retaining pending runs. Writes wait for a published stable release matching the source version. A release event first uses its validated tag commit, then catches up a validated same-version main revision that was waiting for publication. A manual write waits when main has an unpublished version.
 
 OSM_PUBLIC_DOCS_TOKEN selects the existing public-only documentation connection.
 OSM_CONTENT_DOCS_ENABLED enables automatic whole-set writes after live qualification.
@@ -41,7 +41,7 @@ ancestor of the accepted source. A revision marker alone is insufficient. It
 preflights the whole set, rechecks each page before writing and holds unknown
 edits or a newer source. Native child/catalogue/media/file references and all
 non-managed properties are preserved. A failed or lost write is read back before
-anything else; the same invocation never retries it. Each Markdown update matches observed prose outside native media; expiring file signatures never enter match strings. A changed selection is not replaced. Exact accepted prose segments allow a partially applied selection update to resume. Partial progress across pages can resume from its actual state. The report preserves progress on a failure.
+anything else; the same invocation never retries it. Each Markdown update matches observed prose outside native media; expiring file signatures never enter match strings. A changed selection is not replaced. Exact accepted prose segments and commit-pinned links identify a partially applied update for recovery. Unknown segments hold for review. The native reference sequence, not only its membership, must remain unchanged. Partial progress across pages can resume from its actual state. The report preserves progress on a failure.
 
 Three guide bodies follow their mapped Git source. The five frozen template
 instructions and packets keep their original v0.10.0 identity; only their source

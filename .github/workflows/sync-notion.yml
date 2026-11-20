@@ -75,12 +75,17 @@ jobs:
                       raise SystemExit('Published source is not an accepted main ancestor')
               elif 'v'+version(head)!=tag:
                   current=False
+          def validated(ref):
+              runs = api(f'repos/{repo}/actions/workflows/validate.yml/runs?head_sha={ref}&event=push&branch=main&status=success')['workflow_runs']
+              return any(r['head_sha']==ref and r['event']=='push' and r['head_branch']=='main' and r['conclusion']=='success' and r['head_repository']['full_name']==repo for r in runs)
+          catchup=''
           if current:
-              runs = api(f'repos/{repo}/actions/workflows/validate.yml/runs?head_sha={sha}&event=push&branch=main&status=success')['workflow_runs']
-              if not any(r['head_sha']==sha and r['event']=='push' and r['head_branch']=='main' and r['conclusion']=='success' and r['head_repository']['full_name']==repo for r in runs):
+              if not validated(sha):
                   raise SystemExit('The exact source has no successful main Validate method release run')
+              if name=='release' and sha!=head and 'v'+version(head)==tag and validated(head):
+                  catchup=head
           with open(os.environ['GITHUB_OUTPUT'],'a') as out:
-              out.write(f'current={str(current).lower()}\nsha={sha}\n')
+              out.write(f'current={str(current).lower()}\nsha={sha}\ncatchup={catchup}\n')
           if not current:
               with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
                   out.write('Source superseded or waiting for publication: no Notion read or write.\n')
@@ -135,23 +140,44 @@ jobs:
               raise SystemExit('A page is allowed only in one-page mode')
           raise SystemExit(subprocess.call(args))
           PY
+      - name: Read the accepted same-version main catch-up source
+        if: steps.source.outputs.current == 'true' && steps.source.outputs.catchup != ''
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.source.outputs.catchup }}
+          fetch-depth: 0
+          persist-credentials: false
+          path: content-catchup
+      - name: Catch up validated main after publishing its exact release
+        if: steps.source.outputs.current == 'true' && steps.source.outputs.catchup != ''
+        env:
+          OSM_PUBLIC_DOCS_TOKEN: ${{ secrets.OSM_PUBLIC_DOCS_TOKEN }}
+          CATCHUP_SHA: ${{ steps.source.outputs.catchup }}
+        run: |
+          python3 - <<'PY'
+          import os, subprocess
+          raise SystemExit(subprocess.call(['python3','content/scripts/sync_notion.py',
+              '--source-root','content-catchup','--source-ref',os.environ['CATCHUP_SHA'],
+              '--core-root','core-publisher','--write','--public-read','--out','proof/content-catchup.json']))
+          PY
       - name: Summarize actual API writes and anonymous readback
         if: always() && steps.source.outputs.current == 'true'
         run: |
           python3 - <<'PY'
           import json, os
           from pathlib import Path
-          p=Path('proof/content-sync.json')
+          proofs=list(Path('proof').glob('*.json'))
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
-              if not p.exists():
+              if not proofs:
                   out.write('Content sync did not produce a proof. No successful synchronization is claimed.\n')
               else:
-                  d=json.loads(p.read_text())
-                  out.write('```json\n'+json.dumps(d,indent=2)+'\n```\n')
+                  for p in proofs:
+                      d=json.loads(p.read_text())
+                      out.write(p.name+'\n```json\n'+json.dumps(d,indent=2)+'\n```\n')
           PY
       - uses: actions/upload-artifact@v4
         if: always() && steps.source.outputs.current == 'true'
         with:
           name: content-guide-sync-${{ github.run_attempt }}
-          path: proof/content-sync.json
+          path: proof/*.json
           if-no-files-found: ignore

@@ -139,6 +139,29 @@ class SyncTests(unittest.TestCase):
         self.assertEqual(wanted,s.plan(source,self.base,p,seen)['body'])
         seen['body']='Human prefix'+media+'Old suffix'
         with self.assertRaises(s.Held):s.plan(source,self.base,p,seen)
+    def test_list_item_break_is_not_a_second_list_item(self):
+        self.assertNotEqual(s.canonical('- First<br />- Second'),s.canonical('- First\n- Second'))
+    def test_later_partial_update_recovers_old_segment_revision(self):
+        p=next(iter(s.GUIDES));media='\n\n<image source="stable" />\n\n'
+        class RevisionLinks(Source):
+            def read(self,path,ref=None):
+                if path=='VERSION':return '0.12.0'
+                ref=ref or self.ref
+                return '[Link]('+s.REPO+'/blob/'+ref+'/docs/setup.md)'+media+'Tail '+ref
+        source=RevisionLinks()
+        self.base[p]['body']='Initial prefix'+media+'Initial tail'
+        old=s.render(source,p,self.base,A)['body'];wanted=s.render(source,p,self.base)['body']
+        mixed=s.chunks(old);mixed[-1]=s.chunks(wanted)[-1]
+        seen={**self.api.rows[p],'body':''.join(mixed)}
+        self.assertEqual(wanted,s.plan(source,self.base,p,seen)['body'])
+    def test_native_media_order_change_holds_before_any_write(self):
+        p=next(iter(s.GUIDES));a='<image source="first" />';b='<image source="second" />'
+        self.base[p]['body']='Prose\n'+a+'\n'+b
+        class Images(Source):
+            def read(self,path,ref=None):
+                return '0.12.0' if path=='VERSION' else 'Prose\n'+a+'\n'+b
+        seen={**self.api.rows[p],'body':'Prose\n'+b+'\n'+a}
+        with self.assertRaises(s.Held):s.plan(Images(),self.base,p,seen)
     def test_newer_or_unrelated_live_revision_is_not_downgraded(self):
         p=next(iter(s.GUIDES));self.api.rows[p]['body'] += '\n['+'newer'+']('+s.REPO+'/blob/'+'c'*40+'/docs/setup.md)'
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True)

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Reconcile the eight public Content pages through OSM's public-only publisher."""
 import argparse
-from collections import Counter
 import hashlib
 import importlib.util
 import json
@@ -46,7 +45,12 @@ def canonical(body):
     """Qualified soft-linebreak representation, preserving blocks and fenced code."""
     pieces = body.replace('\r\n', '\n').replace('\r', '\n').split('```')
     for i in range(0, len(pieces), 2):
-        pieces[i] = pieces[i].replace('<br />', '\n')
+        lines=[]
+        for line in pieces[i].split('\n'):
+            parts=line.split('<br />')
+            structural=any(re.match(r'^\s*(?:#{1,6}\s|[-*+]\s|\d+[.)]\s|[>|]|<)', part) for part in parts)
+            lines.append(line if structural else '\n'.join(parts))
+        pieces[i] = '\n'.join(lines)
         pieces[i] = re.sub(r'\n{3,}', '\n\n', '\n'.join(line.rstrip() for line in pieces[i].split('\n')))
     return '```'.join(pieces).strip()
 
@@ -57,7 +61,7 @@ def chunks(body):
 
 
 def protected(body):
-    return Counter(re.findall(r'<(?:page|database|file|pdf|image)\b[^>]*>', canonical(body)))
+    return re.findall(r'<(?:page|database|file|pdf|image)\b[^>]*>', canonical(body))
 
 
 class Source:
@@ -124,7 +128,7 @@ def render(source, page_id, baselines, ref=None):
 def candidates(source, seen, baselines, page_id):
     """Recognize the explicit handoff or a reproducible earlier ancestor; never trust a marker alone."""
     if page_id in GUIDES:
-        refs = set(re.findall(r'\[Source revision [0-9a-f]{7}\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/' + re.escape(GUIDES[page_id]) + r'\)', seen['body']))
+        refs = set(re.findall(re.escape(REPO) + r'/blob/([0-9a-f]{40})/', seen['body']))
     else:
         refs = set(re.findall(r'\[Template source\]\(' + re.escape(REPO) + r'/blob/([0-9a-f]{40})/templates/' + re.escape(TEMPLATES[page_id]) + r'/SKILL\.md\)', seen['body']))
     states = [baselines[page_id]]
