@@ -1,5 +1,13 @@
 # Method releases
 
+## v0.12.3 · 20 November 2026
+
+Use Notion’s native inline-code serialization for the example filename in the
+setup guide. This keeps exact API body comparison meaningful without broad
+normalization or treating unknown edits as accepted content. The interrupted
+setup projection is reconciled against the accepted source before resuming;
+native identities and frozen template packets are preserved.
+
 ## v0.12.2 · 20 November 2026
 
 Bound anonymous readback retries to three fresh reads within the original

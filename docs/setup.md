@@ -8,7 +8,7 @@ Inspect the existing content workflow, database schema, integrations and media l
 
 An explicit request to set up this extension normally covers the missing collection and ordinary properties inside the owner's authorized home; reuse that authority. Inspect both schema dependencies and row-level triggers before writing: a new row, Type/Status choice or checkbox can publish to a website, send mail or trigger another system. Do not use an integrated destination for a sample until the chosen draft state is confirmed non-publishing. Unknown destinations, consequential changes to an integration or new external access need a concrete resolution; they are not permission to create another account or content mirror.
 
-The personal configuration should link the owner's direction/goals, audience and perspective, voice/style and actual working choices. Reuse existing Knowledge records; these are responsibilities, not mandatory `vision.md` files or new databases. Choose a purpose for each active channel, including newsletter/email as its own channel. The configuration guide provides adaptable channel-role examples.
+The personal configuration should link the owner's direction/goals, audience and perspective, voice/style and actual working choices. Reuse existing Knowledge records; these are responsibilities, not mandatory <code>vision.md</code> files or new databases. Choose a purpose for each active channel, including newsletter/email as its own channel. The configuration guide provides adaptable channel-role examples.
 
 ## One collection, three record types
 
