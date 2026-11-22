@@ -12,6 +12,8 @@ does not need to become a second content store.
 | Memory | [PNG](../assets/icons/memory.png) | A database cylinder |
 | Skills | [PNG](../assets/icons/skills.png) | A lightning bolt |
 | Content | [PNG](../assets/icons/content.png) | A paintbrush and orange stroke |
+| Resources (optional) | [PNG](../assets/icons/resources.png) | Books on a shelf with an orange band, for a published library such as a Resources database |
+| Video lessons (optional) | [PNG](../assets/icons/youtube-lessons.png) | A video screen with a play triangle and an orange progress bar, for a per-video database such as YouTube lessons |
 
 The open motifs have no surrounding badge or frame. Warm ivory, dark espresso
 and a restrained orange accent keep the family coherent; a business can replace
