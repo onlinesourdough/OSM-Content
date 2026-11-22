@@ -45,11 +45,7 @@ Save the example with at least one concrete line per link about what you liked, 
 
 ## Adapt the methods you need
 
-For your writing voice, select real examples and learn from your corrections.
-Keep the concise profile in its existing Knowledge home and originals or
-references in Content. Preserve an existing draft with minimal edits; a
-rejected candidate or popular post is not automatically an approved voice
-example. [Writing-voice workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.13.0/docs/writing-voice.md)
+For your writing voice, select real examples and learn from your corrections. Keep the concise profile in its existing Knowledge home and originals or references in Content. Preserve an existing draft with minimal edits; a rejected candidate or popular post is not automatically an approved voice example. [Writing-voice workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.13.0/docs/writing-voice.md)
 
 Setup, Intake, Prepare, Produce / Distribute and Learn are responsibilities. Existing personal skills can cover several; five new agents or skills are not required.
 
@@ -63,10 +59,7 @@ Knowledge owns business context; Content owns sources, productions, editions and
 
 ## Content foundation
 
-Keep the home recognizable with a small consistent set of icons.
-The [optional sidebar family](https://github.com/onlinesourdough/OSM-Content/blob/v0.13.0/docs/sidebar-icons.md)
-shows Knowledge, Memory, Skills and Content without adding another database
-or making a dashboard compulsory.
+Keep the home recognizable with a small consistent set of icons. The [optional sidebar family](https://github.com/onlinesourdough/OSM-Content/blob/v0.13.0/docs/sidebar-icons.md) shows Knowledge, Memory, Skills and Content without adding another database or making a dashboard compulsory.
 
 <image source="notion-file-block://41e6d2e1-7f56-815f-915e-ec04fff66efc/332ff2b9-793a-4e63-8634-ef981646bdd8?space_id=eee27a39-7e8a-48e6-9bd4-f3bc51a333fe&name=content-foundation-mobile.png" />
 

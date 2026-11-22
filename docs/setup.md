@@ -22,27 +22,11 @@ An idea can become a production on the same Content record. Create an Edition wh
 
 ## Reuse the core Content foundation
 
-Core OSM 0.35.0 introduces a Content proposal during authorised new-home Setup:
-reuse an existing Notion store, register an external workflow, record a deferral,
-or create one empty Notion store within the accepted plan. Installing a package
-or resuming an established home does not create a collection. The editorial
-methods remain optional. On an older core release, use this extension only under
-the owner's explicit selected setup scope; do not claim the new core default.
+Core OSM 0.35.0 introduces a Content proposal during authorised new-home Setup: reuse an existing Notion store, register an external workflow, record a deferral, or create one empty Notion store within the accepted plan. Installing a package or resuming an established home does not create a collection. The editorial methods remain optional. On an older core release, use this extension only under the owner's explicit selected setup scope; do not claim the new core default.
 
-The core's [database field definitions](https://github.com/onlinesourdough/OSM-plugin/blob/v0.35.0/skills/osm-data-context/assets/database-fields.md)
-are the single minimum field/type list. Read the selected Definition and its
-actual binding; reuse sufficient field equivalents, existing identities and
-external owners. Keep that binding in the Definition or its linked source
-agreement, rather than maintaining another editable field map here. A personal
-configuration links it and owns only chosen editorial details.
+The core's [database field definitions](https://github.com/onlinesourdough/OSM-plugin/blob/v0.35.0/skills/osm-data-context/assets/database-fields.md) are the single minimum field/type list. Read the selected Definition and its actual binding; reuse sufficient field equivalents, existing identities and external owners. Keep that binding in the Definition or its linked source agreement, rather than maintaining another editable field map here. A personal configuration links it and owns only chosen editorial details.
 
-For a new collection, ordinary fields and verified database/data-source identity
-come before its self-relations. If interrupted, resume the same binding and
-add only missing fields; an uncertain write needs reconciliation before retry.
-An empty store can be structurally ready without a post, sample, personal method
-or publishing action. An unknown trigger holds only the dependent writes.
-Frozen older template packets are references, not authority to create a second
-store or override the current binding, retention or trigger agreement.
+For a new collection, ordinary fields and verified database/data-source identity come before its self-relations. If interrupted, resume the same binding and add only missing fields; an uncertain write needs reconciliation before retry. An empty store can be structurally ready without a post, sample, personal method or publishing action. An unknown trigger holds only the dependent writes. Frozen older template packets are references, not authority to create a second store or override the current binding, retention or trigger agreement.
 
 Notion does not enforce Key uniqueness. Record the owner's key convention in configuration; query the key/origin and semantic overlap before creating. For a URL source use the verified canonical origin without stripping meaningful query parameters. For another new record choose a durable generated key before the first create, retain that key through the attempt and reuse it on retry. A source URL does not identify an independently edited edition. Serialize a shared writer where needed. After an uncertain create, inspect that key and actual service result before any retry; never mint a new key just because the response was lost.
 

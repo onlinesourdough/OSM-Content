@@ -1,0 +1,23 @@
+[
+  {
+    "file": "docs/setup.md",
+    "reviewed_sha256": "53503a6a1adfd72f01bb11eb42188eb1059777e25a28bf218d58f60a5ce3385e",
+    "serialized_sha256": "d80ab513eca9e254a06f0710345a8ec481e8ecc449278bdd5310710eb66b7196",
+    "transformation": "fold paragraph soft wraps to one physical line; native tags, lists, code and tables byte-preserved",
+    "meaning_change": false
+  },
+  {
+    "file": "docs/configuration.md",
+    "reviewed_sha256": "35994cbdb2da0113183ac54d88d579048c1bc956bcf126cb7d31359ad57475ff",
+    "serialized_sha256": "c272b0fbb9b07443f6b0bf943bb6de18feca6b29b3c905829b26e100592f679b",
+    "transformation": "fold paragraph soft wraps to one physical line; native tags, lists, code and tables byte-preserved",
+    "meaning_change": false
+  },
+  {
+    "file": "docs/guide.notion.md",
+    "reviewed_sha256": "6057296eb6fb2e20b37b344afe4a19980a7cef3549a9e52e84869d007e85d549",
+    "serialized_sha256": "704bde1688b30897423a52a50147100992552362bfe4aa02690e979a82249381",
+    "transformation": "fold paragraph soft wraps to one physical line; native tags, lists, code and tables byte-preserved",
+    "meaning_change": false
+  }
+]

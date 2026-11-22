@@ -62,13 +62,7 @@ Use the [reference-library workflow](reference-library.md) when a creator exampl
 
 ## Decide participation per responsibility
 
-For writing style, use the [writing-voice workflow](writing-voice.md): select
-genuine examples, distinguish minimal editing from new drafting, and learn
-from exact owner corrections. The concise profile stays with its existing
-Knowledge owner and permitted originals or pointers in Content. Use existing
-metadata and relevant language/channel examples, not another database or
-mandatory extra skill. Rejected candidates stay rejected; publication and
-engagement are not voice approval. Calibration can remain partial.
+For writing style, use the [writing-voice workflow](writing-voice.md): select genuine examples, distinguish minimal editing from new drafting, and learn from exact owner corrections. The concise profile stays with its existing Knowledge owner and permitted originals or pointers in Content. Use existing metadata and relevant language/channel examples, not another database or mandatory extra skill. Rejected candidates stay rejected; publication and engagement are not voice approval. Calibration can remain partial.
 
 | Responsibility | Useful configuration |
 | --- | --- |
@@ -115,10 +109,7 @@ content_workflow:
   actual_automation_ids: []
 ```
 
-The binding reference points to the existing Definition or source agreement;
-its verified route and minimum fields are not copied here. The editorial map
-contains only selected workflow additions and views. Trigger and safe-state
-notes refer to the authoritative source agreement rather than competing with it.
+The binding reference points to the existing Definition or source agreement; its verified route and minimum fields are not copied here. The editorial map contains only selected workflow additions and views. Trigger and safe-state notes refer to the authoritative source agreement rather than competing with it.
 
 Null/empty means unresolved or not selected, not a working default. Do not activate missing tools, delivery or schedules to fill this record. Capture the concrete blocker and continue independent useful work. Update configuration only when a supported choice changes; routine production belongs in Content.
 
@@ -126,8 +117,7 @@ Each media route names its location, host where relevant, actual access and back
 
 ## Ready to use
 
-An optional [sidebar icon family](sidebar-icons.md) can make the existing home
-easier to scan. It does not require a dashboard, extra stores or new metadata.
+An optional [sidebar icon family](sidebar-icons.md) can make the existing home easier to scan. It does not require a dashboard, extra stores or new metadata.
 
 Check one realistic task with the chosen methods and actual routes. Can a new agent find the owner's Content collection, avoid duplicates, preserve voice/originals, follow a material handoff and report actual results? Can it distinguish prepared, reviewed and published without this setup conversation?
 
