@@ -1,11 +1,21 @@
-# Content icon
+# Content and context icons
 
-The owner selected this independent editorial-paper mark on 20 November 2026.
-It replaces the OSMC lettering and the rejected network-shaped concept. The
-warm ivory, dark espresso and restrained orange retain the OSM visual family.
-The canonical delivered asset is icon.png; use that same file across the guide
-and repository rather than recreating the mark independently.
+The owner selected the original open editorial-paper mark on 20 November 2026.
+On 22 November he chose a coordinated family for the four existing databases:
+Knowledge retains those exact paper bytes; Content uses a brush and orange
+stroke; Memory a three-layer cylinder; Skills a lightning bolt. The canonical
+Content asset is `icon.png`, identical to `icons/content.png`.
 
-Generated with the built-in imagegen tool. Final generation prompt:
+The broad espresso forms, warm ivory background and restrained orange retain
+the OSM visual expression. There is no enclosing badge, tile border or outer
+rounded frame. An earlier framed family was rejected and is not included.
+These are optional database/navigation assets, not four new skills or stores.
+The core network mark remains owned by OSM core.
 
-> Create one finished square brand icon for a professional content creation method called Content. No text or letters anywhere. It should work at tiny 32px as a recognizable editorial mark. Art direction: very minimal, confident, tasteful Swiss editorial graphic, flat vector-like geometry with gently rounded corners, generous negative space. Palette precisely warm ivory #F8F2E8 background, very dark espresso #2B1B12 and one restrained warm orange #EE7F3C accent. Central symbol: a compact bold abstract editorial page/paper composition, perhaps two simply overlapping paper shapes with two or three very strong editorial bars and a single small orange folded edge or orange inset. Convey a thought becoming a finished piece of content, broader than video. Design a coherent memorable silhouette, not a generic outline document icon. Large bold shapes, optical balance, all central edges readable at icon size, no fine detail. Keep the mark compact with generous warm ivory space around it. Avoid networks, nodes, connectors, hub diagrams, play buttons, camera icons, microphones, confetti, gradients, shadows, 3D, realistic paper textures, app mockups, badges, lettering, slogans, or collections of platform logos. One clean finished icon, not a contact sheet.
+The additional raster images were generated with the built-in imagegen tool
+using the approved paper image as the visual reference. Direction: one open
+central glyph, generous warm ivory space across the square canvas, dark espresso
+forms and an orange accent; no text, outer frame, surrounding badge, fine detail,
+platform logos or interface mockup. Subjects were a content brush, a memory
+cylinder and a skills lightning bolt. Knowledge is an unchanged copy of the
+previous approved paper asset, rather than a regeneration.
