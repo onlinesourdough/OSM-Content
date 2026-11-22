@@ -1,5 +1,11 @@
 # Method releases
 
+## v0.13.1 · 22 November 2026
+
+Keeps the human-facing Notion introduction focused on using the method. Source and version links remain; repository synchronization and conflict-handling operations stay in the maintainer guide. Adds an optional extended navigation-icon reference and guidance to inspect solid fills on both light and dark backgrounds.
+
+The core foundation contract, editorial methods, writing-voice workflow, publisher behavior and five frozen template packets are unchanged from v0.13.0.
+
 ## v0.13.0 · 22 November 2026
 
 Adds a writing-voice workflow: selected genuine examples, minimal editing,
