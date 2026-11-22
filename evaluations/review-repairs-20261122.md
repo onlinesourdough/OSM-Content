@@ -40,4 +40,3 @@ Static, read-only review of the three updated inline documents (`docs/configurat
 ### Quality / Value Score
 
 **9.2 / 10** — Both required fixes are resolved cleanly at the method level with zero substantive regressions, the independent blind rerun confirms the updated guidance changes agent behavior in the intended direction without breaking direct-owner-instruction learning, and ownership/evidence boundaries are tight and operational. The remaining margin reflects static-only evidence (the four unaffected cases were not rerun, and live Notion/native-counter behavior plus the `v0.35.0` core tag gate remain outside this review).
-
