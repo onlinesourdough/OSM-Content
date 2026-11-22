@@ -28,3 +28,9 @@ When changing a home, preserve its records and integration-sensitive identities.
 Move useful child pages and operational databases before removing an unwanted
 dashboard, and update its actual references. Do not delete subscribers because
 the owner no longer needs a Content overview.
+
+## Documentation and navigation
+
+The [optional external icon library](https://github.com/gustavonline/gustavonline/tree/d96b79de52f527989afbe0aff3752b576c2749e4/assets/notion-icons) offers matching documentation and business-navigation motifs. The linked companion set for Agentic System documentation uses solid blue tiles; the OSM and business-navigation examples keep open glyphs. These are optional visual examples; keep the selected business brand and root marks.
+
+Inspect every final icon on light and dark backgrounds before applying it. For solid-tile icons, the complete colored tile is part of the icon, not a background to remove. Transparent exports must preserve that opaque interior; a readable preview alone is not enough to establish correct alpha. Editable SVGs make the solid blue family reproducible.
