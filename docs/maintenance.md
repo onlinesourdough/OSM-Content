@@ -14,7 +14,8 @@ The source-to-page mapping is in [release.json](../release.json):
 - The five template pages retain their v0.10.0 instructions, downloadable
   packets and history. Their current-source note points to the tagged template
   and the current method guidance. Updating a note does not reversion a packet.
-- docs/post-workflow.md and docs/reference-library.md are linked detail in Git.
+- docs/post-workflow.md, docs/reference-library.md, docs/writing-voice.md and
+  docs/sidebar-icons.md are linked detail in Git.
 
 The existing OSM core publisher owns its seven released native skills. It does
 not write these Content guide or template pages. Reuse its distinction between

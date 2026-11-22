@@ -1,0 +1,534 @@
+{
+  "format": "osm-content-voice-results/1",
+  "scope": "five synthetic Content issue1 acceptance cases; no native store, publication, full-owner calibration or core69/72 benchmark",
+  "method_sha256": "d9519256cf297dac5401d8e966154498016cb27cda263ca16e3ce8d6578b06c5",
+  "attempts": [
+    {
+      "case_id": "minimal-edit",
+      "attempt": 1,
+      "model": "gemini-4-neon-high",
+      "reasoning": "high (encoded model id; native model readback)",
+      "exit": 0,
+      "status": "SUCCESS",
+      "seconds": 83.13,
+      "tool_calls": 0,
+      "usage": {
+        "input_tokens": 4594,
+        "output_tokens": 9358,
+        "thinking_tokens": 8823,
+        "cache_read_tokens": 6460,
+        "total_tokens": 13952
+      },
+      "output": {
+        "case_id": "minimal-edit",
+        "final_text": "Jeg har bare prøvet at samle vores opgaver ét sted. Det lyder måske ikke af meget. Men jeg tror, vi sparer tid på ikke at lede efter det samme igen.",
+        "character_count": 148,
+        "count_method": "Local manual character count of the exact final text (Unicode NFC code points, including spaces and punctuation: 51 + 1 + 30 + 1 + 65 = 148, within the 150-character limit). Limitation: local count only, not validated by a destination's native counter, which may count characters or Unicode normalization differently.",
+        "decisions": [
+          "Stated limited calibration: proceeded using only the supplied draft and method because no other voice samples or fixed approved wording exist, without manufacturing a persona or calibrating a full voice profile.",
+          "Applied a minimal shortening edit to the 175-character draft by removing only redundant words ('egentlig', 'så', 'en del', and the repeated 'og igen' reduced to 'igen') to reach 148 characters (<= 150).",
+          "Preserved original thought order across all three sentences, conversational Danish phrasing ('bare prøvet', 'Men'), uncertainty markers ('prøvet at', 'måske', 'jeg tror'), key terms ('samle vores opgaver ét sted', 'lede efter det samme igen'), and punctuation.",
+          "Added no new ending, slogan, hashtag, or invitation/call to action, per the owner's explicit request.",
+          "Reviewed Meaning, Voice, and Destination independently on the exact final text and counted the final version locally while reporting the local-count limitation."
+        ],
+        "record_dispositions": [
+          "Retain the original draft, requested change, and this edited candidate on the existing production/Edition with version relationships, keeping production status on the Edition rather than in Memory or the voice profile.",
+          "Record AI editing assistance explicitly on the candidate; do not mark this AI-edited candidate as 'Kind = Own writing' or 'Review = Voice approved'.",
+          "Do not store this single unapproved candidate in the Knowledge voice/style record or Content Source as representative voice evidence."
+        ],
+        "standing_preference_changes": [],
+        "delivery_state": "candidate_ready_for_owner_review_not_published"
+      }
+    },
+    {
+      "case_id": "evidence-selection",
+      "attempt": 1,
+      "model": "gemini-4-neon-high",
+      "reasoning": "high (encoded model id; native model readback)",
+      "exit": 0,
+      "status": "SUCCESS",
+      "seconds": 75.38,
+      "tool_calls": 0,
+      "usage": {
+        "input_tokens": 11254,
+        "output_tokens": 8147,
+        "thinking_tokens": 6869,
+        "cache_read_tokens": 0,
+        "total_tokens": 19401
+      },
+      "output": {
+        "case_id": "evidence-selection",
+        "final_text": null,
+        "character_count": null,
+        "count_method": null,
+        "decisions": [
+          "Reuse existing homes only: update the existing Knowledge voice record voice:main by linking to source:own-1; keep all three records at their existing identities (source:own-1, source:instruction-2, edition:ai-3) without creating a new voice database, skill, interview, publishing job, or extra schema columns per metadata attribute.",
+          "Include only source:own-1 in voice:main as a representative positive voice example, linked from voice:main with its provenance and scope recorded in existing fields or a short body section (language: da, channel: newsletter, situation: personal work reflection, date: 2026-10-08, authorship: owner / Kind = Own writing, approval: Review = Voice approved, retention: permitted).",
+          "Do not generalize source:own-1 across all languages, channels, or situations; explicitly note that calibration in voice:main is currently thin/limited (one approved Danish newsletter reflection) without requesting a full inbox import, requiring fifty posts, or manufacturing a persona.",
+          "Exclude source:instruction-2 from voice:main as a public-prose voice example because a dictated instruction to an assistant is not automatically representative public prose, its review state is Reviewed rather than Voice approved, and the owner has not marked it representative.",
+          "Do not promote the task-specific editing request in source:instruction-2 ('sharper, without sounding like an advertisement') into an accepted standing rule without owner confirmation; at most, propose it as a clearly separated pending observation/unconfirmed hypothesis scoped to short Danish social posts, linked to source:instruction-2, awaiting owner confirmation.",
+          "Exclude edition:ai-3 from voice:main because it is an AI candidate (never relabel it as Own writing), its review state is Reviewed rather than Voice approved, and publication (published: true) does not approve an AI-authored text as representative voice evidence or turn mixed/AI authorship into owner-written evidence.",
+          "Keep edition:ai-3's AI authorship and production/publication status (published: true) on edition:ai-3 itself, not in voice:main or Memory, and do not turn phrases from edition:ai-3 into universal banned words.",
+          "Make no accepted standing preference rule changes in voice:main from this evidence set alone."
+        ],
+        "record_dispositions": [
+          {
+            "record_id": "source:own-1",
+            "existing_home": "Content Source (source:own-1)",
+            "belongs_in_voice_profile": true,
+            "disposition": "include_as_linked_voice_example",
+            "target_profile": "voice:main",
+            "scope": {
+              "language": "da",
+              "channel": "newsletter",
+              "situation": "personal work reflection"
+            },
+            "provenance_preserved": {
+              "date": "2026-10-08",
+              "authorship": "owner",
+              "kind": "Own writing",
+              "review": "Voice approved",
+              "retention": "permitted"
+            },
+            "rationale": "Satisfies both separate criteria—genuine owner authorship (Kind = Own writing) and explicit owner approval as representative (Review = Voice approved)—with permitted retention. Keep the source text at source:own-1 and link to it from voice:main with narrow scope and limited-calibration caveat."
+          },
+          {
+            "record_id": "source:instruction-2",
+            "existing_home": "Content Source (source:instruction-2)",
+            "belongs_in_voice_profile": false,
+            "disposition": "exclude_as_voice_example_optional_pending_hypothesis",
+            "target_profile": "voice:main",
+            "scope": {
+              "language": "da",
+              "channel": "assistant instruction",
+              "situation": "dictated editing request"
+            },
+            "provenance_preserved": {
+              "authorship": "owner",
+              "review": "Reviewed",
+              "retention": "permitted"
+            },
+            "rationale": "A dictated editing request to an assistant is not automatically an example of public prose, and it is marked Reviewed rather than Voice approved. Keep at source:instruction-2 without adding it as a voice example or accepted standing rule; optionally propose the 'sharper without sounding like an advertisement' cue as a separate, unconfirmed pending observation for short Danish social posts subject to owner confirmation."
+          },
+          {
+            "record_id": "edition:ai-3",
+            "existing_home": "Edition (edition:ai-3)",
+            "belongs_in_voice_profile": false,
+            "disposition": "exclude_from_voice_profile_keep_on_edition",
+            "target_profile": "voice:main",
+            "scope": {
+              "language": "da",
+              "channel": "LinkedIn"
+            },
+            "provenance_preserved": {
+              "authorship": "AI candidate",
+              "review": "Reviewed",
+              "published": true
+            },
+            "rationale": "Authored as an AI candidate and never marked Voice approved or representative by the owner. Must not be labeled Own writing or added to voice:main; being Reviewed and published: true does not establish author voice or a standing rule. Keep AI authorship and publication status on edition:ai-3 only, not in voice:main or Memory."
+          }
+        ],
+        "standing_preference_changes": [],
+        "delivery_state": "not_applicable_evidence_calibration_only"
+      }
+    },
+    {
+      "case_id": "rejected-candidate",
+      "attempt": 1,
+      "model": "gemini-4-neon-high",
+      "reasoning": "high (encoded model id; native model readback)",
+      "exit": 0,
+      "status": "SUCCESS",
+      "seconds": 79.68,
+      "tool_calls": 0,
+      "usage": {
+        "input_tokens": 11127,
+        "output_tokens": 7950,
+        "thinking_tokens": 6172,
+        "cache_read_tokens": 0,
+        "total_tokens": 19077
+      },
+      "output": {
+        "case_id": "rejected-candidate",
+        "final_text": null,
+        "character_count": null,
+        "count_method": null,
+        "decisions": [
+          "Handled as an evidence and correction-learning case rather than a writing or publishing task; no new draft was written and nothing was published.",
+          "Reused existing identities (content:repair-notes, edition:repair:v1, edition:repair:v2, and Knowledge voice:main) without creating new databases, records, or per-attribute schema columns; scope metadata (language, channel, situation, authorship, approval) belongs in existing fields or a short body section.",
+          "Kept the four-part learning chain on content:repair-notes and its editions: original source retained, exact candidate edition:repair:v1 retained as rejected with failure reasons, owner-approved edition:repair:v2 retained with its acceptance scope, and a clearly labelled unconfirmed hypothesis attached to edition:repair:v2.",
+          "Retained edition:repair:v1 as rejected and excluded it from positive voice examples because it overpromises ('det lover for meget'), sounds like an advertisement ('lyder som en reklame'), and misstates actual experience limited to a small task ('Jeg har kun prøvet det på en lille opgave').",
+          "Rejected private-preview click engagement on edition:repair:v1 as evidence of approval or voice quality; engagement never overrides owner rejection or approves a text as representative.",
+          "Recorded edition:repair:v2 as approved for this edition only (not published) and added a scoped example link in voice:main (Review = Voice approved; Danish, newsletter, describing a limited trial) based on the owner's explicit review note.",
+          "Kept authorship provenance (Kind) separate from representative approval (Review = Voice approved): because the case does not verify sole human authorship of edition:repair:v2, preserved existing provenance without labelling it as Own writing.",
+          "Did not promote an inferred pattern into an accepted standing rule or universal banned-word list: approving one edition and rejecting one draft is not a direct owner instruction for future writing and does not generalize across all languages or channels.",
+          "Kept production and edition approval status on the Editions (edition:repair:v1 and edition:repair:v2), not in voice:main or Memory."
+        ],
+        "record_dispositions": [
+          {
+            "record_id": "content:repair-notes",
+            "record_type": "Content Source / Production",
+            "action": "retain_existing",
+            "disposition": "Keep the original source intact with provenance preserved and version relationships linking edition:repair:v1 (rejected) and edition:repair:v2 (approved for edition, unpublished). Reuse existing identity; do not publish."
+          },
+          {
+            "record_id": "edition:repair:v1",
+            "record_type": "Edition (candidate)",
+            "parent_id": "content:repair-notes",
+            "action": "retain_as_rejected",
+            "status": "rejected",
+            "voice_example_status": "not_a_positive_voice_example",
+            "rejection_reasons": [
+              "Overpromises ('det lover for meget').",
+              "Sounds like an advertisement / promotional copy ('lyder som en reklame').",
+              "Contradicts actual experience, which was limited to a small task ('Jeg har kun prøvet det på en lille opgave')."
+            ],
+            "engagement_note": "High clicks in a private preview are recorded only as non-authoritative context and do not constitute approval or representative voice evidence.",
+            "disposition": "Retain as rejected on content:repair-notes with failure reasons and version link to edition:repair:v2; keep status on the Edition; do not promote into voice:main as a positive example."
+          },
+          {
+            "record_id": "edition:repair:v2",
+            "record_type": "Edition (accepted final for edition)",
+            "parent_id": "content:repair-notes",
+            "supersedes": "edition:repair:v1",
+            "action": "retain_as_approved_edition_and_scoped_example",
+            "status": "approved_for_edition_not_published",
+            "review_flag": "Voice approved",
+            "authorship_handling": "Preserve existing authorship provenance (including any editing or AI assistance); do not assign Kind = Own writing solely from edition approval.",
+            "acceptance_scope": {
+              "edition_delivery": "Approved for this edition only; not approved for publishing.",
+              "voice_example": {
+                "language": "Danish",
+                "channel": "newsletter",
+                "situation": "describing a limited trial"
+              }
+            },
+            "disposition": "Retain as accepted final version for this edition on content:repair-notes; keep production status on this Edition; link from voice:main as a scoped positive example; attach the unconfirmed hypothesis to this Edition."
+          },
+          {
+            "record_id": "voice:main",
+            "record_type": "Knowledge (voice/style record)",
+            "action": "update_existing",
+            "disposition": "Reuse voice:main without adding schema columns or production status. Add a scoped example link to edition:repair:v2 (Danish, newsletter, describing a limited trial). Add a link in a clearly separate pending-observations section to the unconfirmed hypothesis stored on edition:repair:v2. Do not add edition:repair:v1 as a positive example and do not add an accepted standing rule."
+          }
+        ],
+        "standing_preference_changes": {
+          "accepted_standing_rules": [],
+          "accepted_example_links": [
+            {
+              "target_record": "voice:main",
+              "linked_edition": "edition:repair:v2",
+              "review_flag": "Voice approved",
+              "scope": {
+                "language": "Danish",
+                "channel": "newsletter",
+                "situation": "describing a limited trial"
+              },
+              "basis": "Explicit owner review: 'useful Danish newsletter example of how I describe a limited trial.'",
+              "provenance_constraint": "Keep authorship provenance visible and separate from Review = Voice approved; do not mark as Own writing unless sole authorship is explicitly documented."
+            }
+          ],
+          "pending_observations": [
+            {
+              "status": "unconfirmed_hypothesis",
+              "stored_on": "edition:repair:v2",
+              "linked_from": "voice:main (separate pending observations section)",
+              "proposed_preference": "When describing a limited trial in a Danish newsletter, keep claims proportionate to the small task actually tested and note practical caveats (such as still needing to check the result) rather than using sweeping, ad-like promises.",
+              "scope": {
+                "language": "Danish",
+                "channel": "newsletter",
+                "situation": "describing a limited trial"
+              },
+              "supporting_chain": {
+                "production": "content:repair-notes",
+                "rejected_candidate": "edition:repair:v1",
+                "approved_final": "edition:repair:v2"
+              },
+              "governance": "Not an accepted standing rule; test only when requested or useful on a relevant future Danish newsletter task describing a limited trial, then confirm from owner correction or retire."
+            }
+          ],
+          "explicitly_not_changed": [
+            "No standing rule accepted without a direct owner instruction for future writing.",
+            "No universal banned-word or banned-phrase rule derived from edition:repair:v1.",
+            "No generalization across other languages, channels, or situations.",
+            "No production status stored in voice:main or Memory."
+          ]
+        },
+        "delivery_state": "not_published: no publishing permitted or performed; edition:repair:v2 is approved for this edition only and review/learning never grants permission to publish"
+      }
+    },
+    {
+      "case_id": "scoped-correction",
+      "attempt": 1,
+      "model": "gemini-4-neon-high",
+      "reasoning": "high (encoded model id; native model readback)",
+      "exit": 0,
+      "status": "SUCCESS",
+      "seconds": 73.82,
+      "tool_calls": 0,
+      "usage": {
+        "input_tokens": 11040,
+        "output_tokens": 5120,
+        "thinking_tokens": 3967,
+        "cache_read_tokens": 0,
+        "total_tokens": 16160
+      },
+      "output": {
+        "case_id": "scoped-correction",
+        "final_text": null,
+        "character_count": null,
+        "count_method": null,
+        "decisions": [
+          "Handled this case as an evidence and voice-profile calibration update from an explicit owner correction; no draft was requested, written, counted, or delivered.",
+          "Applied the owner's direct instruction immediately to the existing voice record (voice:main) under existing maintenance authority without asking again merely to save it.",
+          "Superseded the overly broad global rule 'Avoid crazy in all writing.' (originating from an earlier tentative observation from a Danish client email) while preserving its history and provenance instead of silently deleting it.",
+          "Recorded the English X post preference allowing 'crazy' as vocabulary the owner actually uses, and avoided creating any universal banned-word or banned-token list.",
+          "Attributed the rejected draft's failure to its meaning/claim error—promising that the tool would do all the work—rather than to the word 'crazy', keeping the rejected candidate as rejected with that accurate reason on its Edition rather than as a positive voice example or a status in voice:main.",
+          "Preserved the separate Danish client-email scope and its existing restrained tone without letting the English X post correction bleed across languages or channels.",
+          "Made no unsupported extrapolations: added no global new persona, no intentional mistakes, no new database or extra schema columns, and no rules for unmentioned languages or channels."
+        ],
+        "record_dispositions": [
+          {
+            "record_id": "voice:main",
+            "record_type": "existing_voice_style_record",
+            "disposition": "updated_in_place_preserving_history",
+            "details": "Updated existing Knowledge voice record using existing fields or a short scoped body section (no new schema columns or separate profile). Separated English X post guidance from Danish client-email guidance and kept production status off the voice record."
+          },
+          {
+            "record_id": "voice:main#rule-avoid-crazy-all-writing",
+            "record_type": "standing_rule",
+            "disposition": "superseded_history_preserved",
+            "provenance": "earlier tentative observation from a Danish client email",
+            "details": "Marked 'Avoid crazy in all writing.' as superseded and no longer representative in its global scope because a tentative observation from one narrow channel/language was over-generalized and contradicted by the owner's explicit correction; original rule text and provenance retained for history."
+          },
+          {
+            "record_id": "referenced_rejected_draft_edition",
+            "record_type": "edition_rejected_candidate",
+            "disposition": "retained_as_rejected_with_corrected_failure_reason",
+            "details": "Keep the rejected draft on its existing Edition as a rejected candidate (never a positive voice example) and record that it failed because it promised the tool would do all the work, not because it used the word 'crazy'."
+          }
+        ],
+        "standing_preference_changes": [
+          {
+            "target_record": "voice:main",
+            "action": "supersede",
+            "scope": {
+              "language": "all",
+              "channel": "all"
+            },
+            "previous_rule": "Avoid crazy in all writing.",
+            "previous_source": "earlier tentative observation from a Danish client email",
+            "status": "superseded_history_preserved",
+            "reason": "Owner explicitly rejected banning 'crazy'; an earlier tentative observation from a Danish client email does not support a universal ban across all writing."
+          },
+          {
+            "target_record": "voice:main",
+            "action": "add_accepted_preference",
+            "scope": {
+              "language": "English",
+              "channel": "X posts"
+            },
+            "preference": "Do not ban the word 'crazy'; it is natural wording the owner actually uses in English X posts.",
+            "evidence_basis": "direct_owner_instruction",
+            "status": "accepted"
+          },
+          {
+            "target_record": "voice:main",
+            "action": "add_accepted_preference",
+            "scope": {
+              "language": "English",
+              "channel": "X posts",
+              "situation": "claims about tool capabilities"
+            },
+            "preference": "Do not promise that a tool will do all the work; avoid overclaiming tool autonomy.",
+            "evidence_basis": "direct_owner_correction_of_rejected_draft",
+            "status": "accepted"
+          },
+          {
+            "target_record": "voice:main",
+            "action": "preserve_scoped_preference",
+            "scope": {
+              "language": "Danish",
+              "channel": "client emails"
+            },
+            "preference": "Keep the existing restrained tone for Danish client emails.",
+            "evidence_basis": "direct_owner_instruction",
+            "status": "accepted_preserved"
+          }
+        ],
+        "delivery_state": "not_applicable_no_draft_or_delivery_requested"
+      }
+    },
+    {
+      "case_id": "destination-length",
+      "attempt": 1,
+      "model": "gemini-4-neon-high",
+      "reasoning": "high (encoded model id; native model readback)",
+      "exit": 0,
+      "status": "SUCCESS",
+      "seconds": 92.3,
+      "tool_calls": 0,
+      "usage": {
+        "input_tokens": 4603,
+        "output_tokens": 10583,
+        "thinking_tokens": 9904,
+        "cache_read_tokens": 6460,
+        "total_tokens": 15186
+      },
+      "output": {
+        "case_id": "destination-length",
+        "final_text": "I think this is worth trying. I tried a small change in how we collect work notes. It made the next conversation easier.",
+        "character_count": 120,
+        "count_method": "Local exact ASCII character count of final_text (counting all ASCII letters, spaces, and punctuation; no URLs or emoji) checked against the supplied 120-ASCII-character limit for the fictional short-note box. Native composer is unavailable; no native validation and no claim about any real social platform's limit are made.",
+        "decisions": [
+          "Stated limited calibration: no voice profile or prior author examples were supplied beyond the draft and request, so the edit used the voice method and supplied draft without inventing a persona.",
+          "Preserved the fixed first sentence verbatim ('I think this is worth trying.'), keeping its 'I think' qualification intact; no conflict with the 120-ASCII-character limit occurred.",
+          "Shortened the original 124-ASCII-character draft with the smallest faithful edit to the second thought by replacing ', and it' with '. It' (-4 characters), reaching 120 ASCII characters while preserving thought order, facts, qualifications ('small', 'work notes'), authorship ('I tried', 'we collect'), useful word choices, and conversational grammar.",
+          "Reviewed the exact final_text independently across three checks: Meaning (facts, qualifications, commitments, authorship, and thought order preserved), Voice (natural conversational wording, pace, and structure preserved), and Destination (plain ASCII with no URL or emoji, locally counted at 120/120 ASCII characters with no native counter available).",
+          "Did not send or publish the text; passing review does not grant permission to publish."
+        ],
+        "record_dispositions": [
+          {
+            "record": "Original supplied draft (124 ASCII characters) and request",
+            "home": "Existing production/Edition",
+            "disposition": "Retain as the original version linked to the shortened candidate; do not add to the voice profile as Voice approved without explicit owner approval."
+          },
+          {
+            "record": "Shortened candidate (final_text, 120 ASCII characters)",
+            "home": "Existing production/Edition",
+            "disposition": "Retain as a linked draft/candidate version explicitly attributed as an AI-assisted edit (not 'Own writing'), keeping its draft status on the Edition rather than in Memory or the voice profile, awaiting owner review."
+          },
+          {
+            "record": "Voice/style record in Knowledge and personal method",
+            "home": "Knowledge / personal method",
+            "disposition": "No changes; no owner correction or standing rule evidence was provided, and no storage actions were performed."
+          }
+        ],
+        "standing_preference_changes": [],
+        "delivery_state": "draft_not_sent (open on the Edition for owner review; not sent, not published, no permission to publish granted, and not natively validated because the native composer is unavailable)"
+      }
+    },
+    {
+      "case_id": "scoped-correction",
+      "attempt": 2,
+      "method_sha256": "5323bc9e81a49820dbf8a158ac4ecb85b614ff3c427559ef1fa2351a682ee9e0",
+      "model": "gemini-4-neon-high",
+      "reasoning": "high (encoded model id; native model readback)",
+      "exit": 0,
+      "status": "SUCCESS",
+      "seconds": 56.01,
+      "tool_calls": 0,
+      "usage": {
+        "input_tokens": 11100,
+        "output_tokens": 5823,
+        "thinking_tokens": 4200,
+        "cache_read_tokens": 0,
+        "total_tokens": 16923
+      },
+      "output": {
+        "case_id": "scoped-correction",
+        "final_text": null,
+        "character_count": null,
+        "count_method": null,
+        "decisions": [
+          {
+            "topic": "task_type",
+            "decision": "Treat this case as an evidence and voice-profile calibration update rather than a writing or editing delivery.",
+            "rationale": "The owner supplied a scoped correction to an existing voice rule and a failure diagnosis for a prior draft, with no text requested to draft, edit, count, or publish."
+          },
+          {
+            "topic": "authority_for_direct_owner_instruction",
+            "decision": "Apply the owner's explicitly scoped preferences directly to existing voice record voice:main without asking for separate re-confirmation.",
+            "rationale": "A direct owner instruction about future writing is already sufficient evidence for the scoped preference under existing maintenance authority."
+          },
+          {
+            "topic": "supersede_overbroad_rule_preserving_history",
+            "decision": "Mark the prior universal rule 'Avoid crazy in all writing.' in voice:main as superseded and no longer representative, while preserving its history and original source provenance.",
+            "rationale": "The prior rule overgeneralized an earlier tentative observation from a Danish client email into a universal ban, which conflicts with the owner's newer explicit preference for English X posts."
+          },
+          {
+            "topic": "english_x_scope",
+            "decision": "Record an accepted scoped preference for English X posts stating that 'crazy' is natural wording the owner uses and must not be banned.",
+            "rationale": "Directly supported by the owner's explicit correction and scoped specifically to English X posts rather than extrapolated into a global persona or across unrelated channels and languages."
+          },
+          {
+            "topic": "danish_client_email_scope",
+            "decision": "Preserve the existing restrained tone specifically for Danish client emails.",
+            "rationale": "One channel- and language-specific correction does not overwrite unrelated scopes, and the owner explicitly confirmed that Danish client emails keep their restrained tone."
+          },
+          {
+            "topic": "candidate_failure_diagnosis_and_meaning_check",
+            "decision": "Keep the diagnosis that the prior draft failed because it promised the tool would do all the work on that rejected candidate/Edition as a meaning and factual-commitment failure, not as a standing channel-specific voice rule.",
+            "rationale": "A diagnosis of why one candidate failed belongs on that rejected candidate, and factual/commitment accuracy remains a meaning check rather than a standing voice preference."
+          },
+          {
+            "topic": "guardrails_and_existing_homes",
+            "decision": "Reuse existing homes (voice:main in Knowledge and the rejected candidate's Edition), make no unnecessary change to the personal method, and introduce no banned-token list, intentional mistakes, or global new persona.",
+            "rationale": "The method forbids universal banned-word lists, deliberate mistakes to sound human, manufacturing personas, or creating extra databases/profiles when existing homes suffice."
+          }
+        ],
+        "record_dispositions": [
+          {
+            "record_id": "voice:main",
+            "home": "Knowledge (existing voice/style record)",
+            "disposition": "update_in_place_superseding_prior_rule_with_history",
+            "details": "Mark the previous universal rule 'Avoid crazy in all writing.' (from 'earlier tentative observation from a Danish client email') as superseded/no longer representative while preserving its history. Record the accepted English X preference allowing 'crazy' and preserve the restrained-tone preference scoped to Danish client emails. Do not store candidate production status or failure diagnosis here."
+          },
+          {
+            "record_id": "referenced_rejected_draft_candidate",
+            "home": "Production / Edition",
+            "disposition": "retain_as_rejected_with_failure_diagnosis",
+            "details": "Retain the rejected candidate as rejected (not a positive voice example) with its production status and failure reason on the Edition: it failed a meaning/commitment check by overpromising that the tool would do all the work, not because of the word 'crazy'."
+          },
+          {
+            "record_id": "earlier_danish_client_email_observation",
+            "home": "Knowledge (historical provenance on voice:main) / original Source",
+            "disposition": "preserve_provenance_without_universal_force",
+            "details": "Preserve original provenance as an earlier tentative observation from a Danish client email; retire its overbroad application across all writing while keeping Danish client emails' restrained tone intact."
+          },
+          {
+            "record_id": "owner_correction:scoped-correction",
+            "home": "Knowledge (evidence provenance on voice:main) and Edition (correction chain)",
+            "disposition": "accept_as_direct_owner_evidence",
+            "details": "Record the owner's direct correction as accepted provenance for the English X scoped preference, confirmation of the Danish client-email restrained tone, and failure diagnosis for the rejected candidate."
+          }
+        ],
+        "standing_preference_changes": [
+          {
+            "record_id": "voice:main",
+            "action": "supersede_preserving_history",
+            "scope": "all writing (prior overbroad scope)",
+            "previous_rule": "Avoid crazy in all writing.",
+            "previous_source": "earlier tentative observation from a Danish client email",
+            "new_status": "superseded / no longer representative",
+            "rationale": "Contradicted by direct owner instruction for English X posts; an earlier tentative Danish client-email observation cannot justify a universal banned-word rule."
+          },
+          {
+            "record_id": "voice:main",
+            "action": "add_accepted_scoped_preference",
+            "scope": "English X posts",
+            "rule": "Do not ban the word 'crazy'; it is a word the owner naturally uses in English X posts.",
+            "source": "Direct owner correction (scoped-correction)",
+            "constraints": "Scoped strictly to English X posts; no global persona shift, no intentional mistakes, and no banned-token list."
+          },
+          {
+            "record_id": "voice:main",
+            "action": "preserve_scoped_preference",
+            "scope": "Danish client emails",
+            "rule": "Keep the existing restrained tone.",
+            "source": "Existing Danish client-email scope, explicitly reaffirmed by direct owner correction (scoped-correction)",
+            "constraints": "Applies only to Danish client emails; does not impose a global ban on 'crazy' in other languages or channels."
+          },
+          {
+            "record_id": "voice:main",
+            "action": "no_standing_voice_rule_added",
+            "scope": "rejected candidate only (meaning check)",
+            "item": "Draft failed because it promised the tool would do all the work.",
+            "rationale": "Candidate failure diagnoses belong on the rejected candidate/Edition, and factual/commitment accuracy is enforced as a meaning check rather than invented as a channel-specific voice preference."
+          }
+        ],
+        "delivery_state": "no_delivery_evidence_calibration_only"
+      }
+    }
+  ]
+}
