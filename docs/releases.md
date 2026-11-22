@@ -1,5 +1,20 @@
 # Method releases
 
+## v0.13.0 · 22 November 2026
+
+Adds a writing-voice workflow: selected genuine examples, minimal editing,
+scoped owner corrections and separate evidence, delivery and standing-rule
+approval. Five fictional acceptance cases exercise this guidance; they are not
+a cross-model benchmark or proof of a particular owner’s complete voice profile.
+
+Content setup reuses core 0.35.0’s four foundation outcomes and single schema
+authority. The editorial methods remain optional, older template packets remain
+frozen at v0.10.0, and external originals or deferrals are preserved.
+
+An optional open icon family makes the four existing databases recognizable
+without a required dashboard or new stores. The original paper mark is retained
+for Knowledge; the Content mark becomes a brush with an orange stroke.
+
 ## v0.12.3 · 20 November 2026
 
 Use Notion’s native inline-code serialization for the example filename in the

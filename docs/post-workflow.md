@@ -22,6 +22,10 @@ platform's name or impose the adopting owner's choices on everyone else.
 
 ## Write and choose an ending
 
+Use the [writing-voice workflow](writing-voice.md) for selected owner examples
+and correction-based calibration. Preserve an existing draft with minimal edits;
+do not restart calibration for every short post.
+
 Start with the actual point. Keep the author's useful wording and reasoning.
 Use a relevant source to strengthen the explanation, then add the author's
 own contribution. Do not present another creator's experience as the author's own.

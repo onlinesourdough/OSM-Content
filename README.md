@@ -13,6 +13,7 @@ Existing editors, human workflows and useful personal skills can stay.
 ## Start here
 
 For one post, use the [short-post workflow](docs/post-workflow.md).
+For writing style and corrections, use [the author's voice](docs/writing-voice.md).
 For initial setup, give your agent this repository and your private context-home
 link. Ask it to read [setup](docs/setup.md) and
 [configuration](docs/configuration.md), inspect what exists and adapt only what
@@ -37,7 +38,12 @@ or external link is a choice, not a requirement.
 
 ## The foundation
 
-Use one existing Content collection for three responsibilities:
+Core OSM 0.35.0 owns the new-home Content proposal and the single minimum
+schema. Reuse its selected Notion or external route, or respect a deferral;
+installation and ordinary resume create nothing. Editorial methods stay optional.
+See [setup](docs/setup.md) for the version boundary and interrupted setup.
+
+A selected Content collection has three useful responsibilities:
 
 | Record | Keeps |
 | --- | --- |
@@ -65,11 +71,11 @@ not require five agents or five new skills.
 
 ## Versions and upkeep
 
-The method release is **v0.12.3**. The five retained **v0.10.0 Draft templates**
+The method release is **v0.13.0**. The five retained **v0.10.0 Draft templates**
 are unchanged imports of the earlier public Notion template edition 2026-11-05.1,
 retained in [the initial import](https://github.com/onlinesourdough/OSM-Content/commit/b8dc567), with hashes in
 [provenance.json](provenance.json). Their template versions do not become
-v0.12.3 merely because the guide has changed. Adapt them with the current
+v0.13.0 merely because the guide has changed. Adapt them with the current
 configuration, short-post and reference guidance.
 
 This release distributes method source, not an installable Content plugin.

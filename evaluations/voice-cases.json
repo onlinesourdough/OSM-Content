@@ -1,0 +1,43 @@
+{
+  "format": "osm-content-voice-cases/1",
+  "provenance": "Five fictional cases for the acceptance outcomes in Content issue 1. No owner's private writing or customer data.",
+  "cases": [
+    {
+      "id": "minimal-edit",
+      "request": "Forkort mit udkast til højst 150 tegn. Bevar rækkefølgen og min måde at sige det på. Ingen ny afslutning, hashtag eller invitation.",
+      "draft": "Jeg har egentlig bare prøvet at samle vores opgaver ét sted. Det lyder måske ikke af så meget. Men jeg tror, vi sparer en del tid på ikke at lede efter det samme igen og igen.",
+      "context": "Fictional Danish owner, informal work reflection. No other voice samples or fixed wording. Return the edited text and its local character count; do not update a voice profile from this single unapproved candidate."
+    },
+    {
+      "id": "evidence-selection",
+      "request": "Use these selected records to improve my existing voice profile voice:main. Which evidence belongs in it, and what changes would you make?",
+      "records": [
+        {"id": "source:own-1", "authorship": "owner", "language": "da", "channel": "newsletter", "situation": "personal work reflection", "date": "2026-10-08", "kind": "Own writing", "review": "Voice approved", "retention": "permitted", "text": "Jeg kunne ikke finde det rigtige svar i dag. Så jeg skrev det, jeg vidste, ned. Det var faktisk nok til at komme videre."},
+        {"id": "source:instruction-2", "authorship": "owner", "language": "da", "channel": "assistant instruction", "situation": "dictated editing request", "review": "Reviewed", "retention": "permitted", "text": "Skriv et kort opslag, som folk lægger mærke til. Du må gerne være skarpere, men ikke få det til at lyde som en annonce."},
+        {"id": "edition:ai-3", "authorship": "AI candidate", "language": "da", "channel": "LinkedIn", "review": "Reviewed", "published": true, "text": "Fremtidens ledere omsætter AI til banebrydende resultater."}
+      ],
+      "context": "All records are fictional. The owner has not marked the instruction or AI candidate representative of their public writing. Keep records at their existing identities. Do not request a full inbox import or create a new voice database."
+    },
+    {
+      "id": "rejected-candidate",
+      "request": "Learn from the correction on this production. Keep the rejected draft and original source. Do not publish anything.",
+      "production_id": "content:repair-notes",
+      "candidate": {"id": "edition:repair:v1", "text": "Med AI er alle problemer løst, før de opstår.", "owner_review": "Rejected: det lover for meget og lyder som en reklame. Jeg har kun prøvet det på en lille opgave."},
+      "final": {"id": "edition:repair:v2", "text": "Jeg prøvede det på en lille opgave. Det hjalp mig med at komme videre, men jeg skal stadig tjekke resultatet.", "owner_review": "Approved for this edition; useful Danish newsletter example of how I describe a limited trial."},
+      "context": "Fictional evidence. The first candidate received many clicks in a private preview; those clicks are not approval. Existing Knowledge voice:main and Content identities must be reused. Return the scoped learning and the disposition of both versions."
+    },
+    {
+      "id": "scoped-correction",
+      "request": "For my English X posts, crazy is a word I actually use. Don't ban the word. The problem with that draft was its promise that the tool would do all the work. My Danish client emails can keep their existing restrained tone.",
+      "existing_profile": {"id": "voice:main", "rule": "Avoid crazy in all writing.", "source": "earlier tentative observation from a Danish client email"},
+      "context": "Fictional owner correction. Update only what the evidence supports; show the English-X choice and preserve the unrelated Danish client-email scope. No intentional mistakes, global new persona or banned-token list."
+    },
+    {
+      "id": "destination-length",
+      "request": "Prepare the final text for our configured short-note box. Maximum 120 ASCII characters. Keep the fixed first sentence exactly. The second thought can be shortened. Do not send it.",
+      "fixed_sentence": "I think this is worth trying.",
+      "draft": "I think this is worth trying. I tried a small change in how we collect work notes, and it made the next conversation easier.",
+      "context": "Fictional destination with a supplied 120-ASCII-character limit, not a claim about any social platform's current limit. No URL or emoji. A native composer is unavailable. Return final text, exact local count/method and draft state, with no claim of native validation or publication."
+    }
+  ]
+}
