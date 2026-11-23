@@ -14,8 +14,11 @@ The source-to-page mapping is in [release.json](../release.json):
 - The five template pages retain their v0.10.0 instructions, downloadable
   packets and history. Their current-source note points to the tagged template
   and the current method guidance. Updating a note does not reversion a packet.
-- docs/post-workflow.md, docs/reference-library.md, docs/writing-voice.md and
-  docs/sidebar-icons.md are linked detail in Git.
+- docs/post-workflow.md, docs/reference-library.md, docs/writing-voice.md,
+  docs/sidebar-icons.md and docs/channel-skills.md are linked detail in Git.
+  Channel-skill templates and Knowledge entry forms are a later generation
+  under templates/. They are not part of the frozen v0.10.0 packets and they
+  are not among the eight synced Notion pages.
 
 The existing OSM core publisher owns its seven released native skills. It does
 not write these Content guide or template pages. Reuse its distinction between
@@ -61,7 +64,9 @@ The latest real qualification belongs on the release and in the Actions history.
 ## Deliver an update
 
 1. Review the source and run python3 scripts/check_release.py. It checks the
-   file map, local links and the frozen template bytes.
+   file map, local links and the frozen template bytes. Later template files
+   are allowed only when release.json declares their directories, and those
+   directories stay outside the frozen v0.10.0 packets.
 2. Merge the reviewed change. Bind the exact source commit to the release tag;
    never move a published tag to make a later check pass.
 3. Through the authorized public-guide connection, read each named target

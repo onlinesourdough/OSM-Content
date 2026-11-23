@@ -10,7 +10,7 @@ Content is a separate method kit for OSM. It uses the business foundation in you
 4. Review and deliver under your chosen publication authority.
 5. Keep the result and one useful lesson.
 
-For a single post, follow the [short-post workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.13.1/docs/post-workflow.md). A short idea can stand alone. Different channels can have different goals; a post may end with its point. A brand mention, link or invitation belongs where it helps the reader.
+For a single post, follow the [short-post workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/docs/post-workflow.md). A short idea can stand alone. Different channels can have different goals; a post may end with its point. A brand mention, link or invitation belongs where it helps the reader.
 
 ## Set it up once
 
@@ -41,11 +41,11 @@ For initial setup, read the setup and configuration pages above. For ordinary wr
 
 Save the example with at least one concrete line per link about what you liked, plus a timestamp when relevant. Describe the specific technique and inspect what actually happens. Strengthen your own angle and add your own contribution. When a choice becomes reusable, update the relevant style guide or personal method and use it in the next production. Keep attribution and rejected examples clear.
 
-[Reference workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.13.1/docs/reference-library.md)
+[Reference workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/docs/reference-library.md)
 
 ## Adapt the methods you need
 
-For your writing voice, select real examples and learn from your corrections. Keep the concise profile in its existing Knowledge home and originals or references in Content. Preserve an existing draft with minimal edits; a rejected candidate or popular post is not automatically an approved voice example. [Writing-voice workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.13.1/docs/writing-voice.md)
+For your writing voice, select real examples and learn from your corrections. Keep the concise profile in its existing Knowledge home and originals or references in Content. Preserve an existing draft with minimal edits; a rejected candidate or popular post is not automatically an approved voice example. [Writing-voice workflow](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/docs/writing-voice.md)
 
 Setup, Intake, Prepare, Produce / Distribute and Learn are responsibilities. Existing personal skills can cover several; five new agents or skills are not required.
 
@@ -57,9 +57,22 @@ Setup, Intake, Prepare, Produce / Distribute and Learn are responsibilities. Exi
 
 Knowledge owns business context; Content owns sources, productions, editions and feedback. Adapted personal skills and actual preferences remain in the owner's private home. A saved skill is not proof of native installation or use. Choose and qualify tools for the actual task.
 
+One active channel uses one skill. Voice, the red thread, format, cadence and the quality gate each live once in Knowledge, and the skill points at them. Produce loads that channel skill, then the quality gate, and stops for your approval. The [channel skills guide](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/docs/channel-skills.md) is the method.
+
+## Build the content side
+
+A setup interview asks once for your own posts, each channel's language and format, the red thread, private boundaries, inspirations, cadence caps and approval rules. The first-draft checklist then checks those answers before you see a draft. These stages say what done looks like.
+
+1. Setup. Voice is measured from your own posts, and the red thread, channel formats, cadence caps and approval rules are each written once. Done when those Knowledge pages exist and no skill contains a second copy.
+2. First channel skill. One skill points at those pages and drafts one edition. Done when that draft has passed the quality gate and is not scheduled or published.
+3. Long form first. The newsletter carries the broad personal and professional piece. Other posts take a narrower angle. Done when each other selected channel links to that newsletter, records its own angle, and is not a translation or a rehash. When the newsletter is your only channel, the broad edition completes this stage.
+4. Quality gate and approval. The checklist runs before you see a draft. Done when every draft you saw has a passing gate result recorded first, and nothing is scheduled or published without your explicit approval.
+5. Queue and review. Approved work can be scheduled under the authority you gave, and the period's review keeps one lesson on the record that owns it. Done when the queue holds only approved editions and the review wrote back to that record.
+6. Mature. Every channel you have selected has one skill on the same shared pages. Done when that is true, the newsletter stays the broad source, and the gate and approval are part of the work. Leave platforms you have not selected out.
+
 ## Content foundation
 
-Keep the home recognizable with a small consistent set of icons. The [optional sidebar family](https://github.com/onlinesourdough/OSM-Content/blob/v0.13.1/docs/sidebar-icons.md) shows Knowledge, Memory, Skills and Content without adding another database or making a dashboard compulsory.
+Keep the home recognizable with a small consistent set of icons. The [optional sidebar family](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/docs/sidebar-icons.md) shows Knowledge, Memory, Skills and Content without adding another database or making a dashboard compulsory.
 
 <image source="notion-file-block://41e6d2e1-7f56-815f-915e-ec04fff66efc/332ff2b9-793a-4e63-8634-ef981646bdd8?space_id=eee27a39-7e8a-48e6-9bd4-f3bc51a333fe&name=content-foundation-mobile.png" />
 
@@ -73,7 +86,7 @@ Wide diagram and editable source
 
 ## Source and versions
 
-[OSM Content v0.13.1](https://github.com/onlinesourdough/OSM-Content/releases/tag/v0.13.1) is the shared method release. The retained v0.10.0 Draft templates are unchanged frozen packets from edition 2026-11-05.1; their files and history remain in the catalogue. This kit is outside the OSM plugin and starts no publishing schedule.
+[OSM Content v0.14.0](https://github.com/onlinesourdough/OSM-Content/releases/tag/v0.14.0) is the shared method release. The retained v0.10.0 Draft templates are unchanged frozen packets from edition 2026-11-05.1; their files and history remain in the catalogue. This kit is outside the OSM plugin and starts no publishing schedule.
 
 Keep personal writing, media and configuration in their selected private home.
 

@@ -1,5 +1,19 @@
 # Method releases
 
+## v0.14.0 · 23 November 2026
+
+Adds a channel-skill axis beside the five responsibility skills. One skill
+drafts one channel. Voice, the red thread, per-channel format, cadence and the
+quality gate each have one Knowledge form. Skills point at those pages. A setup
+interview asks once for the facts a first draft needs, and the first-draft
+checklist runs before a person sees the draft. Human approval stays an explicit
+status on the Edition.
+
+The journey runs from that setup through a mature set of selected channels.
+Newsletter, newsletter-to-posts, X, LinkedIn and the quality gate are generic
+examples. The five v0.10.0 packets stay frozen. No personal calendar is included,
+and this release publishes nothing.
+
 ## v0.13.1 · 22 November 2026
 
 Keeps the human-facing Notion introduction focused on using the method. Source and version links remain; repository synchronization and conflict-handling operations stay in the maintainer guide. Adds an optional extended navigation-icon reference and guidance to inspect solid fills on both light and dark backgrounds.

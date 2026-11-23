@@ -33,7 +33,7 @@ Choose a small set that fits the owner and the audience. The examples below are 
 | X / Twitter | Share concise observations, join conversations and build a recognizable personal perspective | Short ideas, work in progress, useful replies and links to deeper work when relevant |
 | Instagram | An optional visual or personal expression when it serves a chosen purpose | Visual examples, behind-the-scenes material or a selected personal angle |
 
-For each active channel, record its purpose, reader, language, useful formats, ending and evidence of progress. A local-language customer channel and an English personal-brand channel can have different jobs. Choose the actual market; a creator's use of LinkedIn is not a universal country-specific rule.
+For each active channel, record its purpose, reader, language, useful formats, ending and evidence of progress once, on that channel's format page. A local-language customer channel and an English personal-brand channel can have different jobs. Choose the actual market; a creator's use of LinkedIn is not a universal country-specific rule. The working method is [channel skills](channel-skills.md): one skill per channel, pointers only, and the [setup interview](../templates/knowledge-entries/setup-interview.md) asks for the missing fields once.
 
 Newsletter is a channel in its own right, not merely a place to send recycled posts. A useful idea may appear in several places, but each edition should give its reader something complete. Neither identical cross-posting nor zero overlap is required. No need to be everywhere, publish at someone else's frequency or append a sales CTA to every edition. Revisit the choices from actual response and sustainable effort.
 
@@ -69,7 +69,7 @@ For writing style, use the [writing-voice workflow](writing-voice.md): select ge
 | Setup | Existing routes, reusable schema, missing structure and acceptance example |
 | Intake | Capture sources and useful angles; decide whether scouting is wanted |
 | Prepare | Writing/recording support, required evidence and material handoff |
-| Produce / Distribute | Selected editor, editions, review and actual delivery policy |
+| Produce / Distribute | Selected editor, the channel skill for the edition, the shared quality gate before the human sees the draft, and actual delivery policy. The frozen produce packet stays unchanged; [channel skills](channel-skills.md) is the current method beside it |
 | Learn | Goal-relevant observations and deliberate improvement |
 
 Each can be manual, assisted or selectively automated. A responsibility is not a mandatory separate skill or agent. Keep a good analog workflow. Missing input blocks only the dependent operation; an idea can still be captured while media editing is unavailable.
@@ -82,7 +82,7 @@ The five public templates are starting material. Read and adapt the useful ones 
 
 Before writing, query the owner's Skills for semantic overlap and preserve useful existing instructions, supporting files and provenance. Choose discriminating names/descriptions, actual input/output locations and a reference to the accepted owner configuration. Shared methods stay outside that configuration. A bundle copied locally is not a native install or automatic enablement.
 
-The setup template uses the schema/setup contract. Other templates need only relevant goals, configuration and selected material. They do not re-interview the owner or recreate the database at every request. If the configuration is missing, resolve the actual gap rather than guess accounts, destinations or permission.
+The setup template uses the schema/setup contract. Other templates need only relevant goals, configuration and selected material. The [setup interview](../templates/knowledge-entries/setup-interview.md) is once. Later requests read those records and do not recreate the database. If the configuration is missing, resolve the actual gap rather than guess accounts, destinations or permission.
 
 ## A compact owner configuration
 
@@ -106,8 +106,13 @@ content_workflow:
   delivery_policy: null
   observation_and_review: null
   adopted_personal_skills: []
+  knowledge_layer_refs: []
+  channel_skill_refs: []
+  interview_completed: null
   actual_automation_ids: []
 ```
+
+`knowledge_layer_refs` points at the single voice, red-thread, format, cadence and quality-gate pages. When `audience_and_voice_refs` already names the voice record, the voice profile form fills that record and `knowledge_layer_refs` includes the same page. `channel_skill_refs` points at the adopted channel skills. `interview_completed` is a date plus those links, or null. None of these fields stores a copy of the answers. The interview and the page forms are in [channel skills](channel-skills.md).
 
 The binding reference points to the existing Definition or source agreement; its verified route and minimum fields are not copied here. The editorial map contains only selected workflow additions and views. Trigger and safe-state notes refer to the authoritative source agreement rather than competing with it.
 
@@ -121,4 +126,4 @@ An optional [sidebar icon family](sidebar-icons.md) can make the existing home e
 
 Check one realistic task with the chosen methods and actual routes. Can a new agent find the owner's Content collection, avoid duplicates, preserve voice/originals, follow a material handoff and report actual results? Can it distinguish prepared, reviewed and published without this setup conversation?
 
-Start with one production and a few relevant editions. Revise the workflow from real use before adding more channels, tools or automation.
+Run the setup interview once before the first channel skill. Start with one production and a few relevant editions. Revise a stored fact on its owning Knowledge page. Add another channel from the [channel-skills guide](channel-skills.md) when the owner chooses it.

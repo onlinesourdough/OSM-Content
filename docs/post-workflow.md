@@ -45,6 +45,8 @@ adding or removing a link guarantees more reach.
 
 ## Review the actual version
 
+When a channel skill is in use, run the [quality gate](../templates/channel-quality-gate/SKILL.md) before the human sees the draft. The checks live on the [quality-gate record](../templates/knowledge-entries/quality-gate.md). A derivative of a newsletter records its own angle; the [channel-skills guide](channel-skills.md) is the method. A standalone short post still needs no newsletter parent.
+
 Check meaning, evidence, authorship, voice, channel fit and actual length.
 Keep approval separate from publication. For shared media, distinguish an
 attributed quote/share from permission to upload another person's video.

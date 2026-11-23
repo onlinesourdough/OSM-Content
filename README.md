@@ -14,6 +14,7 @@ Existing editors, human workflows and useful personal skills can stay.
 
 For one post, use the [short-post workflow](docs/post-workflow.md).
 For writing style and corrections, use [the author's voice](docs/writing-voice.md).
+For one skill per channel on a shared Knowledge layer, use [channel skills](docs/channel-skills.md).
 For initial setup, give your agent this repository and your private context-home
 link. Ask it to read [setup](docs/setup.md) and
 [configuration](docs/configuration.md), inspect what exists and adapt only what
@@ -69,14 +70,34 @@ not require five agents or five new skills.
 | Produce / Distribute | [content-produce](templates/content-produce/SKILL.md) |
 | Learn | [content-learn](templates/content-learn/SKILL.md) |
 
+A second axis is one skill for each active channel. Voice, the red thread,
+format, cadence and the quality gate each live once in Knowledge. The channel
+skill points at those records. The blank form is
+[content-channel](templates/content-channel/SKILL.md). Generic examples:
+
+| Piece | Starting template |
+| --- | --- |
+| Newsletter | [channel-newsletter](templates/channel-newsletter/SKILL.md) |
+| Newsletter to posts | [channel-newsletter-to-posts](templates/channel-newsletter-to-posts/SKILL.md) |
+| X | [channel-x-post](templates/channel-x-post/SKILL.md) |
+| LinkedIn | [channel-linkedin-post](templates/channel-linkedin-post/SKILL.md) |
+| Quality gate | [channel-quality-gate](templates/channel-quality-gate/SKILL.md) |
+
+The Knowledge entry forms live under
+[templates/knowledge-entries](templates/knowledge-entries).
+[Channel skills](docs/channel-skills.md) is the method, including the journey
+from first setup to every selected channel running.
+
 ## Versions and upkeep
 
-The method release is **v0.13.1**. The five retained **v0.10.0 Draft templates**
+The method release is **v0.14.0**. The five retained **v0.10.0 Draft templates**
 are unchanged imports of the earlier public Notion template edition 2026-11-05.1,
 retained in [the initial import](https://github.com/onlinesourdough/OSM-Content/commit/b8dc567), with hashes in
 [provenance.json](provenance.json). Their template versions do not become
-v0.13.1 merely because the guide has changed. Adapt them with the current
-configuration, short-post and reference guidance.
+v0.14.0 merely because the guide has changed. Adapt them with the current
+configuration, short-post and reference guidance. Channel-skill templates and
+Knowledge entry forms are a later generation at v0.14.0. They do not rewrite
+the frozen packets.
 
 This release distributes method source, not an installable Content plugin.
 Its public guide can sync automatically after accepted main changes and method

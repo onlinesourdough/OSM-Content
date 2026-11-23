@@ -64,6 +64,28 @@ def main():
             if not target.is_relative_to(ROOT) or not target.exists():
                 errors.append(f'Broken local link: {path.relative_to(ROOT)} -> {href}')
     provenance = json.loads((ROOT / 'provenance.json').read_text())
+    later_files = set()
+    frozen_paths = {t['path'] for t in provenance['templates']}
+    for item in manifest.get('later_templates', []):
+        path = item.get('path', '')
+        if (not path or Path(path).is_absolute() or '..' in Path(path).parts
+                or not path.startswith('templates/')):
+            errors.append('Unsafe later template path: ' + path)
+            continue
+        if path in frozen_paths or any(path.startswith(fp + '/') for fp in frozen_paths):
+            errors.append('Later template overlaps a frozen packet: ' + path)
+            continue
+        base = ROOT / path
+        if not base.is_dir():
+            errors.append('Missing later template: ' + path)
+            continue
+        found = [p for p in base.rglob('*') if p.is_file()]
+        if not found:
+            errors.append('Empty later template: ' + path)
+        if item.get('kind') == 'skill' and not (base / 'SKILL.md').is_file():
+            errors.append('Later skill template has no SKILL.md: ' + path)
+        for found_path in found:
+            later_files.add(found_path.relative_to(ROOT).as_posix())
     # In a source checkout, anchor the unchanged import to its historical commit.
     # A source archive has no Git history; its result explicitly records that limit.
     anchor_checked = False
@@ -77,9 +99,14 @@ def main():
             for name in names:
                 if not (ROOT / name).is_file() or subprocess.check_output(['git', 'show', anchor + ':' + name], cwd=ROOT) != (ROOT / name).read_bytes():
                     errors.append('Template import differs from historical commit: ' + name)
-            current_names = {str(p.relative_to(ROOT)) for p in (ROOT / 'templates').rglob('*') if p.is_file()}
-            if current_names != set(names):
+            historical = set(names)
+            current_names = {p.relative_to(ROOT).as_posix()
+                             for p in (ROOT / 'templates').rglob('*') if p.is_file()}
+            if not historical <= current_names:
                 errors.append('Template import file set differs from historical commit')
+            extra = current_names - historical
+            if extra != later_files:
+                errors.append('Later template files differ: ' + str(sorted(extra ^ later_files)))
             anchor_checked = True
         except subprocess.CalledProcessError:
             errors.append('Historical import unavailable; fetch full Git history before checking this checkout')
@@ -126,6 +153,7 @@ def main():
         return 1
     print(json.dumps({'method_version': version, 'source_files': len(declared),
                       'frozen_templates': len(provenance['templates']),
+                      'later_template_files': len(later_files),
                       'historical_import_checked': anchor_checked,
                       'mapped_notion_pages': len(targets),
                       'provided_readbacks_compared': compared_pages,
