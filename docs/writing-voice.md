@@ -6,7 +6,12 @@ explicit preferences and learning from corrections, not model training or
 an imitation of another creator.
 
 Use the existing writing method and owner configuration. This adds a way to
-calibrate them; it creates no extra skill, database, interview or publishing job.
+calibrate them; it creates no extra skill, database, or publishing job.
+The [voice profile](../templates/knowledge-entries/voice-profile.md) is the body
+shape for the existing Knowledge voice record. Measure it from the owner's own
+posts. Channel skills link to that record. The [setup prompts](../templates/knowledge-entries/setup-interview.md)
+resolve only missing input. Keep measured traits distinct from explicit owner
+preferences, and report partial calibration honestly.
 A short writing request can be completed without calibrating a whole profile.
 
 ## Select evidence, not an entire archive

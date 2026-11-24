@@ -1,0 +1,13 @@
+{
+  "edition": "2026-11-24.2",
+  "template_package_version": "0.14.0",
+  "status": "later template, not an installed personal skill and not part of the frozen v0.10.0 import",
+  "axis": "channel",
+  "channel": "x",
+  "source_ownership": "Authored in OSM Content as a later generation. The v0.10.0 packets remain the frozen import.",
+  "previous_generation": {
+    "edition": "2026-11-24.1",
+    "commit": "48d43e52dc9e9a26982a6b9b2c7543c39be0ab94",
+    "path": "templates/channel-x-post"
+  }
+}

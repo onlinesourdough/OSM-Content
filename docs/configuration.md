@@ -19,7 +19,7 @@ Keep the intended contribution of content clear: what the owner wants to build, 
 | Voice and visual expression | Existing writing/style guide, accepted examples and rejected treatments |
 | Working choices | One personal Content configuration linking those records, selected channels, tools, media routes, methods and delivery authority |
 
-These are responsibilities, not compulsory filenames or four new pages. Reuse suitable Knowledge records and link their actual owners. Split a record only when it has a distinct maintenance responsibility. Sources, drafts, editions and feedback remain in Content, not in a second vision document.
+For short naming inspiration, see the small set of kinds in the [Foundation view guidance](setup.md#foundation-views). These are responsibilities, not compulsory filenames or four new pages. Reuse suitable Knowledge records and link their actual owners. Split a record only when it has a distinct maintenance responsibility. Sources, drafts, editions and feedback remain in Content, not in a second vision document.
 
 ## Give each channel a useful role
 
@@ -33,9 +33,9 @@ Choose a small set that fits the owner and the audience. The examples below are 
 | X / Twitter | Share concise observations, join conversations and build a recognizable personal perspective | Short ideas, work in progress, useful replies and links to deeper work when relevant |
 | Instagram | An optional visual or personal expression when it serves a chosen purpose | Visual examples, behind-the-scenes material or a selected personal angle |
 
-For each active channel, record its purpose, reader, language, useful formats, ending and evidence of progress. A local-language customer channel and an English personal-brand channel can have different jobs. Choose the actual market; a creator's use of LinkedIn is not a universal country-specific rule.
+For each active channel, record its purpose, reader, language, useful formats, ending and evidence of progress once, on its existing channel strategy or working-preference record. Choose the actual market; a creator's use of LinkedIn is not a universal country-specific rule. The working method is [channel skills](channel-skills.md): one short assembly guideline per channel, referencing the owning records. The [setup prompts](../templates/knowledge-entries/setup-interview.md) resolve only gaps affecting the selected work.
 
-Newsletter is a channel in its own right, not merely a place to send recycled posts. A useful idea may appear in several places, but each edition should give its reader something complete. Neither identical cross-posting nor zero overlap is required. No need to be everywhere, publish at someone else's frequency or append a sales CTA to every edition. Revisit the choices from actual response and sustainable effort.
+Newsletter is a channel in its own right, not merely a place to send recycled posts. A useful idea may appear in several places, but each edition should give its reader something complete. No need to be everywhere, publish at someone else's frequency or append a sales CTA to every edition. Revisit the choices from actual response and sustainable effort.
 
 Platform context: [YouTube on multiple formats](https://blog.youtube/creator-and-artist-stories/youtube-creators-full-time-business-tools/) and [LinkedIn on sharing professional expertise](https://www.linkedin.com/business/marketing/blog/content-marketing/creating-a-thought-leadership-marketing-plan). These support the available approaches, not a guaranteed outcome or an algorithm prescription. Checked 20 November 2026.
 
@@ -52,9 +52,19 @@ Platform context: [YouTube on multiple formats](https://blog.youtube/creator-and
 | Delivery | Actual account/destination, draft/review path, applicable standing or task authority and where outcomes are recorded |
 | Learning | Relevant signals, observation window, sustainable effort and the next review/experiment |
 
-Notion for editorial text and Kit for newsletter delivery are a starter recipe; suitable existing tools can stay. HyperFrames is a candidate requiring a real import/edit/save-reopen/export qualification before use is claimed. None of these choices installs a tool or connects an account.
+Notion is the default editorial runtime; equivalent records and review evidence can live outside it. Notion for editorial text and Kit for newsletter delivery are an optional recipe; suitable existing tools can stay. HyperFrames is a candidate requiring a real import/edit/save-reopen/export qualification before use is claimed. None of these choices installs a tool or connects an account.
 
 A newsletter may be an original or a synthesis of several productions. Video, email, an article and a social post can each be long or short. Long-to-short reuse is useful when each edition has a self-contained point; do not force every idea into a long production or every production onto every channel.
+
+## Cadence, review and record grouping
+
+A documented cadence helps make workload and upcoming review visible. Use an existing Knowledge working-preference entry or equivalent and the [schedule skeleton](../templates/content-schedule/SKILL.md). The owner selects the rhythm or on-demand use, optional planning horizon and review route. A schedule is best practice, not a prerequisite for a draft. A planning record creates no live job.
+
+An optional best practice from the first real run is a short approval window for the next few days, with owner–assistant review ping-pong: prepare and check, owner comments, revise and resolve addressed comments, then owner review and final approval. A bank replenished on a chosen cycle and owner-named value categories with caps can help. No frequency, minutes, named statuses, posting times, category names or cap values are prescribed.
+
+One production record can cover one or more channels. The owner chooses grouping and reuse policy. Keep one editable original per independently maintained version and clear approval/delivery evidence per destination. A separate Edition is useful when editing or delivery needs its own identity.
+
+The quality gate runs before owner review. Apply corrections to the text itself, resolve addressed comments and reread the whole result; unresolved issues hold that handoff. In Notion keep prose directly commentable. Only the owner marks the final version/destinations approved, using the existing review section or a sufficient existing field. No new approval Select is required. Preserve old approval evidence; changed work needs renewed approval. Second-model review is an optional switch without a required model. Approval does not replace actual delivery authority.
 
 ## Keep creative references useful
 
@@ -69,7 +79,7 @@ For writing style, use the [writing-voice workflow](writing-voice.md): select ge
 | Setup | Existing routes, reusable schema, missing structure and acceptance example |
 | Intake | Capture sources and useful angles; decide whether scouting is wanted |
 | Prepare | Writing/recording support, required evidence and material handoff |
-| Produce / Distribute | Selected editor, editions, review and actual delivery policy |
+| Produce / Distribute | Selected editor, the channel skill for the edition, the shared quality gate before the human sees the draft, and actual delivery policy. The frozen produce packet stays unchanged; [channel skills](channel-skills.md) is the current method beside it |
 | Learn | Goal-relevant observations and deliberate improvement |
 
 Each can be manual, assisted or selectively automated. A responsibility is not a mandatory separate skill or agent. Keep a good analog workflow. Missing input blocks only the dependent operation; an idea can still be captured while media editing is unavailable.
@@ -82,7 +92,7 @@ The five public templates are starting material. Read and adapt the useful ones 
 
 Before writing, query the owner's Skills for semantic overlap and preserve useful existing instructions, supporting files and provenance. Choose discriminating names/descriptions, actual input/output locations and a reference to the accepted owner configuration. Shared methods stay outside that configuration. A bundle copied locally is not a native install or automatic enablement.
 
-The setup template uses the schema/setup contract. Other templates need only relevant goals, configuration and selected material. They do not re-interview the owner or recreate the database at every request. If the configuration is missing, resolve the actual gap rather than guess accounts, destinations or permission.
+The setup template uses the schema/setup contract. Other templates need only relevant goals, configuration and selected material. Use the [setup prompts](../templates/knowledge-entries/setup-interview.md) only where the task needs a missing choice. Later requests reuse the answer at its owner and do not recreate the database. If the configuration is missing, resolve the actual gap rather than guess accounts, destinations or permission.
 
 ## A compact owner configuration
 
@@ -106,8 +116,12 @@ content_workflow:
   delivery_policy: null
   observation_and_review: null
   adopted_personal_skills: []
+  knowledge_layer_refs: []
+  channel_skill_refs: []
   actual_automation_ids: []
 ```
+
+`knowledge_layer_refs` links relevant existing direction, channel strategy, voice, operating/review policy, formats and selected cadence records. Where `audience_and_voice_refs` already names a record, reuse that identity. `channel_skill_refs` links adapted channel guidelines. Reuse existing configuration rather than adding a second editable map. The [entry forms](../templates/knowledge-entries) are optional prompts for real gaps, not a fixed page list or a mandatory interview receipt.
 
 The binding reference points to the existing Definition or source agreement; its verified route and minimum fields are not copied here. The editorial map contains only selected workflow additions and views. Trigger and safe-state notes refer to the authoritative source agreement rather than competing with it.
 
@@ -121,4 +135,4 @@ An optional [sidebar icon family](sidebar-icons.md) can make the existing home e
 
 Check one realistic task with the chosen methods and actual routes. Can a new agent find the owner's Content collection, avoid duplicates, preserve voice/originals, follow a material handoff and report actual results? Can it distinguish prepared, reviewed and published without this setup conversation?
 
-Start with one production and a few relevant editions. Revise the workflow from real use before adding more channels, tools or automation.
+Start with a selected piece and only the records it needs. Revise a stored fact at its existing owner. Add another channel from the [channel-skills guide](channel-skills.md) when selected. Report useful-work evidence separately from native skill adoption or complete voice calibration.
