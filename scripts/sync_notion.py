@@ -475,7 +475,7 @@ def main():
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(json.dumps(report, indent=2) + '\n')
     def observe(page_id,seen):
-        report['preflight'][page_id]={'body_sha256':sha(seen['body']),'source':seen['source'],'source_links':seen.get('source_links',[])}
+        report['preflight'][page_id]={'body_sha256':sha(seen['body']),'body':seen['body'],'source':seen['source'],'source_links':seen.get('source_links',[])}
         checkpoint(report['api'])
     try:
         core_ref = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=args.core_root, text=True).strip()
