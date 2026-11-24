@@ -154,7 +154,7 @@
     "scripts/build_channel_packet.py": "a503cae4c9943ac967ef6b09aca8b8a415a982c9368a4ccd8498c272e2b2f681",
     "scripts/check_release.py": "b4979fcc664863abdae0845ccc836083e2bc97b2e01db1d41bd9748b7dc104d1",
     "scripts/sync_notion.py": "f9fa3f80605654b47cdb4305a37bf6829417a6ab4c5e07395fa6d4ce67ad8d61",
-    "sync/baselines.json": "db7a0e0fe21c263294eafccc88d7a8ab56e64d05bcf3031dcc561d7b2b3dd992",
+    "sync/baselines.json": "678cbb0e1fd39efcfa8dcf5de1f0599fd48caae02ae6933f20bca3b978a32975",
     "templates/channel-linkedin-post/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/channel-linkedin-post/SKILL.md": "007e86eedad9eeda4168a0dd65074c9583ef16c8f4cdff8753d8fb6d831be750",
     "templates/channel-linkedin-post/SOURCE.json": "b2929afa839842c6099afa1f86316ba0e473db3174641d7b82e89e1f144f16e3",
