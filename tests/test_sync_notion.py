@@ -10,6 +10,20 @@ spec.loader.exec_module(s)
 A, B = 'a' * 40, 'b' * 40
 
 
+class InlineProjectionTests(unittest.TestCase):
+    def test_supported_author_markup_has_explicit_transport_form(self):
+        self.assertEqual('<b>Title</b> and <code>schedule.md</code>',s.notion_inline('**Title** and `schedule.md`'))
+
+    def test_code_links_fences_and_existing_markup_are_protected(self):
+        text='[**label**](https://example.com/a) `<b>**literal**</b>`\n```python\n**literal** `x`\n```\n<code>**literal**</code>\n'
+        wanted='[**label**](https://example.com/a) <code>&lt;b&gt;**literal**&lt;/b&gt;</code>\n```python\n**literal** `x`\n```\n<code>**literal**</code>\n'
+        self.assertEqual(wanted,s.notion_inline(text))
+        self.assertEqual(wanted,s.notion_inline(wanted))
+
+    def test_equality_stays_exact_not_semantic(self):
+        self.assertNotEqual(s.canonical('**word**'),s.canonical('<b>word</b>'))
+
+
 class Source:
     ref = B
     def read(self, path, ref=None):
