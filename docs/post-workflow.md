@@ -45,15 +45,19 @@ adding or removing a link guarantees more reach.
 
 ## Review the actual version
 
-When a channel skill is in use, run the [quality gate](../templates/channel-quality-gate/SKILL.md) before the human sees the draft. The checks live on the [quality-gate record](../templates/knowledge-entries/quality-gate.md). A derivative of a newsletter records its own angle; the [channel-skills guide](channel-skills.md) is the method. A standalone short post still needs no newsletter parent.
+Use the selected channel's small working method to assemble a piece that fits the channel, vision and channel goal. The [channel-skills guide](channel-skills.md) links starter guidelines. A standalone post needs no upstream production or newsletter.
+
+Run the [quality-gate skill](../templates/channel-quality-gate/SKILL.md) before owner review. Apply corrections to the editable text, resolve addressed comments and reread the whole piece. Hold that handoff on open issues. In Notion, keep draft prose directly commentable rather than only in a code block. For media, review the actual revision with timecoded notes.
+
+Only the owner marks approval of the final version and destinations, in the existing review section or sufficient existing field. Preserve earlier approval evidence; a substantive revision needs renewed approval. A gate pass or Ready is separate from publication approval and actual delivery authority. A second-model review is optional, with no required model. Apply cadence or category limits only if selected; an unselected schedule does not block a draft.
 
 Check meaning, evidence, authorship, voice, channel fit and actual length.
 Keep approval separate from publication. For shared media, distinguish an
 attributed quote/share from permission to upload another person's video.
 Use the selected format and rights; attribution alone is not upload permission.
 
-Store each independently edited text on its Edition, linked to the production
-and Source. Revisions update that original. A repeat reference lookup must
+One production record can cover one or more channels. Follow the owner's selected grouping and keep one editable original per independently maintained version;
+a separate Edition can hold its own editing/review/delivery identity and source links. Revisions update that original. A repeat reference lookup must
 reuse the Source identity. Publication needs its applicable destination and
 version authority, then a verified result before it is marked delivered.
 

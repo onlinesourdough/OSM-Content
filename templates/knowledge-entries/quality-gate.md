@@ -1,41 +1,30 @@
-# Quality gate
+# Quality gate · review-policy prompts
 
-One Knowledge page. This page owns the first-draft checklist, the second-model switch, and the approval rule. Channel skills link here and do not copy the checks.
+Adapt the existing operating/review policy. A separate page is optional; these prompts are not new Content columns. The [gate skill](../channel-quality-gate/SKILL.md) applies the checks before owner review and verifies they still apply before delivery.
 
-This form is the method source. The owner's filled page is the runtime source the [quality-gate skill](../channel-quality-gate/SKILL.md) runs. The [setup interview](setup-interview.md) sets the switch and the approval rule once.
+## Owner review and approval
 
-Write each result on the Edition review section defined in [setup](../../docs/setup.md): gate result, gate date, and the checks that failed. Leave human approval unset. The agent does not schedule or publish.
+- Owner who marks approval:
+- Existing review section or sufficient existing field for evidence:
+- Final version and destinations covered by approval:
+- Optional second-model review: enabled or disabled; scope and permitted review route when enabled. No required model.
 
-A blank source fails its check. Revise the draft and run the list again. Show the human the draft only when every required check passes. A passing gate does not approve publication.
+Default to the production/Edition review section; no new approval Select is required. Only the owner marks approved. Gate result, Ready, voice approval and publishing authority remain separate. Preserve earlier approval evidence; changed material needs approval of its new version. The agent never marks owner approval.
 
-## Second-model switch
+## General checks to adapt
 
-- On or off:
-- When on, which model the owner selected:
+| Check | Evidence of readiness |
+| --- | --- |
+| Meaning and contribution | The whole piece makes sense; the author's contribution and claims are clear |
+| Sources and rights | Evidence supports claims; uncertainty and attribution are explicit; material use is permitted |
+| Vision, channel goal and reader | The piece serves the selected purpose and intended audience |
+| Voice and policy | Relevant accepted guidance is used; incomplete calibration stays explicit; privacy boundaries are respected |
+| Channel format | Selected language, structure, final length/duration and required media/packaging fit; actual material is accessible |
+| Planning limits, if selected | Chosen cadence/category caps are met or an owner exception is recorded; unselected limits do not fail a draft |
+| Comments | Requested corrections are applied, addressed comments resolved, and the resulting text/media is coherent; unresolved issues hold the handoff |
+| Review surface | Commentable draft text, or actual media revision with timecoded notes, is available |
+| Optional second review | If enabled, findings, responses and remaining disagreements are recorded against this version |
 
-## Approval rule
+## Per-piece review receipt
 
-- Who may set human approval:
-- Which Edition status counts as that approval:
-- The agent is not in the approver list.
-
-Scheduled and Published stay unavailable until the owner has set that status on the Edition. Voice approval, a passing gate, and Ready are different facts.
-
-## First-draft checklist
-
-| Check | Read | Pass |
-| --- | --- | --- |
-| Measured voice | Voice profile section for this channel, and the linked own posts | The profile is marked measured from those posts, and the draft's wording, pace, and structure can be pointed at those measurements |
-| Language | Language on this channel's format page | The draft is in that language |
-| Theme | Themes on the red thread | The draft's point sits on one theme |
-| Skeleton and length | Skeleton and length on this channel's format page | The draft follows that skeleton and the counted final text fits the recorded limit. Count as [writing voice](../../docs/writing-voice.md) describes, and record the method when a platform counter is unavailable |
-| Signature and formatting | Confirmed signature rules on the red thread | The draft follows those rules, including the raw-formatting rule when that is the confirmed rule |
-| Private boundaries | Confirmed boundary list on the red thread | The draft names none of them, and the list has a confirmed date |
-| Rawness and inspiration | Rawness line and inspiration links on the red thread | The draft stays on the publishable side of the line, credits a third party it uses, and keeps the author's own contribution distinct |
-| Derivation | Parent newsletter Edition, when this draft has one | The Edition records its own angle, and the draft is not a translation or a shortened copy of the newsletter. A newsletter draft, or a short post with no newsletter parent, passes this check |
-| Cadence cap | This channel's cap on the cadence page | The draft fits the cap for the current period, or the cap is an explicit "no cap", or the owner has recorded an exception on the Edition |
-| Single source | The channel skill that drafted this piece | The skill contains procedure and pointers. The facts above were read from their owners |
-| Approval still open | The approval rule on this page | Human approval is unset, and nothing was scheduled or published |
-| Second model | The switch on this page | The switch is off, or it is on and the second review against the checks above is recorded on the Edition, including disagreements |
-
-The derivation check is how a newsletter stays broader than its posts. The single-source check is how voice, the red thread, format, and cadence stay out of skills.
+Keep with the actual production/Edition: pass/hold, check date, version and destinations, unresolved checks/comments, and separately the owner's approval evidence. A pass allows an owner review request. Before delivery verify approval of the final version/destinations and actual delivery authority; this form starts no job or publication.

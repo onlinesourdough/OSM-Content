@@ -1,56 +1,32 @@
 ---
 name: content-channel
-description: Starting form for one channel skill. Use when adding a destination method that points at the shared Knowledge layer. Not a post draft and not one of the five responsibility skills.
+description: Adapt a short working method for a selected channel. Use when adding or revising how that channel's pieces are assembled. Draft and review only.
 metadata:
   version: "0.14.0"
 ---
-# Channel skill
+# Channel working method
 
-Template generation 2026-11-23.1. One skill drafts one channel. Fill the pointer table with the owner's Knowledge pages. Write the procedure for this channel below the table. Read [adoption](references/adaptation.md) when turning this into a personal skill. This file is not an installed method.
+Template generation 2026-11-24.1. This is the generic new-channel skeleton. Adapt it into one small working method (arbejdsform) per active channel: how a piece fits the channel, the owner's vision and the channel goal. Read [adoption](references/adaptation.md) and [channel skills](../../docs/channel-skills.md).
 
-The method is [channel skills](../../docs/channel-skills.md). Voice, the red thread, format, cadence, boundaries, and the quality-gate checks each have one owner. This skill stores pointers and procedure. It does not copy those pages.
+## Fill in references
 
-## Pointers
+Replace roles with verified owning records or equivalent external references. Reuse the plugin's base records; do not create pages just to complete this table.
 
-Replace each role with the owner's page URL when adopting. Leave the cell as the role name until that page exists.
+| Input | Owning reference |
+| --- | --- |
+| Vision and channel goal | Existing Knowledge direction and channel strategy |
+| Audience, voice, language and policy | Existing audience, voice/style and operating-policy records; relevant accepted examples |
+| Assembly and format | Selected channel format or production template; required sections, length/duration and visuals where chosen |
+| Material | Selected Content production, permitted sources and accessible editable original/revision |
+| Planning | Cadence entry, only if selected |
+| Review | Quality-gate method, owner review route and version/destination approval evidence |
 
-| Slot | Read on the owning page | Leave there |
-| --- | --- | --- |
-| Purpose | Channel format page, Purpose | The purpose statement |
-| Audience | Channel format page, Audience | The audience |
-| Voice source | Voice profile, this channel's section | Traits, openers, closers, own words, never-do, exemplar links |
-| Format / skeleton | Channel format page, Skeleton | The section order |
-| Length | Channel format page, Length | The limit and the unit |
-| Visuals | Channel format page, Visuals | What the channel requires |
-| Language | Channel format page, Language | The language |
-| Signature | Red thread, Signature and formatting | The rules, including raw formatting |
-| Cadence | Cadence page, this channel's block | The cap and any slot |
-| Review / quality gate | Quality-gate page, First-draft checklist | The checks |
-| Approval | Quality-gate page, Approval rule | Who approves and which status counts. The status for this piece is set on the Edition by that person |
+## Assembly guideline to adapt
 
-## Notion sources to build from
+1. Read the relevant inputs and choose the piece's point in relation to vision and channel goal. Keep evidence and the author's contribution distinct.
+2. Assemble the piece using the selected channel format: [how to open], [how to develop or demonstrate the point], [how to close for this goal]. Fill these steps for the owner's actual channel; no shared voice, language or offer is a default.
+3. Check channel fit, chosen length/duration, accessibility and material rights. Preserve a human original and its useful wording.
+4. Update the single editable original. Resolve addressed comments and read the whole piece again. In Notion, use commentable prose rather than a code-only draft.
+5. Run the [quality-gate skill](../channel-quality-gate/SKILL.md) before owner review. Hold the handoff on open issues. Leave approval for the owner; do not schedule or publish.
 
-Open these, and nothing that repeats them:
-
-1. Voice profile, this channel's section, and the exemplar links it names.
-2. Red thread: themes, signature, boundaries, rawness line, inspiration links.
-3. This channel's format page.
-4. Cadence, this channel's block.
-5. Quality-gate page.
-6. The Content production, its Source records, and the parent newsletter Edition when this piece is a derivative.
-
-Positioning and audience stay on the records those pages already link to.
-
-## Procedure
-
-Replace this list with the channel's steps. Keep the order: read the pointers, draft, run the quality-gate skill, stop.
-
-1. Read the sources above for this edition.
-2. Draft only this channel's piece, in the recorded language, to the recorded skeleton and length.
-3. When a newsletter Edition is the parent, record a narrower angle on this Edition and draft that angle.
-4. Run the quality-gate skill. Do not show the human a draft the gate has not passed.
-5. Leave human approval unset. Do not schedule or publish.
-
-## What stays out of this file
-
-Measured voice, themes, signature rules, private boundaries, the skeleton, the length, the visuals, the cap, the slot, and the checklist items.
+Store procedure and references here. Keep business facts and changing preferences at their existing owners. Record grouping and reuse policy belong to the owner's setup.

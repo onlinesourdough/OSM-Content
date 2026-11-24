@@ -1,8 +1,8 @@
 # Voice profile
 
-Place this on the existing voice or style record in Knowledge. One record. Create it only when that role has no owner. Channel skills link here. They do not copy this page.
+Place this on the existing voice or style record in Knowledge. Add a record only when real work needs it and no existing record owns the topic. Channel skills link here. They do not copy this page.
 
-This form is the method source. The owner's filled page is the runtime source. Measure the page from the owner's own posts. A description of the voice does not fill it. Evidence rules, authorship, and corrections stay in [writing voice](../../docs/writing-voice.md). The [setup interview](setup-interview.md) collects the post links once.
+This form is the method source. The owner's filled page is the runtime source. Use the owner's actual writing as evidence where available. Keep explicit owner preferences distinct from measured traits; incomplete calibration does not block a useful draft. Evidence rules, authorship, and corrections stay in [writing voice](../../docs/writing-voice.md). The [setup prompts](setup-interview.md) resolve only missing input.
 
 ## Across channels
 
@@ -24,7 +24,7 @@ Repeat this section for each active channel. Leave unused platforms out.
 - Openers:
 - Closers:
 - Own words and phrases: short phrases the posts actually use. Whole posts stay at the evidence links.
-- Never-do: writing habits rejected for this channel. Private facts that must stay unnamed live on the [red thread](red-thread.md) boundary list. Link that list. Do not copy it.
+- Never-do: writing habits rejected for this channel. Private boundaries stay in the existing operating/privacy policy. Link that owner; do not copy it.
 - Exemplars: links the owner has accepted as representative. A published post is not an exemplar until the owner says so.
 
 ## Pending observations

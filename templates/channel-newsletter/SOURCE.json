@@ -1,8 +1,13 @@
 {
-  "edition": "2026-11-23.1",
+  "edition": "2026-11-24.1",
   "template_package_version": "0.14.0",
   "status": "later template, not an installed personal skill and not part of the frozen v0.10.0 import",
   "axis": "channel",
   "channel": "newsletter",
-  "source_ownership": "Authored in OSM Content as a later generation. The v0.10.0 packets remain the frozen import."
+  "source_ownership": "Authored in OSM Content as a later generation. The v0.10.0 packets remain the frozen import.",
+  "previous_generation": {
+    "edition": "2026-11-23.1",
+    "commit": "4ba3669375bbb5400965498bad1e0a63ff3ce0d4",
+    "path": "templates/channel-newsletter"
+  }
 }

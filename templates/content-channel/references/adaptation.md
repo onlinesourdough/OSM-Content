@@ -1,13 +1,9 @@
-# Adopting a channel skill
+# Adopting a Content working method
 
-This is starting material for one personal skill, not an installed Content plugin and not one of the five frozen responsibility packets.
+This is starting material, not an installed skill. Read [channel skills](../../../docs/channel-skills.md), the selected plugin binding and the owner's relevant configuration.
 
-Read [channel skills](../../../docs/channel-skills.md) and the owner's configuration. Query existing personal skills for overlap before creating one. Preserve a useful existing method.
+Inspect existing Skills for overlap and preserve useful methods. Reuse base Knowledge/Content records and existing external originals. Use the entry forms only to fill a real task-dependent gap; create no empty mandatory profile, strategy or channel pages. Ask only missing choices, one blocking decision at a time.
 
-Create any missing Knowledge page from the forms under `templates/knowledge-entries/`. Run the setup interview once. Write each answer only to its owning page.
+Adapt a short procedure and replace role placeholders with verified references. Keep changing business facts and preferences at their existing owners. Save through the host's supported skill-management method, retaining source version, edition/hash, local adaptations and location. Do not claim native adoption from a file copy.
 
-Replace the role names in the pointer table with the owner's page URLs. Keep the procedure. Leave voice, themes, signature, boundaries, skeleton, length, visuals, cadence, and checklist items on those pages.
-
-Record the personal-Skills location, the template version, and whether the skill was actually invoked. A saved page is not proof of discovery. Exercise one draft in a non-publishing state and run the quality gate.
-
-Adoption does not approve, schedule, or publish.
+Exercise a bounded real task in a verified non-publishing state and check the output and handoff. Report pointer verification, native discovery/invocation, actual work and remaining gaps separately. Channel methods call the gate; the schedule skeleton plans without activating a job. None grants approval or publication authority.

@@ -1,134 +1,81 @@
-# One skill per channel
+# One working method per channel
 
-OSM Content keeps five responsibility skills: Setup, Intake, Prepare, Produce, and Learn. Those say **when** the work happens. This guide adds a second axis: **one skill per channel**, which says **what piece** is being made.
+OSM Content is a backbone: general requirements, best practices and adaptable templates. The owner builds a setup that fits their energy, tools and goals. Notion is the default runtime; equivalent records, editable originals and review evidence can live in another selected system.
 
-A channel is one destination the owner actually uses: the newsletter, LinkedIn, X, Instagram, TikTok, YouTube, or a later one. Each active channel has one skill. The skill holds the procedure for that piece and pointers to the shared records. Voice, the red thread, format, cadence, boundaries, and the quality-gate checks live once in the owner's Knowledge home.
+## Two skill axes
 
-The five frozen v0.10.0 packets stay unchanged. Channel skills are a later template generation. Adopting one does not install a plugin, start a schedule, or publish.
+The five responsibilities describe the work across its life. A channel working method (arbejdsform) describes how a piece is assembled to fit that channel, the owner's vision and the channel goal. Keep one small working method for each active channel. Reuse an existing useful method before adding a skill.
 
-## No redundant data
-
-Each fact has one owner in the Notion foundation. Skills, the owner configuration, and other pages link to that owner. They do not repeat the fact.
-
-| Fact | Single owner |
+| Responsibility | How it uses the channel method |
 | --- | --- |
-| Measured voice for a channel: traits, openers, closers, the author's words, voice-level never-do, exemplar links | [Voice profile](../templates/knowledge-entries/voice-profile.md) |
-| Themes, a link to existing positioning, cross-platform signature and formatting rules, private boundaries, the rawness line, inspiration links | [Red thread](../templates/knowledge-entries/red-thread.md) |
-| One channel's purpose, audience, language, skeleton, length, and visuals | [Channel format](../templates/knowledge-entries/channel-format.md) for that channel |
-| Caps and any slot the owner has chosen | [Cadence](../templates/knowledge-entries/cadence.md) |
-| First-draft checks, the second-model switch, and the approval rule | [Quality gate](../templates/knowledge-entries/quality-gate.md) |
-| Questions asked at setup | [Setup interview](../templates/knowledge-entries/setup-interview.md). Answers are written only to the owners above |
-| Gate result and human approval for one piece | The Edition review section in [setup](setup.md) |
-| The broad piece for a period | The newsletter Edition in Content |
-| Possible channel roles | The examples in [configuration](configuration.md). The chosen purpose is stored on the channel format page |
+| Setup | Inspect existing records and methods, resolve only relevant gaps, and adapt the selected channel skills |
+| Intake | Capture the idea or permitted reference and why it matters |
+| Prepare | Gather the evidence, brief and accessible material the channel needs |
+| Produce / Distribute | Assemble the piece with its channel method, run the quality gate, request owner review, then deliver only under actual authority |
+| Learn | Keep useful feedback with the piece; revise a lasting choice on its owning record |
 
-The repo forms are blank method sources. The owner's Knowledge page, filled from the form, is the runtime source. A channel skill points at the owner's page.
+The five [v0.10.0 responsibility packets](../README.md#adapt-the-useful-templates) remain frozen imports. Use this guide and [configuration](configuration.md) beside them when adapting a personal method; old packets cannot override the current plugin binding, retention or publication rules.
 
-## How the two axes work together
+## Work with the existing base records
 
-A task uses one responsibility skill. When the task produces an edition, it also uses that edition's channel skill. The quality-gate skill is shared by every channel. It is not a sixth responsibility and not a channel.
+Reuse the base records selected by OSM-plugin. These are kinds of information to find, not a compulsory title list or a request for blank pages.
 
-| Responsibility | Use of the channel axis |
+| Information needed | Where to look |
 | --- | --- |
-| [Setup](../templates/content-setup/SKILL.md) | Run the [interview](../templates/knowledge-entries/setup-interview.md) once. Create any missing Knowledge page. Adopt the channel skills the owner needs. The frozen setup packet stays the v0.10.0 import; this guide is the current interview. |
-| Intake | Save the idea on Content. Leave channel drafting and publication alone. |
-| Prepare | Gather the material the channel skill will read. |
-| [Produce](../templates/content-produce/SKILL.md) | Load the channel skill for this edition, draft, then run the [quality-gate skill](../templates/channel-quality-gate/SKILL.md). Stop for human approval. The frozen produce packet stays the v0.10.0 import. Distribution still follows its [release contract](../templates/content-produce/references/release-contract.md) and the approval rule on the quality-gate record. |
-| Learn | Write one lesson back onto the single owning record. Leave skills unchanged unless the procedure itself changed. |
+| Profile/soul, brand, priorities/tasks, offers, voice, audience, positioning and operating policy | Existing Knowledge records and their linked authoritative sources |
+| Content vision and channel strategy | Existing Knowledge direction, channel and working-preference records; link the relevant contribution of content |
+| Cadence, formats and reusable editorial templates | Existing working-preference records in Knowledge, production templates/material in Content, or their selected external equivalents |
+| Sources, production material, drafts, editions and feedback | The plugin's selected Content route; preserve its minimum schema and existing field equivalents |
+| Working steps | The owner's adapted personal Skills, pointing to the relevant records |
+| Lasting decisions and reasons | Memory when useful; routine production stays with its record |
 
-Produce loads the channel skill beside the frozen packet. The packet is not edited to contain channel facts.
+A Content-side Fundament view can collect production templates and material used as building blocks, while linking to vision, strategy, cadence or format guidance already owned in Knowledge. Do not move or duplicate those records just to fill a view. [Setup](setup.md#fundament--byggesten-views) explains the optional filters and status meanings.
 
-## Long form first
+The [entry forms](../templates/knowledge-entries) are prompts to fill a real gap on an existing owner record. They do not establish a second brand, voice, priorities or strategy system. A red thread is optional coherence guidance; existing vision, voice and policy can already cover it.
 
-The newsletter is the broad source for the period on the cadence record. It can hold the personal strand and the professional strand the red thread allows. A later post on X, LinkedIn, or another channel is a narrow derivative: one angle, chosen for that channel, linked to the newsletter Edition.
+## A short channel guideline
 
-A standalone short post can still follow the [short-post workflow](post-workflow.md) when there is no newsletter parent. A derivative records its angle on the Edition. The quality gate checks that a derivative is a new angle. A translation or a shortened copy fails the gate.
+Start with [content-channel](../templates/content-channel/SKILL.md), the generic new-channel skeleton, or a channel example:
 
-The [newsletter skill](../templates/channel-newsletter/SKILL.md) drafts the broad piece. The [newsletter-to-posts skill](../templates/channel-newsletter-to-posts/SKILL.md) chooses one angle per target channel and hands the draft to that channel's skill. The [X](../templates/channel-x-post/SKILL.md) and [LinkedIn](../templates/channel-linkedin-post/SKILL.md) skills are the examples for those destinations.
+| Channel | Skeleton |
+| --- | --- |
+| Newsletter | [channel-newsletter](../templates/channel-newsletter/SKILL.md) |
+| LinkedIn | [channel-linkedin-post](../templates/channel-linkedin-post/SKILL.md) |
+| X | [channel-x-post](../templates/channel-x-post/SKILL.md) |
+| YouTube | [channel-youtube](../templates/channel-youtube/SKILL.md) |
 
-## Quality gate, first draft, and approval
+Each guideline links to vision, channel goal, audience, voice, policy and the chosen format. Its steps explain how to select the point, assemble the piece, check channel fit and hand it to review. It may refer to a reusable format without copying its facts. Owner-specific language, offers, voice and editorial choices stay at their existing owners.
 
-Every draft passes the shared quality gate before the human sees it. The checks live only on the [quality-gate record](../templates/knowledge-entries/quality-gate.md), in the First-draft checklist. They read the interview's answers: measured voice, language, theme, skeleton, signature and formatting, private boundaries, rawness and credited inspiration, derivation, and the cadence cap. They also confirm the channel skill still holds pointers rather than a pasted copy.
+One production record can cover one or more channels. Keep one editable original for each independently maintained version and unambiguous review/delivery evidence per destination; a separate Edition is useful when editing, review or delivery needs its own identity. The owner selects record grouping and reuse policy in their setup.
 
-The [quality-gate skill](../templates/channel-quality-gate/SKILL.md) runs that list. A failed check goes back to the channel skill. The human sees the draft that passes. An optional second model runs only when the quality-gate record says so.
+The [newsletter-to-posts helper](../templates/channel-newsletter-to-posts/SKILL.md) is an optional handoff to selected channel methods. A newsletter is one possible original. No channel is a mandatory upstream source.
 
-Human approval is a status the owner sets on the Edition. The agent leaves it unset. A passing gate, Ready, or voice approval does not publish. Scheduled and Published require the explicit approval status named on the quality-gate record, then the applicable delivery authority.
+## A schedule helps; the owner chooses it
 
-## Ask once, at setup
+A documented cadence makes workload, upcoming review and gaps visible. The [content-schedule skeleton](../templates/content-schedule/SKILL.md) reads an existing [cadence entry](../templates/knowledge-entries/cadence.md) in Knowledge or its equivalent and proposes a plan. It prescribes no frequency, posting time or daily workflow. The owner may leave cadence unselected; that does not block an ordinary draft.
 
-Customers should be able to reach a sound first draft without a correction loop. The [setup interview](../templates/knowledge-entries/setup-interview.md) is the one sitting. It asks for the facts below, writes each answer to its owner, and does not ask again while the answer still stands. Later productions read the records. The quality gate checks them before the human sees a draft.
+Record only actual choices: selected channels, rhythm or on-demand use, timezone where times matter, optional planning horizon, review route, and limits when wanted. A planning entry is distinct from a live scheduler job. Installing or adopting the skill creates no automation.
 
-- Own posts to measure voice from, per channel
-- Per-channel language, with purpose, audience, skeleton, length, and visuals
-- Red-thread themes, and a link to positioning if that already has an owner
-- Signature and formatting rules, including how raw the formatting stays
-- Private boundaries, starting from home city and family details, confirmed or replaced
-- Inspirations, and the line for what is too raw
-- Cadence caps, with an explicit "no cap" when that is the choice
-- Who approves publication, which status counts, and whether a second model reviews first
+Optional patterns include a short daily owner approval window for work due soon, backed by a bank replenished on a chosen cycle; and owner-named value categories with caps to keep one theme or selling from dominating. Neither pattern is a prerequisite. Approval before publication remains required for each final version and destination.
 
-A change later is an edit to the owning record, then the next gate run. It is not a second interview and not a copy inside a skill.
+## Quality gate, comments and owner approval
 
-## The journey
+The shared [quality-gate skill](../templates/channel-quality-gate/SKILL.md) checks the actual text or media before requesting owner review and again before delivery when the version or conditions have changed. Check meaning, evidence, attribution, vision, channel goal, voice, format, privacy and rights. Apply cadence or category limits only when selected. Partial voice evidence stays explicit; a first draft does not require complete style calibration.
 
-These stages build the content side of a business. "Done" is an observable state. A later stage can start while an earlier one is done for the channels already in use. Unused platforms stay absent.
+Apply review comments to the editable original and check that the resulting piece makes sense. Resolve comments whose requested changes are addressed. A contradictory or unresolved comment holds the review handoff; record the precise blocker rather than marking it resolved. An owner decision can be requested without presenting an unfinished draft as ready.
 
-### 1. Setup
+In Notion, keep the draft in ordinary editable text that the owner can comment on, with review notes beside it. For video, link the actual revision and use timecoded review notes. A code block may hold code examples, but should not be the only editable copy of a prose draft.
 
-Measure voice from the owner's own posts. Write the red thread, private boundaries, channel formats, cadence caps, and approval rules once.
+Use the existing review section (or a sufficient existing field) for gate result/date, version, destinations, open issues and owner approval. No new approval Select is required. Only the owner marks approval. Preserve prior approval evidence; a changed version needs renewed approval. A gate pass, Ready, or a voice exemplar selection is not publication approval. Publishing or activating a delivery job also needs applicable destination authority and verified outcomes under the [release contract](../templates/content-produce/references/release-contract.md).
 
-Done when the interview completion is recorded, each selected channel has voice measurements with evidence links, the red thread has confirmed themes, signature rules, and boundaries, each selected channel has a format page including language, the cadence page has a cap or an explicit "no cap", and the quality-gate page has the approval rule. No skill contains those facts.
+A second-model review is an optional switch on the owner's review policy, with no required model. Record findings and unresolved disagreements with the version reviewed; the switch grants no extra data-sharing permission.
 
-### 2. First channel skills
+## Build and check an owner's setup
 
-Adopt one channel skill from the [channel template](../templates/content-channel/SKILL.md). Point it at the records above. Draft one edition and hold it.
+1. Inspect the selected plugin routes, existing base records, editorial original and useful skills. Respect an external route or deferred Content setup.
+2. Use the [setup prompts](../templates/knowledge-entries/setup-interview.md) only for gaps affecting the selected task. Save a supported choice once, at its existing owner. Do not repeat a complete interview on normal use.
+3. Adapt one channel guideline through the available skill-management method. Record template provenance and local changes; verify its pointers and actual discovery/invocation separately.
+4. Exercise a real, bounded draft in a verified non-publishing state, run the gate and request owner review. Structure alone does not prove useful work or complete calibration.
+5. Add cadence, another channel, recurring planning or delivery only when selected and authorized. Keep superseded guidance as linked history rather than deleting it.
 
-Done when that skill is in the owner's personal Skills, its pointers resolve, and one Edition has been through the quality gate before the human saw it. The Edition is not Scheduled or Published.
-
-### 3. Long form first and derived posts
-
-Write the newsletter as the broad piece. Derive other posts from it, each with its own angle.
-
-Done when a newsletter Edition for the period holds that broad piece. Every other selected channel's Edition for the period links to it, records its own angle, and passes the derivation check. When the newsletter is the only selected channel, that broad Edition completes the stage.
-
-### 4. Quality gate and approvals
-
-Run the first-draft checklist before the human sees any draft. Publish only after an explicit human approval status.
-
-Done when every Edition the human was shown has a passing gate result recorded first, and every Scheduled or Published Edition has the owner's approval status set by the owner.
-
-### 5. Scheduled queue and weekly review
-
-Put approved editions in a queue only under real delivery authority. Review the period and keep one lesson.
-
-Done when every queued Edition has the approval status and, where a schedule exists, the service's job id, and the period's review wrote one lesson onto the owning Knowledge record. The review period is the one on the cadence page. A weekly review is the name of this stage when the owner has chosen a week.
-
-### 6. Mature
-
-Every channel the owner actually uses has one skill. The same shared records feed all of them. The newsletter stays the broad source. The gate and the approval run as part of the work.
-
-Done when stages 3–5 hold for the current period across every channel in the owner configuration, and the cadence page is the only calendar. Leave unselected platforms without a skill or a format page. This is the working shape of a content side that is already running. The module stores no one person's calendar, voice, or private boundaries.
-
-## Add a channel
-
-YouTube, Instagram, TikTok, and any later destination use this path. Newsletter, X, and LinkedIn already have example skills.
-
-1. Add the channel to the selected set in the owner configuration only when the owner chooses it. Role examples stay in [configuration](configuration.md).
-2. Create one format page from the [channel format](../templates/knowledge-entries/channel-format.md) form. Ask only the interview fields that are still empty for this channel.
-3. Add one cap, and a slot only if the owner names one, on the existing cadence page.
-4. Add a section to the existing voice profile, measured from this platform's own posts. Keep one voice profile.
-5. Adapt the [channel template](../templates/content-channel/SKILL.md) into personal Skills. Replace role names with the owner's page links. Write the procedure. Leave the record bodies in Knowledge.
-6. Draft one edition in a non-publishing state and run the quality gate.
-
-## Lessons from the first real run
-
-The module author was the first real user of OSM Content. The learnings below are generic. Each one now has a single home, and the setup interview asks for it once so a later customer is not walked through the same corrections. The module contains none of that author's calendar, voice, city, or family details.
-
-- Voice measured from the author's own posts is the profile. A description of the voice does not fill it. Home: the voice profile. The interview asks for the posts, then measurement fills the profile.
-- Voice and the red thread are data in Knowledge. They are not skills. Skills point at the records.
-- The newsletter is broader than the posts that come from it. A post that repeats the newsletter fails the derivation check on the quality gate.
-- Raw formatting is the signature default: keep the formatting as raw as the author's own posts. Heavy formatting is a miss unless a confirmed signature rule accepts it. Home: the red thread.
-- Signature and formatting rules that a reader should recognize on every platform belong to the red thread. The channel format page owns that channel's skeleton, length, and visuals, and it links to the signature rules.
-- Private details stay unpublished. The starter boundaries to confirm are home city and family details. Home: the red thread. The gate checks the confirmed list.
-- Each fact lives in one place. A skill that has a pasted copy fails the quality gate.
-- Nothing is published without an explicit human approval status on the Edition. The agent does not set that status.
+Channel, schedule and gate skeletons remain Git sources, outside the eight synced Notion catalogue pages. The public guide links to them. Adopting a private skill and publishing a method release are separate authorized actions.

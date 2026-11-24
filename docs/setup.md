@@ -8,7 +8,7 @@ Inspect the existing content workflow, database schema, integrations and media l
 
 An explicit request to set up this extension normally covers the missing collection and ordinary properties inside the owner's authorized home; reuse that authority. Inspect both schema dependencies and row-level triggers before writing: a new row, Type/Status choice or checkbox can publish to a website, send mail or trigger another system. Do not use an integrated destination for a sample until the chosen draft state is confirmed non-publishing. Unknown destinations, consequential changes to an integration or new external access need a concrete resolution; they are not permission to create another account or content mirror.
 
-The personal configuration should link the owner's direction/goals, audience and perspective, voice/style and actual working choices. Reuse existing Knowledge records; these are responsibilities, not mandatory <code>vision.md</code> files or new databases. Choose a purpose for each active channel, including newsletter/email as its own channel. The configuration guide provides adaptable channel-role examples. Before the first channel draft, run the [setup interview](../templates/knowledge-entries/setup-interview.md) once and write each answer onto the Knowledge page that owns it.
+The personal configuration should link the owner's direction/goals, audience and perspective, voice/style and actual working choices. Reuse existing Knowledge records; these are responsibilities, not mandatory <code>vision.md</code> files or new databases. Choose a purpose for each active channel, including newsletter/email as its own channel. The configuration guide provides adaptable channel-role examples. Use the [setup prompts](../templates/knowledge-entries/setup-interview.md) only to resolve relevant missing input. Save each supported answer at its existing owner; do not add empty mandatory pages.
 
 ## One collection, three record types
 
@@ -18,7 +18,7 @@ The personal configuration should link the owner's direction/goals, audience and
 | Content | An idea growing into a production, with one stable identity | An explanation based on real work |
 | Edition | An independently edited version for a format or destination | A LinkedIn post or newsletter derived from that production |
 
-An idea can become a production on the same Content record. Create an Edition when it has its own editable text, packaging, review or delivery. One newsletter may use several sources or productions. A Source keeps its own state when something derived from it is published.
+An idea can become a production on the same Content record. One production record can cover one or more channels; grouping is an owner choice. Keep a single editable original per independently maintained version and review/delivery evidence per destination. Create an Edition when independent editing, packaging, review or delivery benefits from its own identity. One newsletter may use several sources or productions. A Source keeps its own state when something derived from it is published.
 
 ## Reuse the core Content foundation
 
@@ -56,9 +56,11 @@ Use one Select with only the values needed by the chosen workflow; map existing 
 | --- | --- | --- |
 | Source | Inbox → Reviewed, or Archived | The source/coverage was actually inspected; Reviewed does not mean every external claim was verified. A derivative's publication never publishes the Source. |
 | Content | Inbox → Selected → Preparing → Material ready → Producing → Ready → Scheduled / Published only for direct delivery | The owner or configured selection policy selects it. Material ready requires actual accessible text/media and a known revision. Ready requires the configured review of the finished original. |
-| Edition | Preparing / Producing → Ready → Scheduled / Published | Ready requires the configured review, including a human where selected. Scheduled needs the service's real job ID; Published needs verified delivery evidence. |
+| Edition | Preparing / Producing → Ready → Scheduled / Published | Ready requires the configured review; publication approval is still an owner decision. Scheduled needs the service's real job ID; Published needs verified delivery evidence. |
 
-Paused, Needs review and Archived are optional across types. The shared quality gate runs while the Edition is still Producing, before the human sees the draft. The agent records that gate result. The owner sets the human approval status named on the quality-gate record. Ready requires that configured review, including the person where the approval rule requires one. Self-review does not replace a required human gate. A passing gate, voice approval, and Ready do not publish. Scheduled and Published require that approval status, then the applicable delivery authority. A directly published original can retain its delivery section on the Content record when that is the existing configured workflow; no duplicate editable body is required.
+Paused, Needs review and Archived are optional production states. Do not confuse these with Knowledge's selection/quality statuses below. Run the shared quality gate before owner review, while the piece is still being produced. Record its result in the review section. Apply corrections, resolve addressed comments and check that the text itself makes sense; unresolved issues hold the review handoff. In Notion, keep draft prose directly commentable rather than only in a code block.
+
+Only the owner marks approval of the final version and destinations. Use the existing review section or a sufficient existing field; no new approval Select is required. Preserve earlier approval evidence, and require renewed approval when material changes. Ready, a gate pass and voice approval are separate from publication approval. Scheduled/Published also require actual delivery authority and verified service evidence. A directly delivered original can keep its review and delivery section on the Content record without a duplicate editable body.
 
 For each selected destination retain its delivery state, actual revision, account, date/URL or send/job ID in a delivery section. One edition may have several deliveries. Failed and Outcome unknown describe real delivery results; if some destinations succeeded, retain Partially published until the others are reconciled. Do not let one public URL erase a failed email. Add those Select values only when used; the delivery section is authoritative for the individual results.
 
@@ -70,7 +72,7 @@ Use only the sections a record needs:
 
 - Source: original location/attribution, why saved, permitted excerpt or supported annotation, source date/coverage and uncertainty. For creative references, record the specific technique and relevant time range; follow the [reference-library workflow](reference-library.md) when it informs reusable guidance.
 - Content: angle, chosen goal and its Knowledge reference/revision, audience, evidence, brief/script, actual material links, and next useful action. A goal revision is its owning record link plus Revised/version, or an explicit selected statement/date when no semantic revision exists; preserve that selection rather than inventing a date.
-- Edition: parent/source links, editable body or media-project reference, destination, review section, delivery evidence and dated feedback. The review section holds the quality-gate result, the gate date, any failed checks, the human approval status, and the approver. The [quality-gate record](../templates/knowledge-entries/quality-gate.md) defines when the gate passes and which status counts as approval. The agent writes the gate result and leaves human approval unset until the owner sets it.
+- Edition: parent/source links, editable body or media-project reference, destination, review section, delivery evidence and dated feedback. The review section holds the quality-gate result, the gate date, any failed checks, the checked version/destinations, open comments/issues, and separately the owner's approval evidence. Use the existing review policy; the [gate prompts](../templates/knowledge-entries/quality-gate.md) can fill a real gap. The agent records the gate result, never owner approval.
 
 A brief is not footage. A Source summary is not the full transcript. Separate original words, our annotation and a proposed angle. Preserve human writing and useful prior reasons while revising the affected current section instead of appending a contradictory history.
 
@@ -80,24 +82,28 @@ Notion is the editorial index and context home, not mandatory storage for large 
 
 Record who owns storage/backup and what the agent can actually access. A link is not a backup. A local path is scoped to its host, not a universal data location. Do not upload private footage to a cloud service to bypass a missing route. Existing editors, external editorial originals and analog material can stay; map one editable original and its handoff rather than making a competing copy.
 
-## Shared Knowledge layer
+## Reuse base records and editorial building blocks
 
-Voice, the red thread, channel format, cadence and the quality gate are pages in the existing Knowledge home. They are not a new database, not new Content types, and not new columns on the Content collection. The core minimum fields stay the authority for Source, Content and Edition. Create a page only when that role has no owner. Link the pages from `knowledge_layer_refs` on the owner configuration. Skills store those links and leave the facts on the pages.
+Find the relevant profile/soul, brand, priorities/tasks, offers, audience, voice, positioning and operating-policy records in the plugin's existing Knowledge route. These are kinds of information, not compulsory titles. Content vision and channel strategy link that direction to production. Cadence and formats are working preferences in Knowledge or their existing equivalent; reusable production templates/material belong in Content. Do not move existing records or duplicate their facts to impose this split.
 
-| Page | Single owner of | Form |
-| --- | --- | --- |
-| Voice profile | Measured voice per active channel | [voice-profile](../templates/knowledge-entries/voice-profile.md) |
-| Red thread | Themes, signature and formatting, private boundaries, rawness, inspiration links | [red-thread](../templates/knowledge-entries/red-thread.md) |
-| Channel format | One channel's purpose, audience, language, skeleton, length and visuals | [channel-format](../templates/knowledge-entries/channel-format.md) |
-| Cadence | Caps and any slot the owner has chosen | [cadence](../templates/knowledge-entries/cadence.md) |
-| Quality gate | First-draft checklist, second-model switch, approval rule | [quality-gate](../templates/knowledge-entries/quality-gate.md) |
+Use the [entry forms](../templates/knowledge-entries) only to fill real gaps. A red thread, separate format page or dedicated gate page is optional when existing guidance already serves the task. Adapted Skills hold short procedures and references, rather than another profile/brand/priority system. The [channel-skills guide](channel-skills.md) explains the responsibility axis plus one assembly guideline per selected channel, including YouTube and the generic new-channel skeleton. The five frozen responsibility packets remain unchanged.
 
-The [setup interview](../templates/knowledge-entries/setup-interview.md) asks once and writes each answer onto the page in this table. Channel skills are a later template generation, adapted in the same personal-Skills step as the five responsibilities. The frozen v0.10.0 packets stay as they are. Produce loads the channel skill for the edition from the [channel-skills guide](channel-skills.md). The journey in that guide says what done looks like from this setup through every selected channel running.
+A documented [cadence](../templates/knowledge-entries/cadence.md) and [schedule skeleton](../templates/content-schedule/SKILL.md) help plan workload and review. The owner chooses whether and how to use them; no rhythm, horizon or daily workflow is required. A planning choice creates no automation.
+
+## Fundament / Byggesten views
+
+Before ideas and production accumulate, make the relevant base records easy to find. A best-practice Fundament / Byggesten view in Knowledge selects the existing direction, voice, audience, policy and channel working preferences needed by the chosen workflow. In Content, select reusable templates or production building blocks and link the Knowledge owners where appropriate. A thin view is valid; create no empty mandatory pages, parallel stores or copies just to fill it. Memory needs few or no such files.
+
+Filter using sufficient existing Kind/tags, explicit record selection or suitable existing metadata. Add an optional foundation marker only when a useful view needs it and schema changes are authorized; the method adds no required column. Exclude Superseded records from the working foundation view and retain them in All/history. Verify actual view membership; a view is not an access boundary.
+
+Knowledge status meanings follow the plugin: **Current** = selected for use; **Needs review** = useful uncertainty, never age alone; **Superseded** = replaced and retained history. Historical temporal scope is separate, so a historical record can still be Current. Keep Current and All views, with optional Attention (also called **Needs attention**) for flagged records or justified review dates. Needs attention is a view, not a topic or niche. Do not apply these selection meanings to Content delivery states.
+
+Reuse one current owner per fact; mark genuinely replaced guidance Superseded with its replacement link, rather than deleting it. Do not mark it obsolete just for being old.
 
 ## Register and verify
 
 1. Reuse or save the verified Content binding in the existing Definition or its source agreement. Link it from personal configuration; keep selected editorial fields/views there and preserve general goals and policy ownership.
-2. Adapt only the useful skill templates into the owner's personal Skills through the available skill-management method. Check existing methods and collisions first; keep their selected versions/references and human originals. Responsibility templates and channel-skill templates stay distinct. A channel skill points at the Knowledge pages above.
+2. Adapt only the useful skill templates into the owner's personal Skills through the available skill-management method. Check existing methods and collisions first; keep their selected versions/references and human originals. Responsibility templates and channel-skill templates stay distinct. A channel skill links the relevant base records and production building blocks above.
 3. When the owner selects the editorial workflow, exercise one bounded authorized example in a verified non-publishing state: capture a source/idea, prepare the needed material, and follow its actual next handoff. Do not publish just to prove setup. A repeat capture/setup must reuse identities. For a one-off capture without saved configuration, inspect the actual schema, key convention and integration-safe draft state, reuse standing write authority and resolve only material gaps. Full setup or a new configuration record is not a prerequisite for that isolated safe task.
 4. Report separately what is mapped, created, adapted, enabled/discoverable, actually exercised and still missing. A saved skill page is not proof of native discovery or installation.
 

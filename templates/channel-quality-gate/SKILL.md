@@ -1,46 +1,22 @@
 ---
 name: channel-quality-gate
-description: Run the shared first-draft checklist against a finished draft before the human sees it. Use before review. Does not approve, schedule, or publish.
+description: Check a content version before owner review or authorized delivery. Holds unresolved comments and issues; never marks owner approval or publishes.
 metadata:
   version: "0.14.0"
 ---
 # Quality gate
 
-Template generation 2026-11-23.1. This skill runs the owner's quality-gate page. Every channel skill calls it after drafting and before the human sees the piece. The checks, the second-model switch, and the approval rule live on that page, created from the [quality-gate form](../knowledge-entries/quality-gate.md).
+Template generation 2026-11-24.1. Shared check-before-review/publish practice. Adapt to existing review policy using the [gate prompts](../knowledge-entries/quality-gate.md). Read [adoption](../content-channel/references/adaptation.md). Publication still follows the [release contract](../content-produce/references/release-contract.md).
 
-Read [adoption](../content-channel/references/adaptation.md) when saving a personal skill. The method is [channel skills](../../docs/channel-skills.md). Delivery authority stays in the [release contract](../content-produce/references/release-contract.md).
+## Inputs
 
-## Pointers
-
-| Slot | Owning page |
-| --- | --- |
-| Purpose | The channel format page for the draft being checked |
-| Audience | The channel format page for the draft being checked |
-| Voice source | Voice profile, section for this channel |
-| Format / skeleton | The channel format page |
-| Length | The channel format page |
-| Visuals | The channel format page |
-| Language | The channel format page |
-| Signature | Red thread, Signature and formatting |
-| Cadence | Cadence page, this channel's block |
-| Review / quality gate | Quality-gate page, First-draft checklist |
-| Approval | Quality-gate page, Approval rule |
-
-## Notion sources to build from
-
-1. The owner's quality-gate page.
-2. The Edition under review, its parent newsletter Edition when it has one, and the channel skill that drafted it.
-3. The voice, red-thread, format, and cadence pages named by the checklist.
-
-Run the owner's page. Use the form in this repository only while that page is being created. A blank field on the owner's page fails the check that reads it.
+The actual text/media revision and destinations; relevant vision, channel goal, audience, voice/style, format, operating policy, sources and rights; selected cadence/limits if any; existing comments and review/approval evidence. These are references to existing owners, not required new pages.
 
 ## Procedure
 
-1. Open the owner's quality-gate page and the Edition.
-2. Run every row of the First-draft checklist, in order. Write the result and the date on the Edition review section from [setup](../../docs/setup.md).
-3. When a check fails, return the failed rows to the channel skill. Do not show the draft to the human.
-4. When a second-model switch on the page is on, record that review and its disagreements on the Edition before the result can pass.
-5. When every required check passes, the human may see that draft.
-6. Leave human approval unset. Do not schedule or publish.
-
-A pass means the draft is ready for the owner to read. It does not set the approval status and it does not move the Edition to Scheduled or Published.
+1. Read the whole piece. Check meaning, evidence, authorship/attribution, vision and channel goal, relevant voice guidance, format/length, privacy, rights and required material/packaging. Record uncertainty without claiming complete voice calibration.
+2. Apply the selected owner checks and planning limits. An unselected optional field is not a failure; a missing input essential to this piece holds the affected check.
+3. Apply requested corrections to the original, resolve addressed comments, and reread the result. Hold the review handoff on open issues; ask for a blocking decision without labelling the draft ready.
+4. If the owner enabled second-model review, record its findings and remaining disagreements for this revision. Use only permitted source handling and an available authorized review route; no model is prescribed.
+5. Record pass/hold, date, checked revision/destinations and open issues in the existing review section or equivalent. Request owner review only on pass, using commentable text or actual media with timecoded notes.
+6. Leave owner approval to the owner. Preserve prior evidence; a substantive change requires renewed approval for the new version. Before delivery, confirm the gate still applies, comments are resolved and the owner approved this final version/destinations. A pass or Ready does not grant delivery authority. Do not schedule or publish from this skill.

@@ -1,45 +1,28 @@
 ---
 name: channel-linkedin-post
-description: Draft one LinkedIn post from the shared Knowledge layer and the LinkedIn format record. Use for a LinkedIn edition. Does not publish.
+description: Draft a LinkedIn piece using the owner’s channel working method and base records. Does not publish.
 metadata:
   version: "0.14.0"
 ---
 # LinkedIn post
 
-Template generation 2026-11-23.1. This skill drafts one LinkedIn Edition. Purpose, audience, language, skeleton, length, and visuals come from the LinkedIn format page.
+Template generation 2026-11-24.1. Adapt this short working method to the owner’s actual channel. Use the [generic channel skeleton](../content-channel/SKILL.md) for its input roles and [adoption](../content-channel/references/adaptation.md) for saving a personal skill.
 
-Read [adoption](../content-channel/references/adaptation.md) when saving a personal skill. The form is the [channel template](../content-channel/SKILL.md). The method is [channel skills](../../docs/channel-skills.md).
+## References to fill
 
-## Pointers
+- Existing vision, channel strategy/goal and audience: [owning references].
+- Voice/style, language, operating policy and relevant examples: [owning references].
+- Selected channel format/template and optional cadence: [owning references].
+- Content material, sources and editable original: [actual record/revision].
+- Quality gate and owner approval route: [existing method/policy].
 
-| Slot | Owning page |
-| --- | --- |
-| Purpose | Channel format page for LinkedIn |
-| Audience | Channel format page for LinkedIn |
-| Voice source | Voice profile, LinkedIn section |
-| Format / skeleton | Channel format page for LinkedIn |
-| Length | Channel format page for LinkedIn |
-| Visuals | Channel format page for LinkedIn |
-| Language | Channel format page for LinkedIn |
-| Signature | Red thread, Signature and formatting |
-| Cadence | Cadence page, LinkedIn block |
-| Review / quality gate | Quality-gate page, First-draft checklist |
-| Approval | Quality-gate page, Approval rule |
+## Assembly
 
-## Notion sources to build from
+1. Read the relevant references. Resolve only missing inputs that affect this piece; reuse sufficient existing guidance.
+2. Select the point and supporting work or evidence that serve the LinkedIn goal and intended reader.
+3. Assemble the opening, explanation or demonstration, and ending with the owner’s selected format and voice. Use the chosen text or media treatment.
+4. Check the final displayed text, chosen length, links and visuals. Use the selected channel constraints; verify current platform limits if needed.
+5. Update the single editable original and resolve addressed comments. Keep reviewable prose commentable in Notion; use timecoded notes for media.
+6. Run the [quality-gate skill](../channel-quality-gate/SKILL.md) before owner review. Hold the handoff on unresolved issues. Only the owner marks approval of the version and destinations. Do not schedule or publish.
 
-1. Voice profile, LinkedIn section, and its exemplar links.
-2. Red thread: themes, signature, boundaries, rawness line, inspiration links.
-3. LinkedIn format page.
-4. Cadence, LinkedIn block.
-5. Quality-gate page.
-6. The Content production, its Sources, and the parent newsletter Edition when this post is a derivative.
-
-## Procedure
-
-1. Read the sources above. Use the purpose on the LinkedIn format page for this edition's job.
-2. When a newsletter Edition is the parent, read it, choose one angle narrower than that piece, and record the angle on this Edition. Draft the angle. Leave the newsletter's structure and wording in the newsletter.
-3. When there is no newsletter parent, draft the standalone point the Content record already chose.
-4. Keep the draft inside the recorded skeleton, length, language, and visuals.
-5. Run the [quality-gate skill](../channel-quality-gate/SKILL.md). The human sees the draft only after it passes.
-6. Leave human approval unset. Do not schedule or publish.
+Business facts, language, voice, offers and reuse choices stay in the owner’s setup. This source is an adaptable skeleton, not an installed skill or a qualification of an editor.

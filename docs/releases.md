@@ -1,18 +1,16 @@
 # Method releases
 
-## v0.14.0 · 23 November 2026
+## v0.14.0 · proposed, revised 24 November 2026
 
-Adds a channel-skill axis beside the five responsibility skills. One skill
-drafts one channel. Voice, the red thread, per-channel format, cadence and the
-quality gate each have one Knowledge form. Skills point at those pages. A setup
-interview asks once for the facts a first draft needs, and the first-draft
-checklist runs before a person sees the draft. Human approval stays an explicit
-status on the Edition.
+Defines Content as an optional operating model beside OSM-plugin: requirements, best practices and adaptable skeletons. Notion is the default; equivalent external records and human workflows remain valid. Reuses the plugin's base Knowledge/Content records and minimum-schema binding, with optional Fundament / Byggesten views and clear Knowledge status meanings.
 
-The journey runs from that setup through a mature set of selected channels.
-Newsletter, newsletter-to-posts, X, LinkedIn and the quality gate are generic
-examples. The five v0.10.0 packets stay frozen. No personal calendar is included,
-and this release publishes nothing.
+Keeps two axes: five responsibilities plus one small channel working method that fits the channel, vision and channel goal. Sharpens newsletter, LinkedIn and X, adds YouTube and keeps the generic new-channel skeleton. Newsletter reuse is an optional helper; owner choices are not shared workflow rules.
+
+Adds a schedule planning skeleton using an owner-selected cadence entry and optional horizon, without prescribed rhythm or activated jobs. Generalizes the quality gate, comment resolution and commentable drafts before owner review. Only the owner marks final version/destination approval; use the existing review section or an equivalent field, with no new required Select. Second-model review is optional and names no model.
+
+Rewrites the public guide around the operating model, base records and building an owner's setup. Keeps the earlier illustrations collapsed and preserves native child/catalogue/media references for the existing sync contract. The eight-page sync catalogue remains unchanged; later templates stay in Git. No private Notion records were moved or rewritten.
+
+The five v0.10.0 packets remain byte-for-byte frozen. Later skeletons use edition 2026-11-24.1; their earlier 2026-11-23.1 proposal remains at commit `4ba3669375bbb5400965498bad1e0a63ff3ce0d4`. This proposal is not a release, native-adoption proof or complete style calibration, and publishes nothing.
 
 ## v0.13.1 · 22 November 2026
 

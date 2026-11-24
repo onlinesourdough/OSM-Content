@@ -16,7 +16,7 @@ The source-to-page mapping is in [release.json](../release.json):
   and the current method guidance. Updating a note does not reversion a packet.
 - docs/post-workflow.md, docs/reference-library.md, docs/writing-voice.md,
   docs/sidebar-icons.md and docs/channel-skills.md are linked detail in Git.
-  Channel-skill templates and Knowledge entry forms are a later generation
+  Channel, schedule and gate skeletons and Knowledge entry forms are a later generation
   under templates/. They are not part of the frozen v0.10.0 packets and they
   are not among the eight synced Notion pages.
 
@@ -104,3 +104,9 @@ This is a deliberate root-baseline handoff, not relaxed conflict or native-media
 checks. The other seven baseline entries and frozen packet bytes remain unchanged.
 The next live preflight must independently match the complete API body and
 new native media identities before any projection is called qualified.
+
+## PR #15 guide rewrite
+
+The proposed v0.14.0 guide leads with the operating model and the two skill axes. Earlier illustrations remain collapsed as optional reference, preserving the exact native child/catalogue/media sequence required by the publisher. No baseline or live Notion page is changed by this source revision. Later template edition 2026-11-24.1 records its previous generation where applicable; the five v0.10.0 imports and provenance stay frozen.
+
+Second-model review stays an optional owner-policy switch without a named model. Approval uses the existing per-piece review section or an equivalent existing field; no new Select is required. The channel, schedule and gate templates stay in Git and do not expand the eight-page synced catalogue. Live projection and adoption still need their own evidence.
