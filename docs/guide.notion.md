@@ -39,11 +39,11 @@ Personal configuration
 | Responsibility skills | Setup, Intake, Prepare, Produce / Distribute and Learn cover the life of the work |
 | Channel working methods (arbejdsformer) | One small guideline per active channel explains how to assemble a piece that fits the channel, your vision and its goal |
 
-Existing skills may already cover responsibilities. Adapt only what helps. The primary <mention url="https://app.notion.com/p/4226d2e17f568142a957f3c3577e106b">content-channel skeleton</mention> is read and replicated by an agent for your selected channel or format. Newsletter, LinkedIn, X and YouTube are existing thin example copies, not a growing catalogue to install. Each working method links to your context, explains assembly and hands the result to the shared quality-gate skill. The optional newsletter-to-posts helper coordinates reuse when you select it; no channel is mandatory upstream.
+Existing skills may already cover responsibilities. Adapt only what helps. The primary <mention url="https://app.notion.com/p/4226d2e17f568142a957f3c3577e106b">content-channel</mention> is read and replicated by an agent for your selected channel or format. Newsletter, LinkedIn, X and YouTube are existing thin example copies, not a growing catalogue to install. Each working method links to your context, explains assembly and hands the result to the shared quality-gate skill. The optional newsletter-to-posts helper coordinates reuse when you select it; no channel is mandatory upstream.
 
 [Channel methods and starter chain](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/docs/channel-skills.md)
 
-Start with the current **content-channel** entry below. Open its <mention url="https://app.notion.com/p/4226d2e17f568131a04eee2fcda94904">portable references</mention> for adaptation.md, quality-gate.md and schedule.md, or download the complete skill packet from Files. The five original responsibility templates remain frozen **v0.10.0 Drafts**, useful as responsibility examples rather than five required installations:
+Start with the current **content-channel** entry below. Open its <mention url="https://app.notion.com/p/4226d2e17f568131a04eee2fcda94904">references</mention> for adaptation.md, quality-gate.md and schedule.md, or download the complete skill packet from Files. The five original responsibility templates remain frozen **v0.10.0 Drafts**, useful as responsibility examples rather than five required installations:
 
 - <mention url="https://app.notion.com/p/40d6d2e17f5681578925cdc0774c6db5">content-setup</mention>
 - <mention url="https://app.notion.com/p/40d6d2e17f5681c99020d85e3bc1ff4b">content-intake</mention>

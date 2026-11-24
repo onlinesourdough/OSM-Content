@@ -74,6 +74,22 @@ def verify_current_inputs(source, baselines):
             raise Held('Current channel packet inputs changed; a reviewed native packet handoff is required')
 
 
+def read_source_property(props):
+    field = props.get('Source') or {}
+    items = field.get('rich_text')
+    if field.get('type') != 'rich_text' or not isinstance(items, list) or any(not isinstance(t, dict) for t in items):
+        raise Held('Template Source property is not the bound text field')
+    source, links = '', []
+    for item in items:
+        text = item.get('plain_text', (item.get('text') or {}).get('content', ''))
+        if not isinstance(text, str):
+            raise Held('Template Source text is incomplete')
+        source += text
+        for url in {item.get('href'), ((item.get('text') or {}).get('link') or {}).get('url')} - {None}:
+            links.append({'text': text, 'url': url})
+    return source, links
+
+
 def chunks(body):
     # Temporary image/file signatures are never part of a matched prose edit.
     return re.split(r'(<(?:image|file|pdf)\b[^>]*>)', body)
@@ -213,12 +229,7 @@ class API:
         source = None
         source_links = []
         if page_id in ALL_TEMPLATES:
-            if props.get('Source', {}).get('type') != 'rich_text':
-                raise Held('Template Source property is not the bound text field')
-            source = ''.join(t.get('plain_text', (t.get('text') or {}).get('content', '')) for t in props['Source']['rich_text'])
-            for t in props['Source']['rich_text']:
-                for url in {t.get('href'), (t.get('text', {}).get('link') or {}).get('url')} - {None}:
-                    source_links.append({'text': t.get('plain_text', (t.get('text') or {}).get('content', '')), 'url': url})
+            source, source_links = read_source_property(props)
         # All non-managed properties must remain unchanged. File URLs expire; compare their immutable path/name.
         def stable(value):
             if isinstance(value, dict):

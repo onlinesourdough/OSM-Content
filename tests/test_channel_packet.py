@@ -54,8 +54,19 @@ class PacketTests(unittest.TestCase):
         with self.assertRaises(s.Held):s.verify_current_identity(page,bad)
     def test_cleared_identity_fields_hold_explicitly(self):
         page=next(iter(s.CURRENT_TEMPLATES))
-        for props in [{}, {'Key':None}, {'Area':{'select':None},'Status':{'select':None}}, {'Key':{'type':'rich_text','rich_text':None}}]:
+        valid={'Key':{'type':'rich_text','rich_text':[{'plain_text':'content-draft:content-channel'}]},'Area':{'select':{'name':'Optional Content'}},'Status':{'select':{'name':'Draft'}}}
+        for field in ['Area','Status']:
+            for cleared in [None,{'select':None}]:
+                props=copy.deepcopy(valid);props[field]=cleared
+                with self.assertRaises(s.Held):s.verify_current_identity(page,props)
+        for props in [{}, {'Key':None}, {'Key':{'type':'rich_text','rich_text':None}}]:
             with self.assertRaises(s.Held):s.verify_current_identity(page,props)
+
+    def test_incomplete_source_metadata_holds_and_preserves_link_checks(self):
+        for props in [{}, {'Source':None}, {'Source':{'type':'rich_text','rich_text':None}}]:
+            with self.assertRaises(s.Held):s.read_source_property(props)
+        url='https://github.com/accepted'
+        self.assertEqual((url,[{'text':url,'url':url}]),s.read_source_property({'Source':{'type':'rich_text','rich_text':[{'plain_text':url,'href':url,'text':None}]}}))
 
     def test_actual_current_sources_match_the_native_packet_handoff(self):
         base=json.loads((ROOT/'sync/baselines.json').read_text())
