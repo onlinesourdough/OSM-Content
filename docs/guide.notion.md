@@ -43,7 +43,7 @@ Existing skills may already cover responsibilities. Adapt only what helps. The p
 
 [Channel methods and starter chain](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/docs/channel-skills.md)
 
-Start with the current **content-channel** entry below. Its Files include portable adoption, quality-gate and schedule references. The five original responsibility templates remain frozen **v0.10.0 Drafts**, useful as responsibility examples rather than five required installations:
+Start with the current **content-channel** entry below. Open its <mention url="https://app.notion.com/p/4226d2e17f568131a04eee2fcda94904">portable references</mention> for adaptation.md, quality-gate.md and schedule.md, or download the complete skill packet from Files. The five original responsibility templates remain frozen **v0.10.0 Drafts**, useful as responsibility examples rather than five required installations:
 
 - <mention url="https://app.notion.com/p/40d6d2e17f5681578925cdc0774c6db5">content-setup</mention>
 - <mention url="https://app.notion.com/p/40d6d2e17f5681c99020d85e3bc1ff4b">content-intake</mention>
