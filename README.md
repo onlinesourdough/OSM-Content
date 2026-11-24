@@ -95,6 +95,8 @@ choices. The skeleton activates no jobs. The quality gate checks the coherent
 text and resolved comments before owner review; only the owner marks approval
 of the final version/destinations. Approval and delivery authority are separate.
 
+The [public content-channel Draft](https://app.notion.com/p/4226d2e17f568142a957f3c3577e106b) carries the portable skeleton with adoption, quality-gate and schedule references in Files. It is distinct from the five frozen responsibility packets and from an enabled personal working method.
+
 [Channel skills](docs/channel-skills.md) explains the two axes and adoption.
 The [entry forms](templates/knowledge-entries) fill real gaps in existing
 records; they do not require a new profile, strategy or empty page list.

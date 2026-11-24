@@ -101,15 +101,23 @@
       "page_id": "40d6d2e17f5681c784c4d545814fd7a5",
       "template": "content-learn",
       "mode": "source note only; retain v0.10.0 instructions, files and history"
+    },
+    {
+      "page_id": "4226d2e17f568142a957f3c3577e106b",
+      "template": "content-channel",
+      "key": "content-draft:content-channel",
+      "area": "Optional Content",
+      "status": "Draft",
+      "mode": "source note only; retain reviewed v0.14.0 portable packet and native resources"
     }
   ],
   "source_sha256": {
-    ".github/workflows/sync-notion.yml": "6703382b87789eecbbcea86a2da6c1a709a8c5bf2b37ff1dcd4fc68a7382ffdc",
+    ".github/workflows/sync-notion.yml": "18139779a352a09d7ee51cd50fd5aa079c7202b4ccf600d0c905b403d30c4d44",
     ".github/workflows/validate.yml": "db69afe772b1f68fffc377a4ea9fcb56d393a2983fe20d540b043407953d6d36",
     ".gitignore": "bf7224daa29be47cef87a50b0351d18e729d129be606faa8e4718116d6e51d87",
     "AGENTS.md": "16a91634a5732b7b938b6e5d99e0f631e7419fe405e1cf772e1a1ea2aa500bb0",
     "LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
-    "README.md": "24e9091916aca4b5750bfbfe8a0c13d6f83a4cb0cc6cc6b137adfbaa04b1e2ad",
+    "README.md": "d4501baff0c4ac65e5ab47be1de4815dbcf0dfdcff37cae14b92e33ac26fc5e9",
     "VERSION": "065582655aacd6fc83ff742a5715c04bb4a57395bf3ee4559798fa42c2ce4589",
     "assets/Geist-OFL.txt": "942560b236adfa83745b2c64e5fc09ebaf91cb331751b1157eb92187e5d6e930",
     "assets/diagrams/content-foundation-mobile.png": "648000da43cd1903b1fd7e41c9fed216f9e676ec8d6486fbccb86650e3574955",
@@ -123,14 +131,14 @@
     "assets/icons/resources.png": "0cc81aa2379c8c82ba78d34c2f9379956e99f80de3adf653accad70f8bcb54a0",
     "assets/icons/skills.png": "70d30463c36e2a9393b871b0addf30fbf59781a48b9660f349699ff1f8c6db28",
     "assets/icons/youtube-lessons.png": "6455a6cc70e6b8e4bc17f9620696f3e92cfa37a25a10e6f6091d0df041d3777d",
-    "docs/channel-skills.md": "853267266eee7ee997ff14fe11a5c3c3df453cd9a048e5f124ec9b9ee0cd7525",
+    "docs/channel-skills.md": "137a2c8bc49fdf53ff269ab0c6e0a1499a8ca300558f22f91d53c4300d19e22b",
     "docs/configuration.md": "e79c737b1cde2c0871bf4bc01d494a06d9ab475742704c2a64e89d9d9a3c0e5a",
-    "docs/guide.notion.md": "efa03c4ad68069321f61e90de173be4388a1d8c0212e28a24c8c528e99d30302",
-    "docs/maintenance.md": "440dc2a1ad6bdea99977d2f5c92f173a342ee894cb580d6adcbaab5143746bdf",
+    "docs/guide.notion.md": "c5fd3449fb983e44e6937ff8dd38c3edf40016625232c7e0c9be5f6bbff21d45",
+    "docs/maintenance.md": "87f4fb44934bc8651bee05f685b43d44f32b7e2bd0790b9ce2527c316809f5d6",
     "docs/post-workflow.md": "86b44cd940220955dde3efc3a14c5a9a5e20884f3a51366b0c4e1aeb747d49fb",
     "docs/reference-library.md": "73967f0eced156c534671d5a5d45ad5d843726a3f2fae5a14fe1ac134b0ddd62",
-    "docs/releases.md": "9e721635e354c0e31c25dcda131331e0871d1201c190425458ce835954dc911a",
-    "docs/setup.md": "4568d424c0a1a99b851061ec8c6fb0ef3efc66f505c1e2376a884cc6fea45e80",
+    "docs/releases.md": "ae9870ad833d422576173814bd3ff61c51e9b335937442db6243dbd903776f1a",
+    "docs/setup.md": "05584e41b9c3be8fe808d787151f36cf2800f1ee75aeed6a1978c99b79f2c958",
     "docs/sidebar-icons.md": "13b1939c81976850a036b626e37b9dc33eed6bcd81b265f76bbe5db670793b8d",
     "docs/writing-voice.md": "d38b12fdfb6ebbc5e378933fa880952617e00435f0e67816f13088551fc5f5a7",
     "evaluations/README.md": "0a61554a54f469498211742c9706a585fd733de8a2c59f5bb5d6028c239bf4cb",
@@ -143,8 +151,9 @@
     "evaluations/voice-method-attempt1.md": "d9519256cf297dac5401d8e966154498016cb27cda263ca16e3ce8d6578b06c5",
     "evaluations/voice-results-20261122.json": "bf830c40612cde952a42344648f6612c2f52a1719b1d76d819cdd11258ddbf40",
     "provenance.json": "ed20686ec204cd59861f4fe6fc7db7b7c788298cfcdc5497f7d2753aaa79d26f",
-    "scripts/check_release.py": "25deeccace7cf22f49ea34d74c721f7e1d0d1f919ca959536c4ee03a09d2b121",
-    "scripts/sync_notion.py": "a4555fde597e9f46cf9ed829f1feed2857912bfe3c50ef88fa8ab96cd049ebd2",
+    "scripts/build_channel_packet.py": "a503cae4c9943ac967ef6b09aca8b8a415a982c9368a4ccd8498c272e2b2f681",
+    "scripts/check_release.py": "b4979fcc664863abdae0845ccc836083e2bc97b2e01db1d41bd9748b7dc104d1",
+    "scripts/sync_notion.py": "f9fa3f80605654b47cdb4305a37bf6829417a6ab4c5e07395fa6d4ce67ad8d61",
     "sync/baselines.json": "db7a0e0fe21c263294eafccc88d7a8ab56e64d05bcf3031dcc561d7b2b3dd992",
     "templates/channel-linkedin-post/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/channel-linkedin-post/SKILL.md": "007e86eedad9eeda4168a0dd65074c9583ef16c8f4cdff8753d8fb6d831be750",
@@ -200,8 +209,9 @@
     "templates/knowledge-entries/red-thread.md": "c925393919ad879922ce458a81e88a60bd2a74c4d548d2f45436b1a45d0caeea",
     "templates/knowledge-entries/setup-interview.md": "7d272accba9f7e3dbe511b17a6466262b78fce30ed2e3d1dffa28cf420686e2f",
     "templates/knowledge-entries/voice-profile.md": "b253eff690c65c1ffeddb36e8a85d48de4c4ac5d9bea9cf19f539c9da6947497",
+    "tests/test_channel_packet.py": "e7d6fa8e1c4e667771ff0bdf0eaeef9daaa88288c03306b7dfbecedc9a8bc0c0",
     "tests/test_source_selection.py": "ee1c9f3fee03e431ba1d6a89038d97e1ab5d8a34f928a2c05627d4d6d4ca7e37",
-    "tests/test_sync_notion.py": "925488660ddac336ff0fe40acf5869080cebc9fde1dc8bd69848b1ec11d89408"
+    "tests/test_sync_notion.py": "3d0aa96dda5efd55b98bc49c5a1b8b135ad667df4d3e1264920e62831dc3511a"
   },
   "template_import_commit": "b8dc567cca091a2af5942e0a7826a24844b0bc76"
 }

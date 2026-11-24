@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reconcile the eight public Content pages through OSM's public-only publisher."""
+"""Reconcile the nine public Content pages through OSM's public-only publisher."""
 import argparse
 import hashlib
 import importlib.util
@@ -29,7 +29,12 @@ TEMPLATES = {
     '40d6d2e17f568122aa82f1dcf83500a7': 'content-produce',
     '40d6d2e17f5681c784c4d545814fd7a5': 'content-learn',
 }
-ALLOWED = set(GUIDES) | set(TEMPLATES)
+CURRENT_TEMPLATES = {
+    '4226d2e17f568142a957f3c3577e106b': 'content-channel',
+}
+ALL_TEMPLATES = TEMPLATES | CURRENT_TEMPLATES
+ALLOWED = set(GUIDES) | set(ALL_TEMPLATES)
+CURRENT_SOURCE_NOTE = 'The v0.14.0 content-channel packet is the portable channel working-method template.'
 SOURCE_NOTE = 'The v0.10.0 packet is a frozen export of public template edition 2026-11-05.1.'
 
 
@@ -49,6 +54,24 @@ def canonical(body):
 def source_text(value):
     """The MCP handoff serializes rich-text links; the API returns their labels."""
     return re.sub(r'\[([^\]]+)\]\([^\s)]+\)',r'\1',value) if value is not None else None
+
+
+def verify_current_identity(page_id, props):
+    if page_id not in CURRENT_TEMPLATES:
+        return
+    key = props.get('Key', {})
+    value = ''.join(t.get('plain_text', t.get('text', {}).get('content', '')) for t in key.get('rich_text', []))
+    if (key.get('type') != 'rich_text' or value != 'content-draft:content-channel'
+            or props.get('Area', {}).get('select', {}).get('name') != 'Optional Content'
+            or props.get('Status', {}).get('select', {}).get('name') != 'Draft'):
+        raise Held('Current template identity, ownership area or Draft status differs')
+
+
+def verify_current_inputs(source, baselines):
+    for page_id in CURRENT_TEMPLATES:
+        inputs = baselines[page_id].get('packet_inputs_sha256', {})
+        if not inputs or any(sha(source.read(path)) != expected for path, expected in inputs.items()):
+            raise Held('Current channel packet inputs changed; a reviewed native packet handoff is required')
 
 
 def chunks(body):
@@ -83,7 +106,8 @@ class Source:
 
 
 def note(name, ref, version):
-    return (SOURCE_NOTE + ' Its files, hashes and earlier history are retained. '
+    prefix = CURRENT_SOURCE_NOTE if name == 'content-channel' else SOURCE_NOTE
+    return (prefix + ' Its files, hashes and earlier history are retained. '
             f'[Template source]({REPO}/blob/{ref}/templates/{name}/SKILL.md) lives in the separate OSM Content repository. '
             '[Current Content guide](https://app.notion.com/p/40d6d2e17f5681219a81e13317a19339) '
             f'and [short-post workflow]({REPO}/blob/{ref}/docs/post-workflow.md) describe the shared method. '
@@ -112,9 +136,9 @@ def render(source, page_id, baselines, ref=None):
         body = re.sub(r'\[([^\]]+)\]\(([^\s)]+)\)', link, body)
         body = canonical(body) + f'\n\n[Source revision {ref[:7]}]({REPO}/blob/{ref}/{path})'
         return {'body': body, 'source': None}
-    name = TEMPLATES[page_id]
+    name = ALL_TEMPLATES[page_id]
     baseline = baselines[page_id]
-    old = next((p for p in baseline['body'].split('\n\n') if p.startswith(SOURCE_NOTE)), None)
+    old = next((p for p in baseline['body'].split('\n\n') if p.startswith(CURRENT_SOURCE_NOTE if name == 'content-channel' else SOURCE_NOTE)), None)
     if not old or baseline['body'].count(old) != 1:
         raise Held('Template handoff does not contain exactly one source note')
     body = baseline['body'].replace(old, note(name, ref, version))
@@ -146,9 +170,9 @@ def plan(source, baselines, page_id, seen):
     if not recognized:
         raise Held('Live body differs from the handoff and reproducible accepted source')
     accepted_sources={v for state in states for v in (state['source'],source_text(state['source']))}
-    if page_id in TEMPLATES and seen['source'] not in accepted_sources:
+    if page_id in ALL_TEMPLATES and seen['source'] not in accepted_sources:
         raise Held('Template Source property has an unrecognized edit')
-    if page_id in TEMPLATES:
+    if page_id in ALL_TEMPLATES:
         allowed_links = set(re.findall(r'https://[^\s\]\[()<>]+', baselines[page_id]['source']))
         if any(link['text'] != link['url'] or link['url'] not in allowed_links for link in seen.get('source_links', [])):
             raise Held('Template Source hyperlink destination differs from its visible source')
@@ -168,7 +192,7 @@ class API:
     def request(self, method, path, payload=None):
         match = re.fullmatch(r'pages/([0-9a-f]{32})(/markdown(?:\?markdown_version=v2)?)?', path)
         if not match or match[1] not in ALLOWED or method not in {'GET', 'PATCH'}:
-            raise Held('Request outside the eight public Content pages')
+            raise Held('Request outside the nine bound public Content pages')
         time.sleep(max(0, 0.4 - (time.monotonic() - self.last)))
         self.last = time.monotonic()
         if method == 'PATCH':
@@ -185,9 +209,10 @@ class API:
                 or not isinstance(body.get('markdown'), str)):
             raise Held('Incomplete or unsupported Notion Markdown read')
         props = page.get('properties', {})
+        verify_current_identity(page_id, props)
         source = None
         source_links = []
-        if page_id in TEMPLATES:
+        if page_id in ALL_TEMPLATES:
             if props.get('Source', {}).get('type') != 'rich_text':
                 raise Held('Template Source property is not the bound text field')
             source = ''.join(t.get('plain_text', t.get('text', {}).get('content', '')) for t in props['Source']['rich_text'])
@@ -211,7 +236,8 @@ class API:
                 'files': props.get('Files', {}).get('files', []), 'raw_body': body['markdown']}
 
     def verify_packet(self, page_id, seen, expected):
-        name = TEMPLATES[page_id] + '-v0.10.0-template.zip'
+        version = '0.14.0' if page_id in CURRENT_TEMPLATES else '0.10.0'
+        name = ALL_TEMPLATES[page_id] + '-v' + version + '-template.zip'
         files = [f for f in seen['files'] if f.get('name') == name]
         if len(files) != 1:
             raise Held('Frozen template download is missing or ambiguous')
@@ -235,9 +261,9 @@ class API:
 
     def write_body(self, page_id, before, body):
         raw = before['raw_body']
-        if page_id in TEMPLATES:
+        if page_id in ALL_TEMPLATES:
             def source_note(value):
-                found = [p for p in value.split('\n\n') if p.startswith(SOURCE_NOTE)]
+                found = [p for p in value.split('\n\n') if p.startswith(CURRENT_SOURCE_NOTE if page_id in CURRENT_TEMPLATES else SOURCE_NOTE)]
                 if len(found) != 1:
                     raise Held('Template source note is missing or ambiguous')
                 return found[0]
@@ -271,13 +297,13 @@ def observation(seen):
     return {k: seen[k] for k in ['body', 'source', 'intrinsic', 'edited']}
 
 
-def reconcile(api, source, baselines, *, write=False, only=None, max_writes=8, record=None, observe=None):
+def reconcile(api, source, baselines, *, write=False, only=None, max_writes=9, record=None, observe=None):
     plans = []
     # Whole-set preflight precedes every write; a conflict holds the whole attempt.
-    for page_id in GUIDES | TEMPLATES:
+    for page_id in GUIDES | ALL_TEMPLATES:
         seen = api.read(page_id)
         if observe:observe(page_id,seen)
-        if page_id in TEMPLATES:
+        if page_id in ALL_TEMPLATES:
             api.verify_packet(page_id, seen, baselines[page_id]['packet_sha256'])
         wanted = plan(source, baselines, page_id, seen)
         plans.append({'page_id': page_id, 'seen': seen, 'wanted': wanted})
@@ -377,12 +403,12 @@ def _public_check_once(core_root, source, baselines, *, runner=None, page_ids=No
     from browser_reader import run_browser
     runner = runner or run_browser
     requests = []
-    page_ids = list(page_ids or GUIDES | TEMPLATES)
+    page_ids = list(page_ids or GUIDES | ALL_TEMPLATES)
     for page_id in page_ids:
         markers = [v[i:i+500] for v in visible_lines(render(source, page_id, baselines)['body']) for i in range(0, len(v), 500)]
         requests.append({'url': PUBLIC + page_id, 'markers': markers})
         if page_id == next(iter(GUIDES)):
-            requests[-1]['entries'] = [{'page': p, 'title': name} for p, name in TEMPLATES.items()]
+            requests[-1]['entries'] = [{'page': p, 'title': name} for p, name in ALL_TEMPLATES.items()]
     payload = {'allowedUrls': [r['url'] for r in requests], 'requests': requests}
     env = {k: v for k, v in os.environ.items() if k in {'PATH', 'HOME', 'TMPDIR', 'CI', 'PLAYWRIGHT_BROWSERS_PATH', 'XDG_CACHE_HOME'}}
     result = runner(['node', str(Path(core_root) / 'docs-publisher/public-browser-read.mjs')],
@@ -400,7 +426,7 @@ def _public_check_once(core_root, source, baselines, *, runner=None, page_ids=No
         if not expected or url in seen or item.get('ok') is not True or final.scheme != 'https' or final.netloc != 'gustavanderson.notion.site':
             raise Held('Unrecognized public page observation')
         if expected.get('entries') and item.get('entries') != expected['entries']:
-            raise Held('Public catalogue does not show the five bound templates')
+            raise Held('Public catalogue does not show the six bound templates')
         page_id = url.rsplit('/', 1)[-1]
         if not re.search(page_id + r'(?:/|$)', final.path.replace('-', '')):
             raise Held('Public page identity differs')
@@ -425,7 +451,7 @@ def main():
     parser.add_argument('--core-root', required=True, type=Path)
     parser.add_argument('--write', action='store_true')
     parser.add_argument('--only-page', choices=sorted(ALLOWED))
-    parser.add_argument('--max-writes', type=int, default=8)
+    parser.add_argument('--max-writes', type=int, default=9)
     parser.add_argument('--public-read', action='store_true')
     parser.add_argument('--out', type=Path, required=True)
     args = parser.parse_args()
@@ -450,7 +476,7 @@ def main():
         source = Source(args.source_root, args.source_ref)
         manifest = json.loads(source.read('release.json'))
         mapping = {t['page_id']: t.get('source') or t.get('template') for t in manifest['notion_targets']}
-        if len(manifest['notion_targets']) != 8 or mapping != GUIDES | TEMPLATES or manifest['format'] != 'osm-content-method-release/1':
+        if len(manifest['notion_targets']) != len(ALLOWED) or mapping != GUIDES | ALL_TEMPLATES or manifest['format'] != 'osm-content-method-release/1':
             raise Held('Source changes the reviewed public target map')
         provenance = json.loads((ENGINE / 'provenance.json').read_text())
         if manifest['template_version'] != '0.10.0' or json.loads(source.read('provenance.json')) != provenance:
@@ -459,6 +485,7 @@ def main():
             for path, expected in template['files'].items():
                 if sha(source.read(template['path'] + '/' + path)) != expected:
                     raise Held('Frozen template instructions changed without a new handoff')
+        verify_current_inputs(source, baselines)
         # The live source is data only: do not execute its Python or workflow files here.
         report['source_commit'] = source.ref
         api = API(pub)

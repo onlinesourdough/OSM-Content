@@ -122,7 +122,10 @@ def main():
     for item in targets:
         if item.get('source') and item['source'] not in declared:
             errors.append('Unlisted projection source: ' + item['source'])
-        if item.get('template') and item['template'] not in {t['name'] for t in provenance['templates']}:
+        template_names = {t['name'] for t in provenance['templates']} | {
+            t['name'] for t in manifest.get('later_templates', []) if t.get('kind') == 'skill'
+        }
+        if item.get('template') and item['template'] not in template_names:
             errors.append('Unknown template target: ' + item['template'])
     compared_pages = []
     snapshot_source = None
