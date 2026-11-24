@@ -51,6 +51,34 @@ def canonical(body):
     return body.replace('\r\n','\n').replace('\r','\n').strip('\n')
 
 
+
+def notion_inline(body):
+    """Render supported author inline markup to Notion v2; never normalize reads."""
+    import html
+    fence = None
+    out = []
+    tokens = re.compile(r'(<code>[^\n]*?</code>|(?<!`)`[^`\n]+`(?!`)|\[[^\]\n]*\]\([^\s)]+\)|<[^>\n]+>)')
+    for line in body.splitlines(keepends=True):
+        mark = re.match(r'^\s{0,3}(`{3,}|~{3,})', line)
+        if fence:
+            out.append(line)
+            if mark and mark[1][0] == fence[0] and len(mark[1]) >= len(fence):
+                fence = None
+            continue
+        if mark:
+            fence = mark[1]
+            out.append(line)
+            continue
+        parts = tokens.split(line)
+        for i, part in enumerate(parts):
+            if i % 2 and part.startswith('`'):
+                parts[i] = '<code>' + html.escape(part[1:-1], quote=False) + '</code>'
+            elif not i % 2:
+                parts[i] = re.sub(r'\*\*([^*\n]+)\*\*', r'<b>\1</b>', part)
+        out.append(''.join(parts))
+    return ''.join(out)
+
+
 def source_text(value):
     """The MCP handoff serializes rich-text links; the API returns their labels."""
     return re.sub(r'\[([^\]]+)\]\([^\s)]+\)',r'\1',value) if value is not None else None
@@ -150,7 +178,7 @@ def render(source, page_id, baselines, ref=None):
                 raise Held('A source link leaves the repository')
             return f'[{label}]({REPO}/blob/{ref}/{resolved}' + (sep + fragment if sep else '') + ')'
         body = re.sub(r'\[([^\]]+)\]\(([^\s)]+)\)', link, body)
-        body = canonical(body) + f'\n\n[Source revision {ref[:7]}]({REPO}/blob/{ref}/{path})'
+        body = canonical(notion_inline(body)) + f'\n\n[Source revision {ref[:7]}]({REPO}/blob/{ref}/{path})'
         return {'body': body, 'source': None}
     name = ALL_TEMPLATES[page_id]
     baseline = baselines[page_id]

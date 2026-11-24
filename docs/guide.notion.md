@@ -43,7 +43,7 @@ Existing skills may already cover responsibilities. Adapt only what helps. The p
 
 [Channel methods and starter chain](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/docs/channel-skills.md)
 
-Start with the current **content-channel** entry below. Open its <mention url="https://app.notion.com/p/4226d2e17f568131a04eee2fcda94904">references</mention> for adaptation.md, quality-gate.md and schedule.md, or download the complete skill packet from Files. The five original responsibility templates remain frozen **v0.10.0 Drafts**, useful as responsibility examples rather than five required installations:
+Start with the current **content-channel** entry below. Open its <mention url="https://app.notion.com/p/4226d2e17f568131a04eee2fcda94904">references</mention> for `adaptation.md`, `quality-gate.md` and `schedule.md`, or download the complete skill packet from Files. The five original responsibility templates remain frozen **v0.10.0 Drafts**, useful as responsibility examples rather than five required installations:
 
 - <mention url="https://app.notion.com/p/40d6d2e17f5681578925cdc0774c6db5">content-setup</mention>
 - <mention url="https://app.notion.com/p/40d6d2e17f5681c99020d85e3bc1ff4b">content-intake</mention>
@@ -99,7 +99,7 @@ Earlier wide illustration and editable source
 
 ## Source and versions
 
-The proposed method version is **v0.14.0**. [Shared source](https://github.com/onlinesourdough/OSM-Content) and [published releases](https://github.com/onlinesourdough/OSM-Content/releases) identify what is available. The five v0.10.0 Draft templates remain unchanged frozen packets from edition 2026-11-05.1. The current content-channel Draft is a later portable template, with adoption, quality-gate and schedule references in its Files. These are shared examples, not automatically installed personal skills. Its packet version is separate from the five frozen v0.10.0 packets. The published method release and live verification are recorded separately.
+The method version is **v0.14.0**. [Shared source](https://github.com/onlinesourdough/OSM-Content) and [published releases](https://github.com/onlinesourdough/OSM-Content/releases) identify what is available. The five v0.10.0 Draft templates remain unchanged frozen packets from edition 2026-11-05.1. The current content-channel Draft is a later portable template, with adoption, quality-gate and schedule references in its Files. These are shared examples, not automatically installed personal skills. Its packet version is separate from the five frozen v0.10.0 packets. The published method release and live verification are recorded separately.
 
 This repository is outside OSM-plugin. Personal content, media, configuration and adapted skills stay in your selected private home. The method grants no publication or scheduling authority.
 

@@ -133,7 +133,7 @@
     "assets/icons/youtube-lessons.png": "6455a6cc70e6b8e4bc17f9620696f3e92cfa37a25a10e6f6091d0df041d3777d",
     "docs/channel-skills.md": "137a2c8bc49fdf53ff269ab0c6e0a1499a8ca300558f22f91d53c4300d19e22b",
     "docs/configuration.md": "7cb965dfaa186c7f91e809956bfe7a8d017c89e8e8553bedc8bf3661aeaef576",
-    "docs/guide.notion.md": "1741443c87fd59755fd1c37b8a3ea765a22e86300180af70003c2174eea829d8",
+    "docs/guide.notion.md": "91ce22ced717d72b97b307ef4183d08954bf54bc27ffd76e9e20ae84389a9a85",
     "docs/maintenance.md": "1a45b6a070c18d1736fffe86e30566b316d36b055778fc3d096c4a03a8562eac",
     "docs/post-workflow.md": "86b44cd940220955dde3efc3a14c5a9a5e20884f3a51366b0c4e1aeb747d49fb",
     "docs/reference-library.md": "73967f0eced156c534671d5a5d45ad5d843726a3f2fae5a14fe1ac134b0ddd62",
@@ -153,8 +153,8 @@
     "provenance.json": "ed20686ec204cd59861f4fe6fc7db7b7c788298cfcdc5497f7d2753aaa79d26f",
     "scripts/build_channel_packet.py": "a503cae4c9943ac967ef6b09aca8b8a415a982c9368a4ccd8498c272e2b2f681",
     "scripts/check_release.py": "b4979fcc664863abdae0845ccc836083e2bc97b2e01db1d41bd9748b7dc104d1",
-    "scripts/sync_notion.py": "6b1ffc99fcd8fc1c42833a61a5c9bf3543fe439d5c394cb8ab044e53f4a11ba2",
-    "sync/baselines.json": "6fd4574f363bcc0f9857515bbf385bff9fef9a2da0e353d826e6a557bef5e0ce",
+    "scripts/sync_notion.py": "9fac71eb895d2fce7b8b3b14a2243b61b318b86f5033eb1eeabb5c9db831d74c",
+    "sync/baselines.json": "cc4c22da726fc2ab8d974f1272d41760b5207e355cc926edc8a89abe0dcfa75a",
     "templates/channel-linkedin-post/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/channel-linkedin-post/SKILL.md": "007e86eedad9eeda4168a0dd65074c9583ef16c8f4cdff8753d8fb6d831be750",
     "templates/channel-linkedin-post/SOURCE.json": "b2929afa839842c6099afa1f86316ba0e473db3174641d7b82e89e1f144f16e3",
@@ -211,7 +211,7 @@
     "templates/knowledge-entries/voice-profile.md": "b253eff690c65c1ffeddb36e8a85d48de4c4ac5d9bea9cf19f539c9da6947497",
     "tests/test_channel_packet.py": "9268bf7cc356336047f43490f21229eb47f7d920281b6d4570aaf88b5651478a",
     "tests/test_source_selection.py": "24f9b1072102cf3410f3b13e435743d7b24f0272a0d0694bf4d66f4b9fb5bd8b",
-    "tests/test_sync_notion.py": "3d0aa96dda5efd55b98bc49c5a1b8b135ad667df4d3e1264920e62831dc3511a"
+    "tests/test_sync_notion.py": "60249869c84f5eadf8b8a386eb657357b769886ab028a140635e62599efccd36"
   },
   "template_import_commit": "b8dc567cca091a2af5942e0a7826a24844b0bc76"
 }
