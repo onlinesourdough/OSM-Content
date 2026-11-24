@@ -153,7 +153,7 @@
     "provenance.json": "ed20686ec204cd59861f4fe6fc7db7b7c788298cfcdc5497f7d2753aaa79d26f",
     "scripts/build_channel_packet.py": "a503cae4c9943ac967ef6b09aca8b8a415a982c9368a4ccd8498c272e2b2f681",
     "scripts/check_release.py": "b4979fcc664863abdae0845ccc836083e2bc97b2e01db1d41bd9748b7dc104d1",
-    "scripts/sync_notion.py": "4ecb67e6741e070a9f5dc778bed31d3a42ba768dd010a8d039ab27649114f7cb",
+    "scripts/sync_notion.py": "6b1ffc99fcd8fc1c42833a61a5c9bf3543fe439d5c394cb8ab044e53f4a11ba2",
     "sync/baselines.json": "6fd4574f363bcc0f9857515bbf385bff9fef9a2da0e353d826e6a557bef5e0ce",
     "templates/channel-linkedin-post/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/channel-linkedin-post/SKILL.md": "007e86eedad9eeda4168a0dd65074c9583ef16c8f4cdff8753d8fb6d831be750",
