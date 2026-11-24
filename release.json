@@ -112,7 +112,7 @@
     }
   ],
   "source_sha256": {
-    ".github/workflows/sync-notion.yml": "18139779a352a09d7ee51cd50fd5aa079c7202b4ccf600d0c905b403d30c4d44",
+    ".github/workflows/sync-notion.yml": "2d00ff6144000277214b939db36cff82ec89480a09433916137ff09ab4704830",
     ".github/workflows/validate.yml": "db69afe772b1f68fffc377a4ea9fcb56d393a2983fe20d540b043407953d6d36",
     ".gitignore": "bf7224daa29be47cef87a50b0351d18e729d129be606faa8e4718116d6e51d87",
     "AGENTS.md": "16a91634a5732b7b938b6e5d99e0f631e7419fe405e1cf772e1a1ea2aa500bb0",
@@ -210,7 +210,7 @@
     "templates/knowledge-entries/setup-interview.md": "7d272accba9f7e3dbe511b17a6466262b78fce30ed2e3d1dffa28cf420686e2f",
     "templates/knowledge-entries/voice-profile.md": "b253eff690c65c1ffeddb36e8a85d48de4c4ac5d9bea9cf19f539c9da6947497",
     "tests/test_channel_packet.py": "9268bf7cc356336047f43490f21229eb47f7d920281b6d4570aaf88b5651478a",
-    "tests/test_source_selection.py": "ee1c9f3fee03e431ba1d6a89038d97e1ab5d8a34f928a2c05627d4d6d4ca7e37",
+    "tests/test_source_selection.py": "24f9b1072102cf3410f3b13e435743d7b24f0272a0d0694bf4d66f4b9fb5bd8b",
     "tests/test_sync_notion.py": "3d0aa96dda5efd55b98bc49c5a1b8b135ad667df4d3e1264920e62831dc3511a"
   },
   "template_import_commit": "b8dc567cca091a2af5942e0a7826a24844b0bc76"
