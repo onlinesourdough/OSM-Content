@@ -77,7 +77,7 @@ jobs:
               elif 'v'+version(head)!=tag:
                   current=False
           def validated(ref):
-              runs = api(f'repos/{repo}/actions/workflows/validate.yml/runs?head_sha={ref}&event=push&branch=main&status=success')['workflow_runs']
+              runs = api(f'repos/{repo}/actions/workflows/validate.yml/runs?head_sha={ref}&event=push&branch=main')['workflow_runs']
               return any(r['head_sha']==ref and r['event']=='push' and r['head_branch']=='main' and r['conclusion']=='success' and r['head_repository']['full_name']==repo for r in runs)
           catchup=''
           if current:

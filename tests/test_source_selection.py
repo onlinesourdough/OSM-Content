@@ -17,7 +17,7 @@ IDS=[r['page_id'] for r in json.loads((ROOT/'release.json').read_text())['notion
 
 
 class SourceSelectionTests(unittest.TestCase):
-    def resolve(self, *, head_version='0.13.0', artifacts=None, event='release', mode='all', attempt=3, paginated=False):
+    def resolve(self, *, head_version='0.13.0', artifacts=None, event='release', mode='all', attempt=3, paginated=False, validation_override=None, server_status_filter_empty=False):
         artifacts=artifacts or [('content-tag-pass-1',True)]
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);old=os.getcwd();os.chdir(root)
@@ -38,7 +38,9 @@ class SourceSelectionTests(unittest.TestCase):
                 elif '/compare/' in url:data={'status':'ahead'}
                 elif '/actions/workflows/validate.yml/runs?' in url:
                     sha=re.search('head_sha=([a-f0-9]+)',url)[1]
-                    data={'workflow_runs':[{'head_sha':sha,'event':'push','head_branch':'main','conclusion':'success','head_repository':{'full_name':'owner/repo'}}]}
+                    row={'head_sha':sha,'event':'push','head_branch':'main','conclusion':'success','head_repository':{'full_name':'owner/repo'}}
+                    row.update(validation_override or {})
+                    data={'workflow_runs':[] if server_status_filter_empty and '&status=' in url else [row]}
                 elif '/artifacts?' in url:
                     items=[{'name':name,'expired':False} for name,_ in artifacts]
                     if paginated and url.endswith('page=1'):items=[{'name':'other-'+str(i),'expired':False} for i in range(100)]
@@ -86,6 +88,17 @@ class SourceSelectionTests(unittest.TestCase):
     def test_unpublished_manual_write_does_not_substitute_an_old_release(self):
         result,downloads=self.resolve(event='workflow_dispatch',mode='one-page',attempt=1)
         self.assertEqual('false',result['current']);self.assertEqual(C,result['sha']);self.assertEqual([],downloads)
+
+    def test_readonly_uses_exact_success_when_server_status_filter_is_empty(self):
+        result,_=self.resolve(event='workflow_dispatch',mode='read-only',attempt=1,server_status_filter_empty=True)
+        self.assertEqual('true',result['current']);self.assertEqual(C,result['sha'])
+
+    def test_readonly_still_rejects_unsuccessful_wrong_source_or_fork(self):
+        for override in ({'conclusion':'failure'},{'conclusion':None},{'head_sha':A},
+                         {'event':'pull_request'},{'head_branch':'other'},
+                         {'head_repository':{'full_name':'other/repo'}}):
+            with self.subTest(override=override),self.assertRaisesRegex(SystemExit,'no successful main'):
+                self.resolve(event='workflow_dispatch',mode='read-only',attempt=1,validation_override=override)
 
     def test_release_receipt_is_durable_before_catchup_can_write(self):
         self.assertLess(WORKFLOW.index('name: content-tag-pass-${{ github.run_attempt }}'),WORKFLOW.index('name: Catch up validated main'))
