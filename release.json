@@ -154,7 +154,7 @@
     "scripts/build_channel_packet.py": "a503cae4c9943ac967ef6b09aca8b8a415a982c9368a4ccd8498c272e2b2f681",
     "scripts/check_release.py": "b4979fcc664863abdae0845ccc836083e2bc97b2e01db1d41bd9748b7dc104d1",
     "scripts/sync_notion.py": "383fc141e6b87d990c54ec4f7f77769f703b9a69833e59ee54a480cce214d5e3",
-    "sync/baselines.json": "678cbb0e1fd39efcfa8dcf5de1f0599fd48caae02ae6933f20bca3b978a32975",
+    "sync/baselines.json": "6fd4574f363bcc0f9857515bbf385bff9fef9a2da0e353d826e6a557bef5e0ce",
     "templates/channel-linkedin-post/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/channel-linkedin-post/SKILL.md": "007e86eedad9eeda4168a0dd65074c9583ef16c8f4cdff8753d8fb6d831be750",
     "templates/channel-linkedin-post/SOURCE.json": "b2929afa839842c6099afa1f86316ba0e473db3174641d7b82e89e1f144f16e3",
@@ -209,7 +209,7 @@
     "templates/knowledge-entries/red-thread.md": "c925393919ad879922ce458a81e88a60bd2a74c4d548d2f45436b1a45d0caeea",
     "templates/knowledge-entries/setup-interview.md": "7d272accba9f7e3dbe511b17a6466262b78fce30ed2e3d1dffa28cf420686e2f",
     "templates/knowledge-entries/voice-profile.md": "b253eff690c65c1ffeddb36e8a85d48de4c4ac5d9bea9cf19f539c9da6947497",
-    "tests/test_channel_packet.py": "2938d580d4a5492a3a725d91780cc62bdd8b2263985329228b13f5c57c53cfa1",
+    "tests/test_channel_packet.py": "211fc6dd7e989045b6fb66905357bc2abcad248ea7243407b8846a2b8a3246a4",
     "tests/test_source_selection.py": "ee1c9f3fee03e431ba1d6a89038d97e1ab5d8a34f928a2c05627d4d6d4ca7e37",
     "tests/test_sync_notion.py": "3d0aa96dda5efd55b98bc49c5a1b8b135ad667df4d3e1264920e62831dc3511a"
   },

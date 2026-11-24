@@ -57,6 +57,12 @@ class PacketTests(unittest.TestCase):
         for props in [{}, {'Key':None}, {'Area':{'select':None},'Status':{'select':None}}, {'Key':{'type':'rich_text','rich_text':None}}]:
             with self.assertRaises(s.Held):s.verify_current_identity(page,props)
 
+    def test_actual_current_sources_match_the_native_packet_handoff(self):
+        base=json.loads((ROOT/'sync/baselines.json').read_text())
+        s.verify_current_inputs(s.Source(ROOT,'HEAD'),base)
+        handoff=base[next(iter(s.CURRENT_TEMPLATES))]
+        self.assertEqual(handoff['packet_sha256'],hashlib.sha256(b.archives(b.build(ROOT,handoff['packet_source_commit']))[1]).hexdigest())
+
     def test_changed_packet_inputs_require_new_handoff(self):
         page=next(iter(s.CURRENT_TEMPLATES));data='existing procedure'
         class Source:
