@@ -19,7 +19,7 @@ Keep the intended contribution of content clear: what the owner wants to build, 
 | Voice and visual expression | Existing writing/style guide, accepted examples and rejected treatments |
 | Working choices | One personal Content configuration linking those records, selected channels, tools, media routes, methods and delivery authority |
 
-These are responsibilities, not compulsory filenames or four new pages. Reuse suitable Knowledge records and link their actual owners. Split a record only when it has a distinct maintenance responsibility. Sources, drafts, editions and feedback remain in Content, not in a second vision document.
+For short naming inspiration, see the small set of kinds in the [Foundation view guidance](setup.md#foundation-views). These are responsibilities, not compulsory filenames or four new pages. Reuse suitable Knowledge records and link their actual owners. Split a record only when it has a distinct maintenance responsibility. Sources, drafts, editions and feedback remain in Content, not in a second vision document.
 
 ## Give each channel a useful role
 
@@ -60,7 +60,7 @@ A newsletter may be an original or a synthesis of several productions. Video, em
 
 A documented cadence helps make workload and upcoming review visible. Use an existing Knowledge working-preference entry or equivalent and the [schedule skeleton](../templates/content-schedule/SKILL.md). The owner selects the rhythm or on-demand use, optional planning horizon and review route. A schedule is best practice, not a prerequisite for a draft. A planning record creates no live job.
 
-Optional patterns include a short daily approval window for work due soon and a bank replenished on a chosen cycle. Owner-named value categories with caps can keep a channel from becoming only selling or one theme. No frequency, duration, category names or cap values are prescribed.
+An optional best practice from the first real run is a short approval window for the next few days, with owner–assistant review ping-pong: prepare and check, owner comments, revise and resolve addressed comments, then owner review and final approval. A bank replenished on a chosen cycle and owner-named value categories with caps can help. No frequency, minutes, named statuses, posting times, category names or cap values are prescribed.
 
 One production record can cover one or more channels. The owner chooses grouping and reuse policy. Keep one editable original per independently maintained version and clear approval/delivery evidence per destination. A separate Edition is useful when editing or delivery needs its own identity.
 

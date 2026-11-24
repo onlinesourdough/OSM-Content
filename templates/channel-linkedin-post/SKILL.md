@@ -1,14 +1,14 @@
 ---
 name: channel-linkedin-post
-description: Draft a LinkedIn piece using the owner’s channel working method and base records. Does not publish.
+description: Example copy of content-channel. Draft a LinkedIn piece using the owner’s channel working method and base records. Does not publish.
 metadata:
   version: "0.14.0"
 ---
 # LinkedIn post
 
-Template generation 2026-11-24.1. Adapt this short working method to the owner’s actual channel. Use the [generic channel skeleton](../content-channel/SKILL.md) for its input roles and [adoption](../content-channel/references/adaptation.md) for saving a personal skill.
+Template generation 2026-11-24.2. **Example copy of [content-channel](../content-channel/SKILL.md)** with channel assembly steps filled in. Owner references remain placeholders. Read the primary skeleton first and adapt only the parts the selected task needs; this is not a separate method. Follow [adoption](../content-channel/references/adaptation.md) when saving a personal skill.
 
-## References to fill
+## Fill in references
 
 - Existing vision, channel strategy/goal and audience: [owning references].
 - Voice/style, language, operating policy and relevant examples: [owning references].
@@ -16,7 +16,7 @@ Template generation 2026-11-24.1. Adapt this short working method to the owner�
 - Content material, sources and editable original: [actual record/revision].
 - Quality gate and owner approval route: [existing method/policy].
 
-## Assembly
+## Assembly guideline to adapt
 
 1. Read the relevant references. Resolve only missing inputs that affect this piece; reuse sufficient existing guidance.
 2. Select the point and supporting work or evidence that serve the LinkedIn goal and intended reader.
@@ -25,4 +25,4 @@ Template generation 2026-11-24.1. Adapt this short working method to the owner�
 5. Update the single editable original and resolve addressed comments. Keep reviewable prose commentable in Notion; use timecoded notes for media.
 6. Run the [quality-gate skill](../channel-quality-gate/SKILL.md) before owner review. Hold the handoff on unresolved issues. Only the owner marks approval of the version and destinations. Do not schedule or publish.
 
-Business facts, language, voice, offers and reuse choices stay in the owner’s setup. This source is an adaptable skeleton, not an installed skill or a qualification of an editor.
+Business facts, language, voice, offers and reuse choices stay in the owner’s setup. This example is not an installed skill or a qualification of an editor.

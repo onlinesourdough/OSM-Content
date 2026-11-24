@@ -8,18 +8,19 @@ Notion is the default runtime. Existing editors and external originals can stay;
 
 OSM-plugin owns the context home, Knowledge/Memory/Skills routes and the selected Content binding with its minimum schema. This module adds optional editorial methods; it does not create a second profile, brand or priorities system. Reuse an existing Content destination or external workflow and respect a recorded deferral.
 
-Find the information your task needs by kind, not by fixed page title:
+Find a few useful kinds of base records. Short names below are inspiration for finding their existing owners, not a required page list:
 
-| Base records | What Content uses them for |
-| --- | --- |
-| Profile/soul, brand, priorities/tasks and offers | The owner's direction and the contribution content should make |
-| Audience, positioning, voice and operating policy | Who the piece serves, how the owner expresses it and which boundaries apply |
-| Content vision, channel strategy, cadence and formats | Existing Knowledge direction and working preferences; add only a real missing choice |
-| Reusable production templates, sources, material, drafts and editions | Content's production building blocks and editable work, with references to the direction above |
+| Kind | Simple name inspiration | What Content uses |
+| --- | --- | --- |
+| Owner and audience | About / Soul | Profile, brand, audience and point of view |
+| Direction | Vision | Goals, priorities, offers and channel strategy |
+| Expression and boundaries | Voice / Policy | Voice, operating rules and review authority |
+| Working choices | Plan | Selected cadence and formats |
+| Production building blocks | Templates | Reusable production templates and material |
 
 Keep each fact at its existing owner. Knowledge owns lasting business direction and working preferences; Content owns production material and feedback. Personal Skills carry working steps. Memory keeps useful lasting decisions and needs few or no foundation files. Create no empty mandatory profile, strategy or department pages.
 
-A best-practice **Fundament / Byggesten** view in Knowledge and Content makes the selected building blocks easy to find before ideas and production accumulate. Filter actual base records using suitable existing metadata or explicit selection, excluding Superseded records. Link across existing owners rather than duplicating pages or moving them to fill a view.
+A best-practice **Foundation** view in Knowledge and Content shows the base records the module and agent get most value from, so useful guidance is in place before ideas and production accumulate. Filter actual base records using suitable existing metadata or explicit selection, excluding Superseded records. Link across existing owners rather than duplicating pages or moving them to fill a view.
 
 Knowledge status **Current** means selected for use; **Needs review** means useful uncertainty, never age alone; **Superseded** means replaced and retained as history. Historical temporal scope is separate. Current and All are the normal views; an optional Attention view, sometimes called **Needs attention**, is a navigation aid, not a topic or niche. Content production states have their own configured meanings.
 
@@ -38,7 +39,7 @@ Personal configuration
 | Responsibility skills | Setup, Intake, Prepare, Produce / Distribute and Learn cover the life of the work |
 | Channel working methods (arbejdsformer) | One small guideline per active channel explains how to assemble a piece that fits the channel, your vision and its goal |
 
-Existing skills may already cover responsibilities. Adapt only what helps. The channel starter set includes newsletter, LinkedIn, X, YouTube and a generic new-channel skeleton. Each links to your existing context, explains assembly, and hands the result to the shared quality-gate skill. The optional newsletter-to-posts helper coordinates reuse when you select it; no channel is mandatory upstream.
+Existing skills may already cover responsibilities. Adapt only what helps. The primary [content-channel skeleton](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/templates/content-channel/SKILL.md) is read and replicated by an agent for your selected channel or format. Newsletter, LinkedIn, X and YouTube are existing thin example copies, not a growing catalogue to install. Each working method links to your context, explains assembly and hands the result to the shared quality-gate skill. The optional newsletter-to-posts helper coordinates reuse when you select it; no channel is mandatory upstream.
 
 [Channel methods and starter chain](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/docs/channel-skills.md)
 
@@ -61,7 +62,7 @@ The five original responsibility templates remain available:
 
 A schedule helps make workload and upcoming review visible. The [schedule skeleton](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/templates/content-schedule/SKILL.md) reads your cadence entry in Knowledge or its equivalent and proposes a plan. You choose the rhythm, optional horizon and review route; no posting days or volume are prescribed. A plan creates no scheduler job.
 
-Optional patterns include a short daily approval window for work due soon, a bank replenished on your chosen cycle, and value categories with owner-defined caps. Use them only if they help. They are not prerequisites for a draft.
+An optional best practice from the first real run is a short approval window for the next few days, with review ping-pong: the assistant prepares and checks, you comment, the assistant revises and resolves addressed comments, then you review again and mark final approval. Choose the rhythm yourself; no minutes, named statuses or posting times are prescribed. A bank replenished on your chosen cycle and owner-defined value-category caps can also help. These are not prerequisites for a draft.
 
 ## Practical starting points
 

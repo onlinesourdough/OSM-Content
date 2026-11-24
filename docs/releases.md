@@ -2,15 +2,15 @@
 
 ## v0.14.0 · proposed, revised 24 November 2026
 
-Defines Content as an optional operating model beside OSM-plugin: requirements, best practices and adaptable skeletons. Notion is the default; equivalent external records and human workflows remain valid. Reuses the plugin's base Knowledge/Content records and minimum-schema binding, with optional Fundament / Byggesten views and clear Knowledge status meanings.
+Defines Content as an optional operating model beside OSM-plugin: requirements, best practices and adaptable skeletons. Notion is the default; equivalent external records and human workflows remain valid. Reuses the plugin's base Knowledge/Content records and minimum-schema binding, with optional Foundation views and clear Knowledge status meanings.
 
-Keeps two axes: five responsibilities plus one small channel working method that fits the channel, vision and channel goal. Sharpens newsletter, LinkedIn and X, adds YouTube and keeps the generic new-channel skeleton. Newsletter reuse is an optional helper; owner choices are not shared workflow rules.
+Keeps two axes: five responsibilities plus one small channel working method that fits the channel, vision and channel goal. Makes the replicable content-channel skeleton primary. Newsletter, LinkedIn, X and the already-added YouTube are thin example copies; no growing channel catalogue is required. Newsletter reuse is an optional helper; owner choices are not shared workflow rules.
 
-Adds a schedule planning skeleton using an owner-selected cadence entry and optional horizon, without prescribed rhythm or activated jobs. Generalizes the quality gate, comment resolution and commentable drafts before owner review. Only the owner marks final version/destination approval; use the existing review section or an equivalent field, with no new required Select. Second-model review is optional and names no model.
+Keeps the schedule planning skeleton using an owner-selected cadence entry and optional horizon, without prescribed rhythm or activated jobs. Documents a short approval window for the next few days and owner–assistant review ping-pong as optional best practice. Generalizes the quality gate, comment resolution and commentable drafts before owner review. Only the owner marks final version/destination approval; use the existing review section or an equivalent field, with no new required Select. Second-model review is optional and names no model.
 
 Rewrites the public guide around the operating model, base records and building an owner's setup. Keeps the earlier illustrations collapsed and preserves native child/catalogue/media references for the existing sync contract. The eight-page sync catalogue remains unchanged; later templates stay in Git. No private Notion records were moved or rewritten.
 
-The five v0.10.0 packets remain byte-for-byte frozen. Later skeletons use edition 2026-11-24.1; their earlier 2026-11-23.1 proposal remains at commit `4ba3669375bbb5400965498bad1e0a63ff3ce0d4`. This proposal is not a release, native-adoption proof or complete style calibration, and publishes nothing.
+The five v0.10.0 packets remain byte-for-byte frozen. Later templates retain edition 2026-11-24.1 except the channel skeleton, its four example copies and schedule, refined as edition 2026-11-24.2. The prior revision remains at `48d43e52dc9e9a26982a6b9b2c7543c39be0ab94`, and the initial 2026-11-23.1 proposal remains at `4ba3669375bbb5400965498bad1e0a63ff3ce0d4`. This proposal is not a release, native-adoption proof or complete style calibration, and publishes nothing.
 
 ## v0.13.1 · 22 November 2026
 

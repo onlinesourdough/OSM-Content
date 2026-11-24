@@ -6,7 +6,7 @@ metadata:
 ---
 # Channel working method
 
-Template generation 2026-11-24.1. This is the generic new-channel skeleton. Adapt it into one small working method (arbejdsform) per active channel: how a piece fits the channel, the owner's vision and the channel goal. Read [adoption](references/adaptation.md) and [channel skills](../../docs/channel-skills.md).
+Template generation 2026-11-24.2. This is the primary, replicable channel skeleton. An agent reads it and fills in the references and assembly steps for the selected channel or format: YouTube, TikTok, long-form, short-form or another choice. Keep one small working method (arbejdsform) per active channel, fitting the channel, the owner's vision and the channel goal. Existing channel files are thin example copies of this skeleton; maintaining a growing catalogue is not the method. Read [adoption](references/adaptation.md) and [channel skills](../../docs/channel-skills.md).
 
 ## Fill in references
 

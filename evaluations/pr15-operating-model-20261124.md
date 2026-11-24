@@ -36,10 +36,18 @@ Input: the owner has approved a text revision for a selected destination; a late
 
 ## 5. Base records, external route and views
 
-Input: an existing Knowledge voice record, channel strategy and historical reference selected as Current; a Content production template; an external editorial original; Content binding selected as external. Applied setup guidance: link existing owners, retain the external original and create no Notion Content mirror. A proposed Knowledge Fundament view selects the voice and strategy records; the Content-side equivalent selects the reusable template. The historical reference remains Current because historical scope is not replacement. Needs review is uncertainty, and Needs attention is an optional view rather than a niche.
+Input: an existing Knowledge voice record, channel strategy and historical reference selected as Current; a Content production template; an external editorial original; Content binding selected as external. Applied setup guidance: link existing owners, retain the external original and create no Notion Content mirror. A proposed Knowledge Foundation view selects the voice and strategy records; the Content-side equivalent selects the reusable template. The historical reference remains Current because historical scope is not replacement. Needs review is uncertainty, and Needs attention is an optional view rather than a niche.
 
 No records or marker fields were actually created. Thin foundation views and few/no Memory foundation records are acceptable. A genuinely replaced format would be retained as Superseded with its replacement link, without deletion.
 
 ## Validation boundary
 
 The existing repository unit suite checks publisher conflict/replay behavior. The release checker checks inventory, relative file links and historical frozen-template bytes. A separate local comparison checks the guide's protected native reference sequence against the PR starting point. These support source consistency; they do not qualify the live projection or personal adoption. Neon HIGH review is reserved for Lumi after the push.
+
+## 14:37 follow-up · edition 2026-11-24.2
+
+Applied the primary `content-channel` skeleton directly to the existing video-outline task in case 2, without loading a pre-built channel example or adding a file. Filled its assembly steps as: open with the search question; demonstrate the actual label-to-bin and return sequence; close by showing how to flag an unclear label. The references remain the supplied vision, reader, voice preference, policy and material from that case. The outline is reviewable as an outline; missing footage and an unverified export still hold finished-video readiness and release. This exercises the replicable skeleton without a channel catalogue and claims no native skill invocation.
+
+Applied the revised schedule pattern to the same two pending pieces: propose a short owner approval window for the next few days only if useful, collect the owner's comments, revise the original, resolve addressed comments and recheck before returning it. In the fictional comment loop from case 1, the unsupported “nobody has to search” claim stays rejected. An unresolved request for measured time savings holds the handoff; a gate pass never marks owner approval. No minutes, status labels, posting times or recurring job were selected.
+
+The docs now recommend the English view name Foundation and a small set of record kinds with short names as inspiration. No live views or pages were renamed or moved. The existing general quality-gate skill, owner-approval rules, minimum schema and private setup boundary already covered the update and remain unchanged. No repository files or channel examples were added. Neon HIGH remains for Lumi after the push.

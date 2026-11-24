@@ -86,13 +86,23 @@ Record who owns storage/backup and what the agent can actually access. A link is
 
 Find the relevant profile/soul, brand, priorities/tasks, offers, audience, voice, positioning and operating-policy records in the plugin's existing Knowledge route. These are kinds of information, not compulsory titles. Content vision and channel strategy link that direction to production. Cadence and formats are working preferences in Knowledge or their existing equivalent; reusable production templates/material belong in Content. Do not move existing records or duplicate their facts to impose this split.
 
-Use the [entry forms](../templates/knowledge-entries) only to fill real gaps. A red thread, separate format page or dedicated gate page is optional when existing guidance already serves the task. Adapted Skills hold short procedures and references, rather than another profile/brand/priority system. The [channel-skills guide](channel-skills.md) explains the responsibility axis plus one assembly guideline per selected channel, including YouTube and the generic new-channel skeleton. The five frozen responsibility packets remain unchanged.
+Use the [entry forms](../templates/knowledge-entries) only to fill real gaps. A red thread, separate format page or dedicated gate page is optional when existing guidance already serves the task. Adapted Skills hold short procedures and references, rather than another profile/brand/priority system. The [channel-skills guide](channel-skills.md) explains the responsibility axis plus one assembly guideline per selected channel. An agent replicates [content-channel](../templates/content-channel/SKILL.md); the existing channel files are thin example copies. The five frozen responsibility packets remain unchanged.
 
 A documented [cadence](../templates/knowledge-entries/cadence.md) and [schedule skeleton](../templates/content-schedule/SKILL.md) help plan workload and review. The owner chooses whether and how to use them; no rhythm, horizon or daily workflow is required. A planning choice creates no automation.
 
-## Fundament / Byggesten views
+## Foundation views
 
-Before ideas and production accumulate, make the relevant base records easy to find. A best-practice Fundament / Byggesten view in Knowledge selects the existing direction, voice, audience, policy and channel working preferences needed by the chosen workflow. In Content, select reusable templates or production building blocks and link the Knowledge owners where appropriate. A thin view is valid; create no empty mandatory pages, parallel stores or copies just to fill it. Memory needs few or no such files.
+Before ideas and production accumulate, make the base records the module and agent get most value from easy to find. Use **Foundation** as the recommended English view name. Start with the small set of kinds below; names are inspiration, not compulsory pages or a new classification. Reuse existing records even when they combine several kinds.
+
+| Kind | Simple name inspiration | What Content uses |
+| --- | --- | --- |
+| Owner and audience | About / Soul | Profile, brand, audience and point of view |
+| Direction | Vision | Goals, priorities, offers and channel strategy |
+| Expression and boundaries | Voice / Policy | Voice, operating rules and review authority |
+| Working choices | Plan | Selected cadence and formats |
+| Production building blocks | Templates | Reusable production templates and material |
+
+A best-practice Foundation view in Knowledge selects the relevant existing owners of direction, voice, audience, policy and working choices. In Content, select reusable templates or production building blocks and link the Knowledge owners where appropriate. A thin view is valid; create no empty mandatory pages, parallel stores or copies just to fill it. Memory needs few or no such files.
 
 Filter using sufficient existing Kind/tags, explicit record selection or suitable existing metadata. Add an optional foundation marker only when a useful view needs it and schema changes are authorized; the method adds no required column. Exclude Superseded records from the working foundation view and retain them in All/history. Verify actual view membership; a view is not an access boundary.
 

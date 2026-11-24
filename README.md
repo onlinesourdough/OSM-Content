@@ -75,10 +75,12 @@ not require five agents or five new skills.
 A second axis is one small working method (arbejdsform) per active channel:
 how to assemble a piece so it fits the channel, the owner's vision and its goal.
 Reuse the plugin's existing base records and keep business facts at their owners.
-The generic [content-channel](templates/content-channel/SKILL.md) skeleton
-covers a new channel; these are adaptable examples and shared helpers:
+The primary [content-channel](templates/content-channel/SKILL.md) skeleton is
+replicated and filled in by an agent for the selected channel or format. The
+existing newsletter, LinkedIn, X and YouTube files are thin example copies,
+not a catalogue that needs to grow. Schedule and gate are shared helpers:
 
-| Use | Starting template |
+| Use | Example copy or shared helper |
 | --- | --- |
 | Newsletter | [channel-newsletter](templates/channel-newsletter/SKILL.md) |
 | LinkedIn | [channel-linkedin-post](templates/channel-linkedin-post/SKILL.md) |
@@ -96,7 +98,7 @@ of the final version/destinations. Approval and delivery authority are separate.
 [Channel skills](docs/channel-skills.md) explains the two axes and adoption.
 The [entry forms](templates/knowledge-entries) fill real gaps in existing
 records; they do not require a new profile, strategy or empty page list.
-[Setup](docs/setup.md#fundament--byggesten-views) describes optional foundation views.
+[Setup](docs/setup.md#foundation-views) describes optional foundation views.
 
 ## Versions and upkeep
 
@@ -107,7 +109,8 @@ retained in [the initial import](https://github.com/onlinesourdough/OSM-Content/
 v0.14.0 merely because the guide has changed. Adapt them with the current
 configuration, short-post and reference guidance. Channel, schedule and gate skeletons and
 Knowledge entry forms are a later generation at v0.14.0, revised as edition
-2026-11-24.1 with the earlier proposal retained in Git history. They do not rewrite
+2026-11-24.1, with channel skeleton/examples and schedule refined in edition
+2026-11-24.2. Earlier proposals remain in Git history. They do not rewrite
 the frozen packets.
 
 This release distributes method source, not an installable Content plugin.

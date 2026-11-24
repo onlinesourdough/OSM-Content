@@ -20,24 +20,17 @@ The five [v0.10.0 responsibility packets](../README.md#adapt-the-useful-template
 
 Reuse the base records selected by OSM-plugin. These are kinds of information to find, not a compulsory title list or a request for blank pages.
 
-| Information needed | Where to look |
-| --- | --- |
-| Profile/soul, brand, priorities/tasks, offers, voice, audience, positioning and operating policy | Existing Knowledge records and their linked authoritative sources |
-| Content vision and channel strategy | Existing Knowledge direction, channel and working-preference records; link the relevant contribution of content |
-| Cadence, formats and reusable editorial templates | Existing working-preference records in Knowledge, production templates/material in Content, or their selected external equivalents |
-| Sources, production material, drafts, editions and feedback | The plugin's selected Content route; preserve its minimum schema and existing field equivalents |
-| Working steps | The owner's adapted personal Skills, pointing to the relevant records |
-| Lasting decisions and reasons | Memory when useful; routine production stays with its record |
+Find a small set of useful kinds: owner/audience, direction, voice/policy, working choices and reusable production material. [Setup](setup.md#foundation-views) gives short naming inspiration such as About, Soul and Vision. These are prompts for finding existing owners, not extra pages. Knowledge keeps direction and working preferences; Content keeps production material under the selected plugin binding. Skills hold procedure; Memory holds lasting decisions only when useful.
 
-A Content-side Fundament view can collect production templates and material used as building blocks, while linking to vision, strategy, cadence or format guidance already owned in Knowledge. Do not move or duplicate those records just to fill a view. [Setup](setup.md#fundament--byggesten-views) explains the optional filters and status meanings.
+A Content-side Foundation view can collect production templates and material used as building blocks, while linking to vision, strategy, cadence or format guidance already owned in Knowledge. Do not move or duplicate those records just to fill a view. [Setup](setup.md#foundation-views) explains the optional filters and status meanings.
 
 The [entry forms](../templates/knowledge-entries) are prompts to fill a real gap on an existing owner record. They do not establish a second brand, voice, priorities or strategy system. A red thread is optional coherence guidance; existing vision, voice and policy can already cover it.
 
 ## A short channel guideline
 
-Start with [content-channel](../templates/content-channel/SKILL.md), the generic new-channel skeleton, or a channel example:
+The primary artifact is [content-channel](../templates/content-channel/SKILL.md). An agent reads and replicates it, filling references and assembly steps for the selected channel or format. The same skeleton works for YouTube, TikTok, long-form, short-form or another choice. The existing files below are thin example copies with channel assembly steps filled in; a growing catalogue of pre-built skills is not the method:
 
-| Channel | Skeleton |
+| Channel | Example copy of content-channel |
 | --- | --- |
 | Newsletter | [channel-newsletter](../templates/channel-newsletter/SKILL.md) |
 | LinkedIn | [channel-linkedin-post](../templates/channel-linkedin-post/SKILL.md) |
@@ -56,7 +49,7 @@ A documented cadence makes workload, upcoming review and gaps visible. The [cont
 
 Record only actual choices: selected channels, rhythm or on-demand use, timezone where times matter, optional planning horizon, review route, and limits when wanted. A planning entry is distinct from a live scheduler job. Installing or adopting the skill creates no automation.
 
-Optional patterns include a short daily owner approval window for work due soon, backed by a bank replenished on a chosen cycle; and owner-named value categories with caps to keep one theme or selling from dominating. Neither pattern is a prerequisite. Approval before publication remains required for each final version and destination.
+A useful optional pattern from the first real run is a short approval window for the next few days, with review ping-pong between owner and assistant: the assistant prepares and checks the piece, the owner comments, the assistant revises and resolves addressed comments, then the owner reviews again and marks final approval. No minutes, status labels or posting times are prescribed. A bank replenished on a chosen cycle and owner-named value categories with caps can also help. These patterns are not prerequisites; approval remains required for each final version and destination.
 
 ## Quality gate, comments and owner approval
 

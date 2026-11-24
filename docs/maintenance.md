@@ -107,6 +107,6 @@ new native media identities before any projection is called qualified.
 
 ## PR #15 guide rewrite
 
-The proposed v0.14.0 guide leads with the operating model and the two skill axes. Earlier illustrations remain collapsed as optional reference, preserving the exact native child/catalogue/media sequence required by the publisher. No baseline or live Notion page is changed by this source revision. Later template edition 2026-11-24.1 records its previous generation where applicable; the five v0.10.0 imports and provenance stay frozen.
+The proposed v0.14.0 guide leads with the operating model and the two skill axes. Earlier illustrations remain collapsed as optional reference, preserving the exact native child/catalogue/media sequence required by the publisher. No baseline or live Notion page is changed by this source revision. Later template editions record their previous generation where applicable; the primary channel skeleton, its four example copies and schedule now use edition 2026-11-24.2, with the 2026-11-24.1 revision retained at `48d43e52dc9e9a26982a6b9b2c7543c39be0ab94`; the five v0.10.0 imports and provenance stay frozen.
 
 Second-model review stays an optional owner-policy switch without a named model. Approval uses the existing per-piece review section or an equivalent existing field; no new Select is required. The channel, schedule and gate templates stay in Git and do not expand the eight-page synced catalogue. Live projection and adoption still need their own evidence.
