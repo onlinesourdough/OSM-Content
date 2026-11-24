@@ -18,13 +18,14 @@ The source-to-page mapping is in [release.json](../release.json):
   docs/sidebar-icons.md and docs/channel-skills.md are linked detail in Git.
   Channel, schedule and gate skeletons and Knowledge entry forms are a later generation
   under templates/. They are not part of the frozen v0.10.0 packets and they
-  are not among the eight synced Notion pages.
+  do not replace the five frozen packets. The primary content-channel page
+  is the ninth target, with a portable resource projection from an exact source commit.
 
-The existing OSM core publisher owns its seven released native skills. It does
+The existing OSM core publisher owns its separately bound native skills. It does
 not write these Content guide or template pages. Reuse its distinction between
 accepted source, prepared projection, saved readback and anonymous public
 verification. The Content workflow reuses the pinned OSM public transport and
-anonymous reader, with a public-only Notion credential and exactly eight bound
+anonymous reader, with a public-only Notion credential and exactly nine bound
 Content pages. It adds no daily private-context writer or owner-content publisher.
 
 ## Automatic synchronization
@@ -46,7 +47,9 @@ edits or a newer source. Mapped prose is authored as one physical line per parag
 non-managed properties are preserved. A failed or lost write is read back before
 anything else; the same invocation never retries it. Each Markdown update matches observed prose outside native media; expiring file signatures never enter match strings. A changed selection is not replaced. Exact accepted prose segments and commit-pinned links identify a partially applied update for recovery. Unknown segments hold for review. The native reference sequence, not only its membership, must remain unchanged. Partial progress across pages can resume from its actual state. The report preserves progress on a failure.
 
-Three guide bodies follow their mapped Git source. The five frozen template
+Three guide bodies follow their mapped Git source. The ninth content-channel
+Draft retains its reviewed portable body and packet; only its source note advances.
+The five frozen template
 instructions and packets keep their original v0.10.0 identity; only their source
 note advances. The Source property retains the historical handoff and is read-only to the publisher. API-derived signed downloads are hash-checked; anonymous browser download access is not checked by this workflow. A future template
 instruction/version change needs a reviewed new handoff instead of silently
@@ -78,7 +81,7 @@ The latest real qualification belongs on the release and in the Actions history.
    A successful API call alone is not a current projection.
    The checker's --notion-snapshots input compares the three supplied guide
    readbacks, retaining structure and code. It does not fetch Notion or verify
-   the five template pages or anonymous access. Check template source notes,
+   the six catalogue template pages or anonymous access. Check template source notes,
    unchanged instructions, native files/history and packet hashes separately.
 5. Verify the changed anonymous pages and linked source/downloads. Keep an
    inaccessible or incomplete public read explicit; do not call it verified.
@@ -107,6 +110,23 @@ new native media identities before any projection is called qualified.
 
 ## PR #15 guide rewrite
 
-The proposed v0.14.0 guide leads with the operating model and the two skill axes. Earlier illustrations remain collapsed as optional reference, preserving the exact native child/catalogue/media sequence required by the publisher. No baseline or live Notion page is changed by this source revision. Later template editions record their previous generation where applicable; the primary channel skeleton, its four example copies and schedule now use edition 2026-11-24.2, with the 2026-11-24.1 revision retained at `48d43e52dc9e9a26982a6b9b2c7543c39be0ab94`; the five v0.10.0 imports and provenance stay frozen.
+The proposed v0.14.0 guide leads with the operating model and the two skill axes. Earlier illustrations remain collapsed as optional reference, preserving the exact native child/catalogue/media sequence required by the publisher. The original PR #15 changed no live pages. The subsequent catalogue handoff adds only the ninth content-channel Draft and its baseline; the three guide pages, five frozen packets, core pages and private homes are unchanged by that preparation. Later template editions record their previous generation where applicable; the primary channel skeleton, its four example copies and schedule now use edition 2026-11-24.2, with the 2026-11-24.1 revision retained at `48d43e52dc9e9a26982a6b9b2c7543c39be0ab94`; the five v0.10.0 imports and provenance stay frozen.
 
-Second-model review stays an optional owner-policy switch without a named model. Approval uses the existing per-piece review section or an equivalent existing field; no new Select is required. The channel, schedule and gate templates stay in Git and do not expand the eight-page synced catalogue. Live projection and adoption still need their own evidence.
+Second-model review stays an optional owner-policy switch without a named model. Approval uses the existing per-piece review section or an equivalent existing field; no new Select is required. The ninth catalogue target now exposes the primary content-channel template and portable supporting references; the five older packets are unchanged. Live projection and adoption still need their own evidence.
+
+## Current channel packet ownership
+
+The Content publisher alone owns page 4226d2e17f568142a957f3c3577e106b,
+Key `content-draft:content-channel`, Area `Optional Content`, Status `Draft`.
+It creates no schema, searches no private catalogue and never writes core
+OSM rows. The nine exact target IDs are checked before any write.
+
+`scripts/build_channel_packet.py` creates the portable public projection from
+one exact Git commit. SOURCE.json records every source hash and resource
+path. Only relative links are transformed. Native imported Files and the
+versioned ZIP are read back and hash-checked at the deliberate handoff.
+The publisher then changes only the page's current-source note, retaining
+its instruction body, Source property, packet, native references and history.
+Changed packet inputs require another reviewed handoff; a method-release
+note cannot silently replace the working-method template. A Draft template
+is not an enabled private skill or a permission to schedule or publish.

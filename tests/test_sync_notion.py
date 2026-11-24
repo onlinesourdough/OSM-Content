@@ -48,8 +48,8 @@ class API:
 
 def baselines():
     rows = {p: {'body': Source().read(path).strip(), 'source': None} for p, path in s.GUIDES.items()}
-    for p in s.TEMPLATES:
-        rows[p] = {'body': '## Instructions\n\nKeep the owner\'s voice.\n\n' + s.SOURCE_NOTE + ' Old source note.\n\n<file source="notion-file-block://abc/archive?name=source.zip" />', 'source': 'Old property', 'packet_sha256': 'frozen'}
+    for p in s.ALL_TEMPLATES:
+        rows[p] = {'body': '## Instructions\n\nKeep the owner\'s voice.\n\n' + (s.CURRENT_SOURCE_NOTE if p in s.CURRENT_TEMPLATES else s.SOURCE_NOTE) + ' Old source note.\n\n<file source="notion-file-block://abc/archive?name=source.zip" />', 'source': 'Old property', 'packet_sha256': 'frozen'}
     return rows
 
 
@@ -58,7 +58,7 @@ class SyncTests(unittest.TestCase):
         self.base = baselines();self.api = API(self.base);self.source = Source()
     def test_full_write_then_exact_replay_has_zero_writes(self):
         first = s.reconcile(self.api, self.source, self.base, write=True)
-        self.assertEqual(8, sum(r['state']=='written' for r in first))
+        self.assertEqual(9, sum(r['state']=='written' for r in first))
         self.api.calls.clear()
         again = s.reconcile(self.api, self.source, self.base, write=True)
         self.assertTrue(all(r['state']=='unchanged' for r in again));self.assertEqual([], self.api.calls)
@@ -66,7 +66,7 @@ class SyncTests(unittest.TestCase):
         selected = next(iter(s.GUIDES))
         result = s.reconcile(self.api, self.source, self.base, write=True, only=selected, max_writes=1)
         self.assertEqual([('body', selected)], self.api.calls)
-        self.assertEqual(7, sum(r['state']=='prepared' for r in result))
+        self.assertEqual(8, sum(r['state']=='prepared' for r in result))
     def test_human_edit_holds_whole_preflight(self):
         self.api.rows[next(iter(s.TEMPLATES))]['body'] += '\nOwner edit'
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True)
@@ -79,7 +79,7 @@ class SyncTests(unittest.TestCase):
         self.api.lost_answer = True
         result = s.reconcile(self.api, self.source, self.base, write=True)
         self.assertTrue(all(r['state']=='written' for r in result))
-        self.assertEqual(8, len([c for c in self.api.calls if c[0]=='body']))
+        self.assertEqual(9, len([c for c in self.api.calls if c[0]=='body']))
     def test_rejected_write_is_not_retried(self):
         self.api.reject = True;checkpoint=[]
         with self.assertRaises(s.Held):s.reconcile(self.api, self.source, self.base, write=True, record=lambda rows:checkpoint.extend(copy.deepcopy(rows)))

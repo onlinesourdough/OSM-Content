@@ -71,4 +71,4 @@ A second-model review is an optional switch on the owner's review policy, with n
 4. Exercise a real, bounded draft in a verified non-publishing state, run the gate and request owner review. Structure alone does not prove useful work or complete calibration.
 5. Add cadence, another channel, recurring planning or delivery only when selected and authorized. Keep superseded guidance as linked history rather than deleting it.
 
-Channel, schedule and gate skeletons remain Git sources, outside the eight synced Notion catalogue pages. The public guide links to them. Adopting a private skill and publishing a method release are separate authorized actions.
+The public content-channel catalogue entry carries a portable projection of the primary skeleton with adoption, quality-gate and schedule references in its Files. Git remains the shared authoring source; Notion is the discoverable reading and download route. The five v0.10.0 responsibility packets retain their frozen identity. Adopting a private skill and publishing a method release are separate authorized actions.

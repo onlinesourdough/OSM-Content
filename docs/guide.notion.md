@@ -25,7 +25,7 @@ A best-practice **Foundation** view in Knowledge and Content shows the base reco
 Knowledge status **Current** means selected for use; **Needs review** means useful uncertainty, never age alone; **Superseded** means replaced and retained as history. Historical temporal scope is separate. Current and All are the normal views; an optional Attention view, sometimes called **Needs attention**, is a navigation aid, not a topic or niche. Content production states have their own configured meanings.
 
 <page url="https://app.notion.com/p/40f6d2e17f56819ea683f45a30072086">
-Content setup & database
+Content workflow setup
 </page>
 
 <page url="https://app.notion.com/p/40f6d2e17f5681d68525d83503a457d5">
@@ -39,11 +39,11 @@ Personal configuration
 | Responsibility skills | Setup, Intake, Prepare, Produce / Distribute and Learn cover the life of the work |
 | Channel working methods (arbejdsformer) | One small guideline per active channel explains how to assemble a piece that fits the channel, your vision and its goal |
 
-Existing skills may already cover responsibilities. Adapt only what helps. The primary [content-channel skeleton](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/templates/content-channel/SKILL.md) is read and replicated by an agent for your selected channel or format. Newsletter, LinkedIn, X and YouTube are existing thin example copies, not a growing catalogue to install. Each working method links to your context, explains assembly and hands the result to the shared quality-gate skill. The optional newsletter-to-posts helper coordinates reuse when you select it; no channel is mandatory upstream.
+Existing skills may already cover responsibilities. Adapt only what helps. The primary <mention url="https://app.notion.com/p/4226d2e17f568142a957f3c3577e106b">content-channel</mention> is read and replicated by an agent for your selected channel or format. Newsletter, LinkedIn, X and YouTube are existing thin example copies, not a growing catalogue to install. Each working method links to your context, explains assembly and hands the result to the shared quality-gate skill. The optional newsletter-to-posts helper coordinates reuse when you select it; no channel is mandatory upstream.
 
 [Channel methods and starter chain](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/docs/channel-skills.md)
 
-The five original responsibility templates remain available:
+Start with the current **content-channel** entry below. Open its <mention url="https://app.notion.com/p/4226d2e17f568131a04eee2fcda94904">references</mention> for adaptation.md, quality-gate.md and schedule.md, or download the complete skill packet from Files. The five original responsibility templates remain frozen **v0.10.0 Drafts**, useful as responsibility examples rather than five required installations:
 
 - <mention url="https://app.notion.com/p/40d6d2e17f5681578925cdc0774c6db5">content-setup</mention>
 - <mention url="https://app.notion.com/p/40d6d2e17f5681c99020d85e3bc1ff4b">content-intake</mention>
@@ -63,6 +63,17 @@ The five original responsibility templates remain available:
 A schedule helps make workload and upcoming review visible. The [schedule skeleton](https://github.com/onlinesourdough/OSM-Content/blob/v0.14.0/templates/content-schedule/SKILL.md) reads your cadence entry in Knowledge or its equivalent and proposes a plan. You choose the rhythm, optional horizon and review route; no posting days or volume are prescribed. A plan creates no scheduler job.
 
 An optional best practice from the first real run is a short approval window for the next few days, with review ping-pong: the assistant prepares and checks, you comment, the assistant revises and resolves addressed comments, then you review again and mark final approval. Choose the rhythm yourself; no minutes, named statuses or posting times are prescribed. A bank replenished on your chosen cycle and owner-defined value-category caps can also help. These are not prerequisites for a draft.
+
+## One small example
+
+A bicycle workshop wants an occasional LinkedIn post explaining a useful maintenance check. Its existing About and Audience records describe the business and customers; Voice and Policy already govern language and review. Core OSM has prepared the selected Content destination. Content reuses those records.
+
+- **Intake:** save the owner's permitted observation and why a rider would care.
+- **Prepare:** check the advice, choose a real photo with permission and identify one point.
+- **Produce / Distribute:** adapt one content-channel method: show the symptom, explain the check and end with a useful next action. Run the shared quality gate; ask the owner to review the editable draft. Publish only the approved version and destination under explicit delivery authority.
+- **Learn:** keep a useful correction with the piece. If it changes a lasting format choice, update that choice at its existing owner.
+
+These responsibilities are a loop, not a compulsory sequence of five skills. One method may cover several of them. If the owner later wants a rhythm, use the schedule reference in content-channel's Files; a proposed calendar creates no automation.
 
 ## Practical starting points
 
@@ -88,7 +99,7 @@ Earlier wide illustration and editable source
 
 ## Source and versions
 
-The proposed method version is **v0.14.0**. [Shared source](https://github.com/onlinesourdough/OSM-Content) and [published releases](https://github.com/onlinesourdough/OSM-Content/releases) identify what is available. The five v0.10.0 Draft templates remain unchanged frozen packets from edition 2026-11-05.1. Later channel, schedule and gate skeletons are Git templates linked from this guide, outside the eight synced Notion pages.
+The proposed method version is **v0.14.0**. [Shared source](https://github.com/onlinesourdough/OSM-Content) and [published releases](https://github.com/onlinesourdough/OSM-Content/releases) identify what is available. The five v0.10.0 Draft templates remain unchanged frozen packets from edition 2026-11-05.1. The current content-channel Draft is a later portable template, with adoption, quality-gate and schedule references in its Files. These are shared examples, not automatically installed personal skills. Its packet version is separate from the five frozen v0.10.0 packets. The published method release and live verification are recorded separately.
 
 This repository is outside OSM-plugin. Personal content, media, configuration and adapted skills stay in your selected private home. The method grants no publication or scheduling authority.
 
