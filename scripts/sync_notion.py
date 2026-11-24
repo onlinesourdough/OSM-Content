@@ -59,11 +59,11 @@ def source_text(value):
 def verify_current_identity(page_id, props):
     if page_id not in CURRENT_TEMPLATES:
         return
-    key = props.get('Key', {})
-    value = ''.join(t.get('plain_text', t.get('text', {}).get('content', '')) for t in key.get('rich_text', []))
+    key = props.get('Key') or {}
+    value = ''.join(t.get('plain_text', (t.get('text') or {}).get('content', '')) for t in (key.get('rich_text') or []))
     if (key.get('type') != 'rich_text' or value != 'content-draft:content-channel'
-            or props.get('Area', {}).get('select', {}).get('name') != 'Optional Content'
-            or props.get('Status', {}).get('select', {}).get('name') != 'Draft'):
+            or ((props.get('Area') or {}).get('select') or {}).get('name') != 'Optional Content'
+            or ((props.get('Status') or {}).get('select') or {}).get('name') != 'Draft'):
         raise Held('Current template identity, ownership area or Draft status differs')
 
 
@@ -215,10 +215,10 @@ class API:
         if page_id in ALL_TEMPLATES:
             if props.get('Source', {}).get('type') != 'rich_text':
                 raise Held('Template Source property is not the bound text field')
-            source = ''.join(t.get('plain_text', t.get('text', {}).get('content', '')) for t in props['Source']['rich_text'])
+            source = ''.join(t.get('plain_text', (t.get('text') or {}).get('content', '')) for t in props['Source']['rich_text'])
             for t in props['Source']['rich_text']:
                 for url in {t.get('href'), (t.get('text', {}).get('link') or {}).get('url')} - {None}:
-                    source_links.append({'text': t.get('plain_text', t.get('text', {}).get('content', '')), 'url': url})
+                    source_links.append({'text': t.get('plain_text', (t.get('text') or {}).get('content', '')), 'url': url})
         # All non-managed properties must remain unchanged. File URLs expire; compare their immutable path/name.
         def stable(value):
             if isinstance(value, dict):

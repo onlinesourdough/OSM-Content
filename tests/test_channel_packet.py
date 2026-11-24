@@ -18,7 +18,7 @@ s=module('sync_packet','scripts/sync_notion.py')
 
 class PacketTests(unittest.TestCase):
     def test_archive_roundtrip_and_reproducibility(self):
-        files=b.build(ROOT,'2ccc3cec0ab524ca50ad784ecb9f8d7a438586d1')
+        files=b.build(ROOT,'HEAD')
         first=b.archives(files);self.assertEqual(first,b.archives(files))
         with tarfile.open(fileobj=io.BytesIO(first[0]),mode='r:gz') as archive:
             self.assertTrue(all(m.isfile() and m.mode==0o644 for m in archive))
@@ -27,7 +27,7 @@ class PacketTests(unittest.TestCase):
             self.assertEqual(files,{n:archive.read(n) for n in archive.namelist()})
         self.assertEqual(19,len(files))
     def test_portable_relative_links_resolve_inside_packet(self):
-        files=b.build(ROOT,'2ccc3cec0ab524ca50ad784ecb9f8d7a438586d1')
+        files=b.build(ROOT,'HEAD')
         import posixpath
         for name,data in files.items():
             if not name.endswith('.md'):continue
@@ -36,7 +36,7 @@ class PacketTests(unittest.TestCase):
                 target=posixpath.normpath(posixpath.join(posixpath.dirname(name),href.split('#')[0]))
                 self.assertIn(target,files,(name,href))
     def test_manifest_provenance_hashes_unmodified_sources(self):
-        files=b.build(ROOT,'2ccc3cec0ab524ca50ad784ecb9f8d7a438586d1');meta=json.loads(files['SOURCE.json'])
+        files=b.build(ROOT,'HEAD');meta=json.loads(files['SOURCE.json'])
         for path,expected in meta['source_files'].items():
             self.assertEqual(expected,hashlib.sha256(b.git(ROOT,'show',meta['source_commit']+':'+path)).hexdigest())
     def test_cross_repo_and_private_targets_never_reach_transport(self):
@@ -52,6 +52,11 @@ class PacketTests(unittest.TestCase):
             with self.assertRaises(s.Held):s.verify_current_identity(page,bad)
         bad=copy.deepcopy(props);bad['Key']['rich_text'][0]['plain_text']='osm:core'
         with self.assertRaises(s.Held):s.verify_current_identity(page,bad)
+    def test_cleared_identity_fields_hold_explicitly(self):
+        page=next(iter(s.CURRENT_TEMPLATES))
+        for props in [{}, {'Key':None}, {'Area':{'select':None},'Status':{'select':None}}, {'Key':{'type':'rich_text','rich_text':None}}]:
+            with self.assertRaises(s.Held):s.verify_current_identity(page,props)
+
     def test_changed_packet_inputs_require_new_handoff(self):
         page=next(iter(s.CURRENT_TEMPLATES));data='existing procedure'
         class Source:

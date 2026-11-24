@@ -88,7 +88,7 @@ For an automation, specify the real trigger/cadence and timezone, selected sourc
 
 ## Adopt personal skills
 
-The five public templates are starting material. Read and adapt the useful ones through the owner's available Manage Skills method. Do not require an unreleased OSM name: discover the actually installed capability or follow the selected home's supported personal-Skills procedure.
+The primary public content-channel Draft is starting material for a selected channel working method; its Files include adoption, quality-gate and schedule references. The five frozen v0.10.0 responsibility Drafts are optional examples, not five required installations. Read and adapt useful material through the owner's available Manage Skills method. Do not require an unreleased OSM name: discover the actually installed capability or follow the selected home's supported personal-Skills procedure.
 
 Before writing, query the owner's Skills for semantic overlap and preserve useful existing instructions, supporting files and provenance. Choose discriminating names/descriptions, actual input/output locations and a reference to the accepted owner configuration. Shared methods stay outside that configuration. A bundle copied locally is not a native install or automatic enablement.
 
