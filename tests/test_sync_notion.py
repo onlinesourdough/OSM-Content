@@ -1,5 +1,7 @@
 import copy
+import hashlib
 import importlib.util
+import json
 from pathlib import Path
 import unittest
 from unittest.mock import patch
@@ -70,6 +72,38 @@ def baselines():
 class SyncTests(unittest.TestCase):
     def setUp(self):
         self.base = baselines();self.api = API(self.base);self.source = Source()
+    def test_native_root_title_is_not_duplicated_but_other_headings_remain(self):
+        root = '40d6d2e17f5681219a81e13317a19339'
+        class Titled(Source):
+            def read(self,path,ref=None):
+                return '0.14.0' if path=='VERSION' else '# Document title\n\n## Keep this section\n\nActual method.\n'
+        source=Titled()
+        for page in s.GUIDES:
+            body=s.render(source,page,self.base)['body']
+            self.assertEqual(page!=root,body.startswith('# Document title'))
+            self.assertIn('## Keep this section\n\nActual method.',body)
+        legacy=s.render(source,root,self.base,A,document_heading=True)
+        current=s.render(source,root,self.base,A)
+        for state in (legacy,current):
+            seen={**self.api.rows[root],**state}
+            self.assertEqual(s.render(source,root,self.base),s.plan(source,self.base,root,seen))
+            seen['body']=seen['body'].replace('Actual method.','A human change.')
+            with self.assertRaises(s.Held):s.plan(source,self.base,root,seen)
+        # Equality is still exact; a transport observation is not normalized.
+        self.assertFalse(s.equal(legacy,current))
+    def test_actual_public_capture_matches_only_the_title_projection(self):
+        root=Path(__file__).resolve().parents[1]
+        fixture=json.loads((root/'tests/fixtures/root-native-title-20261125.json').read_text())
+        self.assertEqual(fixture['body_sha256'],hashlib.sha256(fixture['body'].encode()).hexdigest())
+        source=s.Source(root,fixture['source_commit'])
+        baseline=json.loads((root/'sync/baselines.json').read_text())
+        current=s.render(source,fixture['page_id'],baseline)
+        old=s.render(source,fixture['page_id'],baseline,document_heading=True)
+        self.assertEqual(fixture['body'],current['body'])
+        self.assertEqual(old['body'].split('\n\n',1)[1],current['body'])
+        self.assertEqual(current,s.plan(source,baseline,fixture['page_id'],current))
+        changed={**current,'body':current['body']+'\nA distinct human edit.'}
+        with self.assertRaises(s.Held):s.plan(source,baseline,fixture['page_id'],changed)
     def test_full_write_then_exact_replay_has_zero_writes(self):
         first = s.reconcile(self.api, self.source, self.base, write=True)
         self.assertEqual(9, sum(r['state']=='written' for r in first))
