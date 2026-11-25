@@ -158,12 +158,18 @@ def note(name, ref, version):
             f'Method {version} does not change this template\'s version or install a personal skill.')
 
 
-def render(source, page_id, baselines, ref=None):
+def render(source, page_id, baselines, ref=None, *, document_heading=False):
     ref = ref or source.ref
     version = source.read('VERSION', ref).strip()
     if page_id in GUIDES:
         path = GUIDES[page_id]
         body = source.read(path, ref)
+        # The root already has its owner-selected native page title. Project
+        # the source document's leading title once, through that native title,
+        # rather than putting a second title into the page body. Other guide
+        # headings and all observed input remain untouched.
+        if page_id == '40d6d2e17f5681219a81e13317a19339' and not document_heading and body.startswith('# '):
+            body = body.partition('\n')[2].lstrip('\n')
         def link(match):
             label, href = match.groups()
             if urllib.parse.urlsplit(href).scheme or href.startswith('#'):
@@ -195,7 +201,12 @@ def candidates(source, seen, baselines, page_id):
     states=[baselines[page_id]]
     for ref in refs:
         if not source.ancestor(ref):continue
-        try:states.append(render(source,page_id,baselines,ref))
+        try:
+            states.append(render(source,page_id,baselines,ref))
+            if page_id == '40d6d2e17f5681219a81e13317a19339':
+                # Reconstruct the earlier authored projection exactly; never
+                # strip a heading from an incoming observation to accept it.
+                states.append(render(source,page_id,baselines,ref,document_heading=True))
         except Held:continue
     return states
 

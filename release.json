@@ -153,7 +153,7 @@
     "provenance.json": "ed20686ec204cd59861f4fe6fc7db7b7c788298cfcdc5497f7d2753aaa79d26f",
     "scripts/build_channel_packet.py": "a503cae4c9943ac967ef6b09aca8b8a415a982c9368a4ccd8498c272e2b2f681",
     "scripts/check_release.py": "b4979fcc664863abdae0845ccc836083e2bc97b2e01db1d41bd9748b7dc104d1",
-    "scripts/sync_notion.py": "9fac71eb895d2fce7b8b3b14a2243b61b318b86f5033eb1eeabb5c9db831d74c",
+    "scripts/sync_notion.py": "98aa51c07c6c40090aa194785a173cb6fa56aeed0645a92e5931a96ec0bf2bbc",
     "sync/baselines.json": "b09f4ab58965da4419e0d5b2543ee6a540a1a0da892ce913123092e037b4a587",
     "templates/channel-linkedin-post/LICENSE": "1ad1337ba84cedbe459659eecff0768e0068bb4c551cad92c580fd43b04173ec",
     "templates/channel-linkedin-post/SKILL.md": "007e86eedad9eeda4168a0dd65074c9583ef16c8f4cdff8753d8fb6d831be750",
@@ -209,9 +209,10 @@
     "templates/knowledge-entries/red-thread.md": "c925393919ad879922ce458a81e88a60bd2a74c4d548d2f45436b1a45d0caeea",
     "templates/knowledge-entries/setup-interview.md": "7d272accba9f7e3dbe511b17a6466262b78fce30ed2e3d1dffa28cf420686e2f",
     "templates/knowledge-entries/voice-profile.md": "b253eff690c65c1ffeddb36e8a85d48de4c4ac5d9bea9cf19f539c9da6947497",
+    "tests/fixtures/root-native-title-20261125.json": "c6babef464edd73cc6cfef5245ed6e444b0adc2a0474ceebdc1dd4d5b8684b44",
     "tests/test_channel_packet.py": "9268bf7cc356336047f43490f21229eb47f7d920281b6d4570aaf88b5651478a",
     "tests/test_source_selection.py": "24f9b1072102cf3410f3b13e435743d7b24f0272a0d0694bf4d66f4b9fb5bd8b",
-    "tests/test_sync_notion.py": "60249869c84f5eadf8b8a386eb657357b769886ab028a140635e62599efccd36"
+    "tests/test_sync_notion.py": "45f55ef5b4d39cd1511daa886452b615a0827bc57dd8787d30c6a6faa315592c"
   },
   "template_import_commit": "b8dc567cca091a2af5942e0a7826a24844b0bc76"
 }
